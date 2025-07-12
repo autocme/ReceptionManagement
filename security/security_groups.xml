@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Security Category -->
+        <record id="category_j_reception" model="ir.module.category">
+            <field name="name">J Reception</field>
+            <field name="description">J Reception Building Management</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- Renter Group -->
+        <record id="group_j_reception_renter" model="res.groups">
+            <field name="name">Renter</field>
+            <field name="category_id" ref="category_j_reception"/>
+            <field name="comment">
+                J Reception Renter Group:
+                - Can view only their own renter record (read-only)
+                - Can create new invitations for their building
+                - Can view invitations where they are the renter
+                - Cannot edit, delete, or create new renter records
+            </field>
+        </record>
+
+        <!-- Administrator Group -->
+        <record id="group_j_reception_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="category_j_reception"/>
+            <field name="implied_ids" eval="[(4, ref('group_j_reception_renter'))]"/>
+            <field name="comment">
+                J Reception Administrator Group:
+                - Full access to all renter records
+                - Full access to all invitation records
+                - Can manage module settings
+                - Can create, edit, and delete all records
+            </field>
+        </record>
+
+        <!-- Record Rules for Renter Group -->
+        <record id="rule_renter_own_records" model="ir.rule">
+            <field name="name">Renter: Own Records Only</field>
+            <field name="model_id" ref="model_building_renter"/>
+            <field name="domain_force">[('br_company_id.user_ids', 'in', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_renter'))]"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_create">0</field>
+            <field name="perm_unlink">0</field>
+        </record>
+
+        <record id="rule_invitation_renter_records" model="ir.rule">
+            <field name="name">Invitation: Renter Records</field>
+            <field name="model_id" ref="model_reception_invitation"/>
+            <field name="domain_force">[('ri_renter_id.br_company_id.user_ids', 'in', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_renter'))]"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_create">1</field>
+            <field name="perm_unlink">0</field>
+        </record>
+
+        <record id="rule_garage_slot_renter_records" model="ir.rule">
+            <field name="name">Garage Slot: Renter Records</field>
+            <field name="model_id" ref="model_garage_slot"/>
+            <field name="domain_force">[('gs_renter_id.br_company_id.user_ids', 'in', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_renter'))]"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_create">0</field>
+            <field name="perm_unlink">0</field>
+        </record>
+
+        <record id="rule_scheduled_payment_renter_records" model="ir.rule">
+            <field name="name">Scheduled Payment: Renter Records</field>
+            <field name="model_id" ref="model_scheduled_payment"/>
+            <field name="domain_force">[('sp_renter_id.br_company_id.user_ids', 'in', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_renter'))]"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_create">0</field>
+            <field name="perm_unlink">0</field>
+        </record>
+
+    </data>
+</odoo>

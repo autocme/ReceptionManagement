@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Reception Invitation Tree View -->
+        <record id="view_reception_invitation_tree" model="ir.ui.view">
+            <field name="name">reception.invitation.tree</field>
+            <field name="model">reception.invitation</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="ri_state == 'attended'" decoration-warning="ri_state == 'scheduled'" decoration-danger="ri_state == 'overdue'" decoration-muted="ri_state == 'cancelled'">
+                    <field name="ri_sequence"/>
+                    <field name="ri_guest_name"/>
+                    <field name="ri_guest_email"/>
+                    <field name="ri_renter_id"/>
+                    <field name="ri_invitation_datetime"/>
+                    <field name="ri_state"/>
+                    <field name="ri_responsible_user_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Reception Invitation Form View -->
+        <record id="view_reception_invitation_form" model="ir.ui.view">
+            <field name="name">reception.invitation.form</field>
+            <field name="model">reception.invitation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_mark_attended" type="object" string="Mark as Attended" 
+                                attrs="{'invisible': [('ri_state', '!=', 'scheduled')]}" class="btn-primary"/>
+                        <button name="action_mark_cancelled" type="object" string="Cancel Invitation" 
+                                attrs="{'invisible': [('ri_state', 'in', ['attended', 'cancelled'])]}" class="btn-secondary"/>
+                        <field name="ri_state" widget="statusbar" statusbar_visible="scheduled,attended,overdue,cancelled"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="ri_sequence" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="ri_renter_id" placeholder="Select the renter for this invitation"/>
+                                <field name="ri_responsible_user_id" placeholder="Select the responsible user"/>
+                                <field name="ri_invitation_datetime" placeholder="Set invitation date and time"/>
+                            </group>
+                            <group>
+                                <field name="ri_guest_name" placeholder="Enter guest full name"/>
+                                <field name="ri_guest_email" placeholder="Enter guest email address"/>
+                                <field name="ri_guest_phone" placeholder="Enter guest phone number"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Reception Invitation Search View -->
+        <record id="view_reception_invitation_search" model="ir.ui.view">
+            <field name="name">reception.invitation.search</field>
+            <field name="model">reception.invitation</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ri_sequence" string="Sequence"/>
+                    <field name="ri_guest_name" string="Guest Name"/>
+                    <field name="ri_guest_email" string="Guest Email"/>
+                    <field name="ri_renter_id" string="Renter"/>
+                    <field name="ri_responsible_user_id" string="Responsible User"/>
+                    <separator/>
+                    <filter name="filter_scheduled" string="Scheduled" domain="[('ri_state', '=', 'scheduled')]"/>
+                    <filter name="filter_attended" string="Attended" domain="[('ri_state', '=', 'attended')]"/>
+                    <filter name="filter_overdue" string="Overdue" domain="[('ri_state', '=', 'overdue')]"/>
+                    <filter name="filter_cancelled" string="Cancelled" domain="[('ri_state', '=', 'cancelled')]"/>
+                    <separator/>
+                    <filter name="filter_today" string="Today" domain="[('ri_invitation_datetime', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')), ('ri_invitation_datetime', '&lt;', (context_today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d 00:00:00'))]"/>
+                    <filter name="filter_this_week" string="This Week" domain="[('ri_invitation_datetime', '&gt;=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d 00:00:00')), ('ri_invitation_datetime', '&lt;', (context_today() + datetime.timedelta(days=7-context_today().weekday())).strftime('%Y-%m-%d 00:00:00'))]"/>
+                    <separator/>
+                    <filter name="filter_my_invitations" string="My Invitations" domain="[('ri_responsible_user_id', '=', uid)]"/>
+                    <separator/>
+                    <filter name="group_by_state" string="Group By State" domain="[]" context="{'group_by': 'ri_state'}"/>
+                    <filter name="group_by_renter" string="Group By Renter" domain="[]" context="{'group_by': 'ri_renter_id'}"/>
+                    <filter name="group_by_responsible" string="Group By Responsible User" domain="[]" context="{'group_by': 'ri_responsible_user_id'}"/>
+                    <filter name="group_by_date" string="Group By Date" domain="[]" context="{'group_by': 'ri_invitation_datetime:day'}"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Reception Invitation Calendar View -->
+        <record id="view_reception_invitation_calendar" model="ir.ui.view">
+            <field name="name">reception.invitation.calendar</field>
+            <field name="model">reception.invitation</field>
+            <field name="arch" type="xml">
+                <calendar string="Invitations" date_start="ri_invitation_datetime" color="ri_state" quick_add="False">
+                    <field name="ri_guest_name"/>
+                    <field name="ri_renter_id"/>
+                    <field name="ri_state"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Reception Invitation Kanban View -->
+        <record id="view_reception_invitation_kanban" model="ir.ui.view">
+            <field name="name">reception.invitation.kanban</field>
+            <field name="model">reception.invitation</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="ri_state">
+                    <field name="ri_sequence"/>
+                    <field name="ri_guest_name"/>
+                    <field name="ri_guest_email"/>
+                    <field name="ri_renter_id"/>
+                    <field name="ri_invitation_datetime"/>
+                    <field name="ri_state"/>
+                    <field name="ri_responsible_user_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_kanban_content">
+                                    <div class="o_kanban_record_top">
+                                        <div class="o_kanban_record_headings">
+                                            <strong class="o_kanban_record_title">
+                                                <field name="ri_sequence"/> - <field name="ri_guest_name"/>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_record_body">
+                                        <field name="ri_guest_email"/>
+                                        <br/>
+                                        <field name="ri_renter_id"/>
+                                        <br/>
+                                        <field name="ri_invitation_datetime"/>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <field name="ri_responsible_user_id" widget="many2one_avatar_user"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Reception Invitation Actions -->
+        <record id="action_reception_invitation_tree" model="ir.actions.act_window">
+            <field name="name">Reception Invitations</field>
+            <field name="res_model">reception.invitation</field>
+            <field name="view_mode">tree,form,calendar,kanban</field>
+            <field name="search_view_id" ref="view_reception_invitation_search"/>
+            <field name="context">{'search_default_filter_scheduled': 1, 'search_default_filter_my_invitations': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first invitation!
+                </p>
+                <p>
+                    Manage building invitations with automated email notifications to guests and responsible users.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

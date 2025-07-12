@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Sequence for Reception Invitations -->
+        <record id="seq_reception_invitation" model="ir.sequence">
+            <field name="name">Reception Invitation Sequence</field>
+            <field name="code">j_reception.invitation</field>
+            <field name="prefix">INV</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="implementation">standard</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

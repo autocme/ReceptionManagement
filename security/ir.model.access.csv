@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_building_renter_admin,building.renter.admin,model_building_renter,group_j_reception_admin,1,1,1,1
+access_building_renter_renter,building.renter.renter,model_building_renter,group_j_reception_renter,1,0,0,0
+access_garage_slot_admin,garage.slot.admin,model_garage_slot,group_j_reception_admin,1,1,1,1
+access_garage_slot_renter,garage.slot.renter,model_garage_slot,group_j_reception_renter,1,0,0,0
+access_scheduled_payment_admin,scheduled.payment.admin,model_scheduled_payment,group_j_reception_admin,1,1,1,1
+access_scheduled_payment_renter,scheduled.payment.renter,model_scheduled_payment,group_j_reception_renter,1,0,0,0
+access_reception_invitation_admin,reception.invitation.admin,model_reception_invitation,group_j_reception_admin,1,1,1,1
+access_reception_invitation_renter,reception.invitation.renter,model_reception_invitation,group_j_reception_renter,1,0,1,0
