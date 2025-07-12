@@ -26,8 +26,8 @@
             <field name="arch" type="xml">
                 <form string="Reception Invitation">
                     <header>
-                        <button name="action_mark_attended" type="object" string="Mark as Attended" class="btn-primary" states="scheduled,overdue"/>
-                        <button name="action_mark_cancelled" type="object" string="Cancel" class="btn-secondary" states="scheduled,overdue"/>
+                        <button name="action_mark_attended" type="object" string="Mark as Attended" class="btn-primary" attrs="{'invisible': [('ri_state', 'not in', ['scheduled', 'overdue'])]}"/>
+                        <button name="action_mark_cancelled" type="object" string="Cancel" class="btn-secondary" attrs="{'invisible': [('ri_state', 'not in', ['scheduled', 'overdue'])]}"/>
                         <field name="ri_state" widget="statusbar" statusbar_visible="scheduled,attended,overdue,cancelled"/>
                     </header>
                     <sheet>
