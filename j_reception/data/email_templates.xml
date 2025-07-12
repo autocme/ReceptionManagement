@@ -10,6 +10,7 @@
             <field name="email_from">${object.ri_responsible_user_id.email or user.email}</field>
             <field name="email_to">${object.ri_guest_email}</field>
             <field name="body_html" type="html">
+<![CDATA[
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear ${object.ri_guest_name},</p>
                     
@@ -42,8 +43,9 @@
                     
                     <p>Best regards,<br/>
                     ${object.ri_responsible_user_id.name}<br/>
-                    ${object.company_id.name}</p>
+                    ${object.env.company.name}</p>
                 </div>
+]]>
             </field>
         </record>
 
@@ -55,6 +57,7 @@
             <field name="email_from">${object.ri_responsible_user_id.email or user.email}</field>
             <field name="email_to">${object.ri_guest_email}</field>
             <field name="body_html" type="html">
+<![CDATA[
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear ${object.ri_guest_name},</p>
                     
@@ -87,8 +90,9 @@
                     
                     <p>Best regards,<br/>
                     ${object.ri_responsible_user_id.name}<br/>
-                    ${object.company_id.name}</p>
+                    ${object.env.company.name}</p>
                 </div>
+]]>
             </field>
         </record>
 
@@ -100,6 +104,7 @@
             <field name="email_from">${user.email}</field>
             <field name="email_to">${object.ri_responsible_user_id.email}</field>
             <field name="body_html" type="html">
+<![CDATA[
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear ${object.ri_responsible_user_id.name},</p>
                     
@@ -137,6 +142,7 @@
                     <p>Best regards,<br/>
                     J Reception System</p>
                 </div>
+]]>
             </field>
         </record>
 
@@ -148,6 +154,7 @@
             <field name="email_from">${user.email}</field>
             <field name="email_to">${object.sp_renter_id.br_communications_officer_id.email}</field>
             <field name="body_html" type="html">
+<![CDATA[
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear ${object.sp_renter_id.br_communications_officer_id.name},</p>
                     
@@ -181,6 +188,7 @@
                     <p>Best regards,<br/>
                     J Reception System</p>
                 </div>
+]]>
             </field>
         </record>
 
