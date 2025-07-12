@@ -19,7 +19,7 @@
         <menuitem id="menu_j_reception_renters" 
                   name="Renters" 
                   parent="menu_j_reception_main" 
-                  action="action_building_renter_tree" 
+                  action="action_building_renter" 
                   sequence="20"/>
 
         <!-- Configuration Menu -->

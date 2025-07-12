@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Invitation model for managing building invitations
+Reception Invitation model for managing building invitations
 """
-from odoo import models, fields, api, _
+
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from datetime import datetime
+import re
 
 
 class ReceptionInvitation(models.Model):
@@ -16,7 +18,6 @@ class ReceptionInvitation(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'ri_sequence desc'
 
-    # Fields with prefix 'ri_' (Reception Invitation)
     ri_sequence = fields.Char(
         string='Sequence',
         required=True,
@@ -49,7 +50,6 @@ class ReceptionInvitation(models.Model):
         ('cancelled', 'Cancelled'),
     ], string='State', default='scheduled', required=True, tracking=True,
        help='Current state of the invitation')
-    
     ri_invitation_datetime = fields.Datetime(
         string='Invitation Date & Time',
         required=True,
@@ -57,8 +57,6 @@ class ReceptionInvitation(models.Model):
         help='Scheduled date and time for the invitation',
         tracking=True
     )
-    
-    # Guest information fields
     ri_guest_name = fields.Char(
         string='Guest Name',
         required=True,
@@ -76,8 +74,6 @@ class ReceptionInvitation(models.Model):
         placeholder='Enter guest phone number',
         help='Phone number of the guest'
     )
-    
-    # Computed fields
     name = fields.Char(
         string='Name',
         compute='_compute_name',
@@ -85,13 +81,17 @@ class ReceptionInvitation(models.Model):
         help='Display name for the invitation'
     )
 
-    @api.depends('ri_sequence', 'ri_guest_name')
+    @api.depends('ri_sequence', 'ri_guest_name', 'ri_renter_id')
     def _compute_name(self):
         """
         Compute the display name for the invitation
         """
         for record in self:
-            record.name = f"{record.ri_sequence} - {record.ri_guest_name}"
+            if record.ri_sequence != '/':
+                renter_name = record.ri_renter_id.name if record.ri_renter_id else 'Unknown'
+                record.name = f"{record.ri_sequence} - {record.ri_guest_name} ({renter_name})"
+            else:
+                record.name = 'Draft Invitation'
 
     @api.model
     def create(self, vals):
@@ -99,11 +99,11 @@ class ReceptionInvitation(models.Model):
         Override create to generate sequence and send initial email
         """
         if vals.get('ri_sequence', '/') == '/':
-            vals['ri_sequence'] = self.env['ir.sequence'].next_by_code('j_reception.invitation') or '/'
+            vals['ri_sequence'] = self.env['ir.sequence'].next_by_code('reception.invitation') or '/'
         
         invitation = super(ReceptionInvitation, self).create(vals)
         
-        # Send initial email to guest
+        # Send initial invitation email
         invitation._send_invitation_email()
         
         return invitation
@@ -112,27 +112,26 @@ class ReceptionInvitation(models.Model):
         """
         Override write to handle datetime changes and state changes
         """
-        old_datetime = {}
-        old_state = {}
+        datetime_changed = False
+        state_changed = False
         
-        # Store old values for comparison
         for record in self:
-            old_datetime[record.id] = record.ri_invitation_datetime
-            old_state[record.id] = record.ri_state
+            if 'ri_invitation_datetime' in vals and vals['ri_invitation_datetime'] != record.ri_invitation_datetime:
+                datetime_changed = True
+            if 'ri_state' in vals and vals['ri_state'] != record.ri_state:
+                state_changed = True
         
         result = super(ReceptionInvitation, self).write(vals)
         
-        # Handle datetime changes
-        if 'ri_invitation_datetime' in vals:
+        # Send datetime change notification
+        if datetime_changed:
             for record in self:
-                if old_datetime[record.id] != record.ri_invitation_datetime:
-                    record._send_datetime_change_email()
+                record._send_datetime_change_email()
         
-        # Handle state changes to attended
-        if 'ri_state' in vals:
+        # Send attendance notification
+        if state_changed and vals.get('ri_state') == 'attended':
             for record in self:
-                if old_state[record.id] != 'attended' and record.ri_state == 'attended':
-                    record._send_attendance_notification()
+                record._send_attendance_notification()
         
         return result
 
@@ -140,60 +139,37 @@ class ReceptionInvitation(models.Model):
         """
         Send initial invitation email to guest
         """
-        self.ensure_one()
         template = self.env.ref('j_reception.email_template_new_invitation', raise_if_not_found=False)
-        if template and self.ri_guest_email:
-            template.send_mail(
-                self.id,
-                force_send=True,
-                email_values={
-                    'email_to': self.ri_guest_email,
-                }
-            )
+        if template:
+            template.send_mail(self.id, force_send=True)
 
     def _send_datetime_change_email(self):
         """
         Send email notification when invitation datetime changes
         """
-        self.ensure_one()
         template = self.env.ref('j_reception.email_template_datetime_change', raise_if_not_found=False)
-        if template and self.ri_guest_email:
-            template.send_mail(
-                self.id,
-                force_send=True,
-                email_values={
-                    'email_to': self.ri_guest_email,
-                }
-            )
+        if template:
+            template.send_mail(self.id, force_send=True)
 
     def _send_attendance_notification(self):
         """
         Send notification to responsible user when guest attends
         """
-        self.ensure_one()
         template = self.env.ref('j_reception.email_template_attendance_notification', raise_if_not_found=False)
-        if template and self.ri_responsible_user_id.email:
-            template.send_mail(
-                self.id,
-                force_send=True,
-                email_values={
-                    'email_to': self.ri_responsible_user_id.email,
-                }
-            )
+        if template:
+            template.send_mail(self.id, force_send=True)
 
     def action_mark_attended(self):
         """
         Action to mark invitation as attended
         """
-        self.ensure_one()
-        self.ri_state = 'attended'
+        self.write({'ri_state': 'attended'})
 
     def action_mark_cancelled(self):
         """
         Action to mark invitation as cancelled
         """
-        self.ensure_one()
-        self.ri_state = 'cancelled'
+        self.write({'ri_state': 'cancelled'})
 
     @api.constrains('ri_guest_email')
     def _check_email_format(self):
@@ -201,8 +177,10 @@ class ReceptionInvitation(models.Model):
         Validate email format
         """
         for record in self:
-            if record.ri_guest_email and '@' not in record.ri_guest_email:
-                raise ValidationError(_('Please enter a valid email address.'))
+            if record.ri_guest_email:
+                email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+                if not re.match(email_pattern, record.ri_guest_email):
+                    raise ValidationError('Please enter a valid email address.')
 
     @api.constrains('ri_invitation_datetime')
     def _check_future_datetime(self):
@@ -210,9 +188,9 @@ class ReceptionInvitation(models.Model):
         Validate that invitation datetime is in the future (for new invitations)
         """
         for record in self:
-            if record.ri_state == 'scheduled' and record.ri_invitation_datetime:
-                if record.ri_invitation_datetime < fields.Datetime.now():
-                    raise ValidationError(_('Invitation date and time must be in the future.'))
+            if record.ri_invitation_datetime and record.ri_state == 'scheduled':
+                if record.ri_invitation_datetime <= fields.Datetime.now():
+                    raise ValidationError('Invitation date and time must be in the future.')
 
     @api.model
     def check_overdue_invitations(self):
@@ -224,4 +202,5 @@ class ReceptionInvitation(models.Model):
             ('ri_state', '=', 'scheduled'),
             ('ri_invitation_datetime', '<', now)
         ])
+        
         overdue_invitations.write({'ri_state': 'overdue'})

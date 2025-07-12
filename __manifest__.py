@@ -20,19 +20,18 @@
     'depends': ['base', 'mail', 'base_setup'],
     'data': [
         # Security
-        'security/security_groups.xml',
+        'security/security.xml',
         'security/ir.model.access.csv',
         
         # Data
         'data/sequence.xml',
-        'data/ir_sequence.xml',
         'data/email_templates.xml',
-        'data/automated_actions.xml',
         
         # Views
-        'views/renter_views.xml',
-        'views/invitation_views.xml',
         'views/menu_views.xml',
+        'views/building_renter_views.xml',
+        'views/reception_invitation_views.xml',
+        'views/res_config_settings_views.xml',
     ],
     'installable': True,
     'application': True,

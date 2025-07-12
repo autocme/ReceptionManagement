@@ -5,7 +5,7 @@
         <!-- Sequence for Reception Invitations -->
         <record id="seq_reception_invitation" model="ir.sequence">
             <field name="name">Reception Invitation Sequence</field>
-            <field name="code">j_reception.invitation</field>
+            <field name="code">reception.invitation</field>
             <field name="prefix">INV</field>
             <field name="padding">5</field>
             <field name="number_increment">1</field>
