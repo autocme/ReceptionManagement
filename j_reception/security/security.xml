@@ -2,16 +2,26 @@
 <odoo>
     <data>
         
+        <!-- Module Category -->
+        <record id="module_category_reception" model="ir.module.category">
+            <field name="name">Reception</field>
+            <field name="description">Manage building invitations and rental information</field>
+            <field name="sequence">10</field>
+        </record>
+
         <!-- Security Groups -->
         <record id="group_j_reception_renter" model="res.groups">
-            <field name="name">J Reception: Renter</field>
-            <field name="comment">Limited access to J Reception functionalities - can view renters and create invitations</field>
+            <field name="name">Reception: Renter</field>
+            <field name="comment">Limited access to Reception functionalities - can view renters and create invitations</field>
+            <field name="category_id" ref="module_category_reception"/>
         </record>
 
         <record id="group_j_reception_admin" model="res.groups">
-            <field name="name">J Reception: Administrator</field>
-            <field name="comment">Full access to J Reception functionalities - can manage all renters, invitations, and settings</field>
+            <field name="name">Reception: Administrator</field>
+            <field name="comment">Full access to Reception functionalities - can manage all renters, invitations, and settings</field>
+            <field name="category_id" ref="module_category_reception"/>
             <field name="implied_ids" eval="[(4, ref('group_j_reception_renter'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>
 
     </data>
