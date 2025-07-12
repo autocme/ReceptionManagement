@@ -28,11 +28,11 @@
         'data/email_templates.xml',
         
         # Views
-        'views/menu_views.xml',
         'views/building_renter_views.xml',
         'views/reception_invitation_views.xml',
         'views/res_config_settings_views.xml',
-    ],
+        'views/menu_views.xml',
+],
     'installable': True,
     'application': True,
     'auto_install': False,
