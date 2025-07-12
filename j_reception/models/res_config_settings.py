@@ -2,6 +2,7 @@
 """
 Configuration settings for J Reception module
 """
+
 from odoo import models, fields, api
 
 
@@ -11,7 +12,6 @@ class ResConfigSettings(models.TransientModel):
     """
     _inherit = 'res.config.settings'
 
-    # Configuration field for geographical location URL
     j_reception_location_url = fields.Char(
         string='Geographical Location URL',
         config_parameter='j_reception.location_url',
@@ -24,8 +24,9 @@ class ResConfigSettings(models.TransientModel):
         Get configuration values
         """
         res = super(ResConfigSettings, self).get_values()
+        params = self.env['ir.config_parameter'].sudo()
         res.update(
-            j_reception_location_url=self.env['ir.config_parameter'].sudo().get_param('j_reception.location_url', default='')
+            j_reception_location_url=params.get_param('j_reception.location_url', default=''),
         )
         return res
 
@@ -34,4 +35,5 @@ class ResConfigSettings(models.TransientModel):
         Set configuration values
         """
         super(ResConfigSettings, self).set_values()
-        self.env['ir.config_parameter'].sudo().set_param('j_reception.location_url', self.j_reception_location_url)
+        params = self.env['ir.config_parameter'].sudo()
+        params.set_param('j_reception.location_url', self.j_reception_location_url or '')

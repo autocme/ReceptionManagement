@@ -7,7 +7,6 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 
-
 class BuildingRenter(models.Model):
     """
     Main model for managing renter information
