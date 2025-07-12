@@ -29,5 +29,14 @@
             </field>
         </record>
 
+        <!-- J Reception Settings Action -->
+        <record id="action_j_reception_settings" model="ir.actions.act_window">
+            <field name="name">J Reception Settings</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module': 'j_reception'}</field>
+        </record>
+
     </data>
 </odoo>

@@ -32,7 +32,7 @@
         <menuitem id="menu_j_reception_settings" 
                   name="Settings" 
                   parent="menu_j_reception_configuration" 
-                  action="base.action_res_config" 
+                  action="action_j_reception_settings" 
                   sequence="10"/>
 
     </data>
