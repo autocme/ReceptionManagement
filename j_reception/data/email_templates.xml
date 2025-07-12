@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        
+
         <!-- Email Template: New Invitation -->
         <record id="email_template_new_invitation" model="mail.template">
-            <field name="name">J Reception - New Invitation</field>
+            <field name="name">Reception - New Invitation</field>
             <field name="model_id" ref="model_reception_invitation"/>
-            <field name="subject">Invitation to Building Visit - <t t-esc="object.ri_sequence"/></field>
-            <field name="email_from"><t t-esc="object.ri_responsible_user_id.email or user.email"/></field>
-            <field name="email_to"><t t-esc="object.ri_guest_email"/></field>
+            <field name="subject">Invitation to Building Visit - {{object.ri_sequence}}</field>
+            <field name="email_from"> {{object.ri_responsible_user_id.email or user.email}}</field>
+            <field name="email_to"> {{object.ri_guest_email}}</field>
             <field name="body_html" type="html">
-<![CDATA[
+
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear <t t-esc="object.ri_guest_name"/>,</p>
-                    
+
                     <p>You have been invited to visit our building. Please find the details below:</p>
-                    
+
                     <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
                         <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Invitation Number:</td>
@@ -23,7 +23,7 @@
                         </tr>
                         <tr>
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Date &amp; Time:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_invitation_datetime"/></td>
+                            <td style="padding: 8px; border: 1px solid #ddd;"><span t-field="object.ri_invitation_datetime"/></td>
                         </tr>
                         <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>
@@ -34,35 +34,35 @@
                             <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_responsible_user_id.name"/></td>
                         </tr>
                     </table>
-                    
+
                     <t t-if="object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')">
                         <p><strong>Location:</strong> <a t-attf-href="#{object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')}" target="_blank">Click here for directions</a></p>
                     </t>
-                    
+
                     <p>Please arrive on time for your scheduled visit. If you need to reschedule or have any questions, please contact us.</p>
-                    
+
                     <p>Best regards,<br/>
                     <t t-esc="object.ri_responsible_user_id.name"/><br/>
                     <t t-esc="object.env.company.name"/></p>
                 </div>
-]]>
+
             </field>
         </record>
 
         <!-- Email Template: Datetime Change -->
         <record id="email_template_datetime_change" model="mail.template">
-            <field name="name">J Reception - Invitation Datetime Changed</field>
+            <field name="name">Reception - Invitation Datetime Changed</field>
             <field name="model_id" ref="model_reception_invitation"/>
-            <field name="subject">Invitation Time Changed - <t t-esc="object.ri_sequence"/></field>
-            <field name="email_from"><t t-esc="object.ri_responsible_user_id.email or user.email"/></field>
-            <field name="email_to"><t t-esc="object.ri_guest_email"/></field>
+            <field name="subject">Invitation Time Changed - {{object.ri_sequence}}</field>
+            <field name="email_from">{{object.ri_responsible_user_id.email or user.email}}</field>
+            <field name="email_to">{{object.ri_guest_email}}</field>
             <field name="body_html" type="html">
-<![CDATA[
+
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear <t t-esc="object.ri_guest_name"/>,</p>
-                    
+
                     <p>The date and time for your building visit invitation has been updated. Please note the new details:</p>
-                    
+
                     <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
                         <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Invitation Number:</td>
@@ -70,7 +70,7 @@
                         </tr>
                         <tr>
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">New Date &amp; Time:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_invitation_datetime"/></td>
+                            <td style="padding: 8px; border: 1px solid #ddd;"><span t-field="object.ri_invitation_datetime"/></td>
                         </tr>
                         <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>
@@ -81,35 +81,35 @@
                             <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_responsible_user_id.name"/></td>
                         </tr>
                     </table>
-                    
+
                     <t t-if="object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')">
                         <p><strong>Location:</strong> <a t-attf-href="#{object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')}" target="_blank">Click here for directions</a></p>
                     </t>
-                    
+
                     <p>Please make note of the new time and arrive accordingly. If you have any questions, please contact us.</p>
-                    
+
                     <p>Best regards,<br/>
                     <t t-esc="object.ri_responsible_user_id.name"/><br/>
                     <t t-esc="object.env.company.name"/></p>
                 </div>
-]]>
+
             </field>
         </record>
 
         <!-- Email Template: Attendance Notification -->
         <record id="email_template_attendance_notification" model="mail.template">
-            <field name="name">J Reception - Guest Attended</field>
+            <field name="name">Reception - Guest Attended</field>
             <field name="model_id" ref="model_reception_invitation"/>
-            <field name="subject">Guest Attended - <t t-esc="object.ri_sequence"/></field>
-            <field name="email_from"><t t-esc="user.email"/></field>
-            <field name="email_to"><t t-esc="object.ri_responsible_user_id.email"/></field>
+            <field name="subject">Guest Attended - {{object.ri_sequence}}</field>
+            <field name="email_from">{{user.email}}</field>
+            <field name="email_to">{{object.ri_responsible_user_id.email}}</field>
             <field name="body_html" type="html">
-<![CDATA[
+
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear <t t-esc="object.ri_responsible_user_id.name"/>,</p>
-                    
+
                     <p>This is to inform you that the guest has successfully attended the scheduled invitation:</p>
-                    
+
                     <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
                         <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Invitation Number:</td>
@@ -125,7 +125,7 @@
                         </tr>
                         <tr>
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Scheduled Time:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_invitation_datetime"/></td>
+                            <td style="padding: 8px; border: 1px solid #ddd;"><span t-field="object.ri_invitation_datetime"/></td>
                         </tr>
                         <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>
@@ -136,30 +136,30 @@
                             <td style="padding: 8px; border: 1px solid #ddd; color: green; font-weight: bold;">Attended</td>
                         </tr>
                     </table>
-                    
+
                     <p>The visit has been completed successfully.</p>
-                    
+
                     <p>Best regards,<br/>
-                    J Reception System</p>
+                    Reception System</p>
                 </div>
-]]>
+
             </field>
         </record>
 
         <!-- Email Template: Payment Due -->
         <record id="email_template_payment_due" model="mail.template">
-            <field name="name">J Reception - Payment Due Notification</field>
+            <field name="name">Reception - Payment Due Notification</field>
             <field name="model_id" ref="model_scheduled_payment"/>
-            <field name="subject">Payment Due Reminder - <t t-esc="object.sp_description"/></field>
-            <field name="email_from"><t t-esc="user.email"/></field>
-            <field name="email_to"><t t-esc="object.sp_renter_id.br_communications_officer_id.email"/></field>
+            <field name="subject">Payment Due Reminder - {{object.sp_description}}</field>
+            <field name="email_from">{{user.email}}</field>
+            <field name="email_to">{{object.sp_renter_id.br_communications_officer_id.email}}</field>
             <field name="body_html" type="html">
-<![CDATA[
+
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear <t t-esc="object.sp_renter_id.br_communications_officer_id.name"/>,</p>
-                    
+
                     <p>This is a reminder that a payment is due for the following renter:</p>
-                    
+
                     <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
                         <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>
@@ -182,19 +182,19 @@
                             <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.sp_renter_id.br_company_id.name"/></td>
                         </tr>
                     </table>
-                    
+
                     <p>Please follow up on this payment to ensure it is processed on time.</p>
-                    
+
                     <p>Best regards,<br/>
-                    J Reception System</p>
+                    Reception System</p>
                 </div>
-]]>
+
             </field>
         </record>
 
         <!-- Automated Action: Check Overdue Invitations -->
         <record id="automated_action_check_overdue_invitations" model="ir.cron">
-            <field name="name">J Reception: Check Overdue Invitations</field>
+            <field name="name">Reception: Check Overdue Invitations</field>
             <field name="model_id" ref="model_reception_invitation"/>
             <field name="state">code</field>
             <field name="code">model.check_overdue_invitations()</field>
@@ -207,7 +207,7 @@
 
         <!-- Automated Action: Check Due Payments -->
         <record id="automated_action_check_due_payments" model="ir.cron">
-            <field name="name">J Reception: Check Due Payments</field>
+            <field name="name">Reception: Check Due Payments</field>
             <field name="model_id" ref="model_building_renter"/>
             <field name="state">code</field>
             <field name="code">model.check_due_payments()</field>

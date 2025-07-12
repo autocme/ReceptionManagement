@@ -4,7 +4,7 @@
         
         <!-- Main Menu -->
         <menuitem id="menu_j_reception_main" 
-                  name="J Reception" 
+                  name="Reception" 
                   sequence="10" 
                   web_icon="j_reception,static/description/icon.png"/>
 

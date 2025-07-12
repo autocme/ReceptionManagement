@@ -23,7 +23,7 @@
             <field name="arch" type="xml">
                 <form string="Building Renter">
                     <header>
-                        <button name="action_view_invitations" type="object" string="View Invitations" class="btn-primary"/>
+                        <!-- <button name="action_view_invitations" type="object" string="View Invitations" class="btn-primary"/> -->
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
@@ -52,7 +52,7 @@
                                         <field name="sp_description"/>
                                         <field name="sp_amount"/>
                                         <field name="sp_due_date"/>
-                                        <field name="sp_is_notified"/>
+                                        <field name="sp_is_notified" invisible="1"/>
                                     </tree>
                                 </field>
                             </page>

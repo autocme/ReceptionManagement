@@ -9,12 +9,12 @@
             <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[hasclass('settings')]" position="inside">
-                    <div class="app_settings_block" data-string="J Reception" string="J Reception" data-key="j_reception">
-                        <h2>J Reception Settings</h2>
+                    <div class="app_settings_block" data-string="Reception" string="Reception" data-key="j_reception">
+                        <h2>Reception Settings</h2>
                         <div class="row mt16 o_settings_container">
-                            <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="col-12 col-lg-12 o_setting_box">
                                 <div class="o_setting_left_pane">
-                                    <field name="j_reception_location_url"/>
+                                    <field name="j_reception_location_url" class="o_input_8xl"/>
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="j_reception_location_url"/>
@@ -29,9 +29,9 @@
             </field>
         </record>
 
-        <!-- J Reception Settings Action -->
+        <!-- Reception Settings Action -->
         <record id="action_j_reception_settings" model="ir.actions.act_window">
-            <field name="name">J Reception Settings</field>
+            <field name="name">Reception Settings</field>
             <field name="res_model">res.config.settings</field>
             <field name="view_mode">form</field>
             <field name="target">inline</field>
