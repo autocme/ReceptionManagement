@@ -10,7 +10,7 @@
                 <tree>
                     <field name="name"/>
                     <field name="br_company_id"/>
-                    <field name="br_communications_officer_id"/>
+                    <field name="br_officer_id"/>
                     <field name="br_invitation_count"/>
                 </tree>
             </field>
@@ -34,7 +34,7 @@
                         <group>
                             <group>
                                 <field name="br_company_id"/>
-                                <field name="br_communications_officer_id"/>
+                                <field name="br_officer_id"/>
                             </group>
                         </group>
                         <notebook>
@@ -42,7 +42,6 @@
                                 <field name="br_garage_slot_ids">
                                     <tree editable="bottom">
                                         <field name="gs_number"/>
-                                        <field name="gs_description"/>
                                     </tree>
                                 </field>
                             </page>
@@ -75,10 +74,10 @@
                 <search>
                     <field name="name"/>
                     <field name="br_company_id"/>
-                    <field name="br_communications_officer_id"/>
+                    <field name="br_officer_id"/>
                     <group expand="0" string="Group By">
                         <filter string="Company" name="group_by_company" domain="[]" context="{'group_by': 'br_company_id'}"/>
-                        <filter string="Communications Officer" name="group_by_officer" domain="[]" context="{'group_by': 'br_communications_officer_id'}"/>
+                        <filter string="Officer" name="group_by_officer" domain="[]" context="{'group_by': 'br_officer_id'}"/>
                     </group>
                 </search>
             </field>

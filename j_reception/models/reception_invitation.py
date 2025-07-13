@@ -26,12 +26,12 @@ class ReceptionInvitation(models.Model):
         default='/',
         help='Unique sequence number for the invitation'
     )
-    ri_responsible_user_id = fields.Many2one(
+    ri_officer_id = fields.Many2one(
         'res.users',
-        string='Responsible User',
+        string='Officer',
         required=True,
         default=lambda self: self.env.user,
-        placeholder='Select the responsible user',
+        placeholder='Select the officer',
         help='The user responsible for this invitation',
         tracking=True
     )
@@ -39,9 +39,15 @@ class ReceptionInvitation(models.Model):
         'building.renter',
         string='Renter',
         required=True,
-        placeholder='Select the renter for this invitation',
+        readonly=True,
         help='The renter associated with this invitation',
         tracking=True
+    )
+    ri_subject = fields.Char(
+        string='Subject',
+        required=True,
+        placeholder='Enter invitation subject',
+        help='Subject of the invitation'
     )
     ri_state = fields.Selection([
         ('scheduled', 'Scheduled'),
@@ -57,22 +63,13 @@ class ReceptionInvitation(models.Model):
         help='Scheduled date and time for the invitation',
         tracking=True
     )
-    ri_guest_name = fields.Char(
-        string='Guest Name',
+    ri_guest_partner_id = fields.Many2one(
+        'res.partner',
+        string='Guest',
         required=True,
-        placeholder='Enter guest full name',
-        help='Full name of the guest'
-    )
-    ri_guest_email = fields.Char(
-        string='Guest Email',
-        required=True,
-        placeholder='Enter guest email address',
-        help='Email address of the guest for notifications'
-    )
-    ri_guest_phone = fields.Char(
-        string='Guest Phone',
-        placeholder='Enter guest phone number',
-        help='Phone number of the guest'
+        domain=lambda self: [('create_uid', '=', self.env.user.id)],
+        placeholder='Select the guest',
+        help='The guest partner for this invitation'
     )
     name = fields.Char(
         string='Name',
@@ -81,7 +78,7 @@ class ReceptionInvitation(models.Model):
         help='Display name for the invitation'
     )
 
-    @api.depends('ri_sequence', 'ri_guest_name', 'ri_renter_id')
+    @api.depends('ri_sequence', 'ri_guest_partner_id', 'ri_renter_id')
     def _compute_name(self):
         """
         Compute the display name for the invitation
@@ -89,9 +86,35 @@ class ReceptionInvitation(models.Model):
         for record in self:
             if record.ri_sequence != '/':
                 renter_name = record.ri_renter_id.name if record.ri_renter_id else 'Unknown'
-                record.name = f"{record.ri_sequence} - {record.ri_guest_name} ({renter_name})"
+                guest_name = record.ri_guest_partner_id.name if record.ri_guest_partner_id else 'Unknown'
+                record.name = f"{record.ri_sequence} - {guest_name} ({renter_name})"
             else:
                 record.name = 'Draft Invitation'
+
+    @api.onchange('ri_officer_id')
+    def _onchange_officer_id(self):
+        """
+        Auto-populate renter when officer changes
+        """
+        if self.ri_officer_id:
+            renter = self.env['building.renter'].search([
+                ('br_officer_id', '=', self.ri_officer_id.partner_id.id)
+            ], limit=1)
+            if renter:
+                self.ri_renter_id = renter.id
+
+    @api.constrains('ri_officer_id', 'ri_renter_id')
+    def _check_officer_renter_relationship(self):
+        """
+        Ensure officer can only create invitations for their assigned renter
+        """
+        for record in self:
+            if record.ri_officer_id and record.ri_renter_id:
+                if record.ri_renter_id.br_officer_id.id != record.ri_officer_id.partner_id.id:
+                    raise ValidationError(
+                        f"You can only create invitations for renters you are assigned to. "
+                        f"You are not the officer for '{record.ri_renter_id.name}'."
+                    )
 
     @api.model
     def create(self, vals):
@@ -171,16 +194,7 @@ class ReceptionInvitation(models.Model):
         """
         self.write({'ri_state': 'cancelled'})
 
-    @api.constrains('ri_guest_email')
-    def _check_email_format(self):
-        """
-        Validate email format
-        """
-        for record in self:
-            if record.ri_guest_email:
-                email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-                if not re.match(email_pattern, record.ri_guest_email):
-                    raise ValidationError('Please enter a valid email address.')
+
 
     @api.constrains('ri_invitation_datetime')
     def _check_future_datetime(self):

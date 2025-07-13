@@ -9,11 +9,11 @@
             <field name="arch" type="xml">
                 <tree decoration-success="ri_state == 'attended'" decoration-warning="ri_state == 'scheduled'" decoration-danger="ri_state == 'overdue'" decoration-muted="ri_state == 'cancelled'">
                     <field name="ri_sequence"/>
-                    <field name="ri_guest_name"/>
-                    <field name="ri_guest_email"/>
+                    <field name="ri_subject"/>
+                    <field name="ri_guest_partner_id"/>
                     <field name="ri_renter_id"/>
                     <field name="ri_invitation_datetime"/>
-                    <field name="ri_responsible_user_id"/>
+                    <field name="ri_officer_id"/>
                     <field name="ri_state"/>
                 </tree>
             </field>
@@ -40,13 +40,12 @@
                         <group>
                             <group>
                                 <field name="ri_renter_id"/>
-                                <field name="ri_responsible_user_id"/>
+                                <field name="ri_officer_id"/>
                                 <field name="ri_invitation_datetime"/>
                             </group>
                             <group>
-                                <field name="ri_guest_name"/>
-                                <field name="ri_guest_email"/>
-                                <field name="ri_guest_phone"/>
+                                <field name="ri_subject"/>
+                                <field name="ri_guest_partner_id"/>
                             </group>
                         </group>
                     </sheet>
@@ -65,7 +64,7 @@
             <field name="model">reception.invitation</field>
             <field name="arch" type="xml">
                 <calendar string="Invitations" date_start="ri_invitation_datetime" color="ri_state" mode="month">
-                    <field name="ri_guest_name"/>
+                    <field name="ri_guest_partner_id"/>
                     <field name="ri_renter_id"/>
                     <field name="ri_state"/>
                 </calendar>

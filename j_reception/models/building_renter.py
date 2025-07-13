@@ -31,11 +31,11 @@ class BuildingRenter(models.Model):
         help='The company associated with this renter',
         tracking=True
     )
-    br_communications_officer_id = fields.Many2one(
+    br_officer_id = fields.Many2one(
         'res.partner',
-        string='Communications Officer',
+        string='Officer',
         required=True,
-        placeholder='Select the communications officer',
+        placeholder='Select the officer',
         help='The person responsible for communications with this renter',
         tracking=True
     )
@@ -67,6 +67,23 @@ class BuildingRenter(models.Model):
                 record.name = record.br_company_id.name
             else:
                 record.name = 'Draft Renter'
+
+    @api.constrains('br_company_id')
+    def _check_unique_company_officer(self):
+        """
+        Ensure one company can only have one officer
+        """
+        for record in self:
+            if record.br_company_id:
+                existing = self.search([
+                    ('br_company_id', '=', record.br_company_id.id),
+                    ('id', '!=', record.id)
+                ])
+                if existing:
+                    raise ValidationError(
+                        f"Company '{record.br_company_id.name}' already has an officer assigned. "
+                        f"Each company can only have one officer."
+                    )
 
     def _compute_invitation_count(self):
         """

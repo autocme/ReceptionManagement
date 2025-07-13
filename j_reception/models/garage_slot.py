@@ -22,12 +22,6 @@ class GarageSlot(models.Model):
         ondelete='cascade',
         help='The renter who owns this garage slot'
     )
-    gs_description = fields.Char(
-        string='Description',
-        required=True,
-        placeholder='e.g., Underground Level 1, Slot A-15',
-        help='Description of the garage slot (e.g., Underground Level 1, Slot A-15)'
-    )
     gs_number = fields.Char(
         string='Number',
         required=True,
