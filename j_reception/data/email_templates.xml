@@ -7,12 +7,12 @@
             <field name="name">Reception - New Invitation</field>
             <field name="model_id" ref="model_reception_invitation"/>
             <field name="subject">Invitation to Building Visit - <t t-esc="object.ri_sequence"/></field>
-            <field name="email_from"><t t-esc="object.ri_responsible_user_id.email or user.email"/></field>
-            <field name="email_to"><t t-esc="object.ri_guest_email"/></field>
+            <field name="email_from"><t t-esc="object.ri_officer_id.email or user.email"/></field>
+            <field name="email_to"><t t-esc="object.ri_guest_partner_id.email"/></field>
             <field name="body_html" type="html">
-
+                <![CDATA[
                 <div style="margin: 0px; padding: 0px;">
-                    <p>Dear <t t-esc="object.ri_guest_name"/>,</p>
+                    <p>Dear <t t-esc="object.ri_guest_partner_id.name"/>,</p>
 
                     <p>You have been invited to visit our building. Please find the details below:</p>
 
@@ -31,7 +31,7 @@
                         </tr>
                         <tr>
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Responsible Person:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_responsible_user_id.name"/></td>
+                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_officer_id.name"/></td>
                         </tr>
                     </table>
 
@@ -42,10 +42,10 @@
                     <p>Please arrive on time for your scheduled visit. If you need to reschedule or have any questions, please contact us.</p>
 
                     <p>Best regards,<br/>
-                    <t t-esc="object.ri_responsible_user_id.name"/><br/>
+                    <t t-esc="object.ri_officer_id.name"/><br/>
                     <t t-esc="object.env.company.name"/></p>
                 </div>
-
+                ]]>
             </field>
         </record>
 
