@@ -103,6 +103,21 @@ class ReceptionInvitation(models.Model):
             if renter:
                 self.ri_renter_id = renter.id
 
+    @api.model
+    def default_get(self, fields_list):
+        """
+        Set default values for renter based on current user
+        """
+        res = super(ReceptionInvitation, self).default_get(fields_list)
+        if 'ri_renter_id' in fields_list:
+            current_user = self.env.user
+            renter = self.env['building.renter'].search([
+                ('br_officer_id', '=', current_user.partner_id.id)
+            ], limit=1)
+            if renter:
+                res['ri_renter_id'] = renter.id
+        return res
+
     @api.constrains('ri_officer_id', 'ri_renter_id')
     def _check_officer_renter_relationship(self):
         """

@@ -78,8 +78,7 @@
             <field name="arch" type="xml">
                 <kanban default_group_by="ri_state">
                     <field name="ri_sequence"/>
-                    <field name="ri_guest_name"/>
-                    <field name="ri_guest_email"/>
+                    <field name="ri_guest_partner_id"/>
                     <field name="ri_renter_id"/>
                     <field name="ri_invitation_datetime"/>
                     <field name="ri_state"/>
@@ -89,9 +88,9 @@
                                 <div class="oe_kanban_content">
                                     <strong><field name="ri_sequence"/></strong>
                                     <br/>
-                                    <strong>Guest:</strong> <field name="ri_guest_name"/>
+                                    <strong>Guest:</strong> <field name="ri_guest_partner_id"/>
                                     <br/>
-                                    <strong>Email:</strong> <field name="ri_guest_email"/>
+                                    <strong>Subject:</strong> <field name="ri_subject"/>
                                     <br/>
                                     <strong>Renter:</strong> <field name="ri_renter_id"/>
                                     <br/>
