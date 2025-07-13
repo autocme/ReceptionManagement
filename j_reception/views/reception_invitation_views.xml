@@ -110,10 +110,10 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="ri_sequence"/>
-                    <field name="ri_guest_name"/>
-                    <field name="ri_guest_email"/>
+                    <field name="ri_guest_partner_id"/>
                     <field name="ri_renter_id"/>
-                    <field name="ri_responsible_user_id"/>
+                    <field name="ri_officer_id"/>
+                    <field name="ri_subject"/>
                     <separator/>
                     <filter string="Scheduled" name="filter_scheduled" domain="[('ri_state', '=', 'scheduled')]"/>
                     <filter string="Attended" name="filter_attended" domain="[('ri_state', '=', 'attended')]"/>
@@ -125,7 +125,7 @@
                     <group expand="0" string="Group By">
                         <filter string="State" name="group_by_state" domain="[]" context="{'group_by': 'ri_state'}"/>
                         <filter string="Renter" name="group_by_renter" domain="[]" context="{'group_by': 'ri_renter_id'}"/>
-                        <filter string="Responsible User" name="group_by_user" domain="[]" context="{'group_by': 'ri_responsible_user_id'}"/>
+                        <filter string="Officer" name="group_by_officer" domain="[]" context="{'group_by': 'ri_officer_id'}"/>
                         <filter string="Date" name="group_by_date" domain="[]" context="{'group_by': 'ri_invitation_datetime'}"/>
                     </group>
                 </search>
