@@ -107,7 +107,7 @@
                                             <strong style="color: #7f8c8d; font-size: 11px;">Company: </strong>
                                             <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="br_company_id"/></span>
                                         </div>
-                                        <div style="width: 48%; text-align: right;">
+                                        <div class="text-right" style="width: 48%;">
                                             <strong style="color: #7f8c8d; font-size: 11px;">Officer: </strong>
                                             <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="br_officer_id"/></span>
                                         </div>
@@ -117,7 +117,7 @@
                                             <strong style="color: #7f8c8d; font-size: 11px;">Invitations: </strong>
                                             <span style="color: #34495e; font-size: 11px;"><field name="br_invitation_count"/></span>
                                         </div>
-                                        <div style="width: 48%; text-align: right;">
+                                        <div class="text-right" style="width: 48%;">
                                             <button name="action_view_invitations" type="object" style="background: #2ecc71; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 10px; cursor: pointer;">View Invitations</button>
                                         </div>
                                     </div>
@@ -131,7 +131,7 @@
 
         <!-- Building Renter Action -->
         <record id="action_building_renter_tree" model="ir.actions.act_window">
-            <field name="name">Building Tenants</field>
+            <field name="name">Tenants</field>
             <field name="res_model">building.renter</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="search_view_id" ref="view_building_renter_search"/>

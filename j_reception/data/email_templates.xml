@@ -6,7 +6,7 @@
         <record id="email_template_new_invitation" model="mail.template">
             <field name="name">Reception - New Invitation</field>
             <field name="model_id" ref="model_reception_invitation"/>
-            <field name="subject">Invitation to Building Visit - {{object.ri_sequence}}</field>
+            <field name="subject">Invitation Visit - {{object.ri_sequence}}</field>
             <field name="email_from"> {{object.ri_officer_id.email or user.email}}</field>
             <field name="email_to"> {{object.ri_guest_partner_id.email}}</field>
             <field name="body_html" type="html">
@@ -171,7 +171,7 @@
                         </tr>
                         <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Amount:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.sp_currency_id.symbol"/><t t-esc="object.sp_amount"/></td>
+                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.sp_amount"/><t t-esc="object.sp_currency_id.symbol"/></td>
                         </tr>
                         <tr>
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Due Date:</td>

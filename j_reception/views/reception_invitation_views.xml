@@ -101,7 +101,7 @@
                                             <strong style="color: #6c757d; font-size: 11px;">Subject: </strong>
                                             <span style="color: #212529; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_subject"/></span>
                                         </div>
-                                        <div style="width: 48%; text-align: right;">
+                                        <div class="text-right" style="width: 48%;">
                                             <strong style="color: #6c757d; font-size: 11px;">Guest: </strong>
                                             <span style="color: #212529; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_guest_partner_id"/></span>
                                         </div>
@@ -111,7 +111,7 @@
                                             <strong style="color: #6c757d; font-size: 11px;">Officer: </strong>
                                             <span style="color: #212529; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_officer_id"/></span>
                                         </div>
-                                        <div style="width: 48%; text-align: right;">
+                                        <div class="text-right" style="width: 48%;">
                                             <strong style="color: #6c757d; font-size: 11px;">Tenant: </strong>
                                             <span style="color: #212529; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_renter_id"/></span>
                                         </div>
