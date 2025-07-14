@@ -86,7 +86,7 @@
                     <field name="ri_subject"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_global_click oe_kanban_card" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 12px; margin: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 280px;">
+                            <div t-attf-class="oe_kanban_global_click oe_kanban_card" style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 12px; margin: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 280px;">
                                 <div class="oe_kanban_content">
                                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                                         <strong style="color: #495057; font-size: 13px;"><field name="ri_sequence"/></strong>
