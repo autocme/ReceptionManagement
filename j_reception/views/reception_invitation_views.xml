@@ -81,12 +81,12 @@
                     <field name="ri_sequence"/>
                     <field name="ri_guest_partner_id"/>
                     <field name="ri_renter_id"/>
-                    <field name="ri_invitation_datetime"/>
+                    <field name="ri_officer_id"/>
                     <field name="ri_state"/>
                     <field name="ri_subject"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_kanban_card" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 12px; margin: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 280px;">
+                            <div t-attf-class="oe_kanban_global_click oe_kanban_card" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 12px; margin: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 280px;">
                                 <div class="oe_kanban_content">
                                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                                         <strong style="color: #495057; font-size: 13px;"><field name="ri_sequence"/></strong>
@@ -96,23 +96,25 @@
                                         <span t-if="record.ri_state.raw_value == 'overdue'" style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">Overdue</span>
                                         <span t-if="record.ri_state.raw_value == 'cancelled'" style="background: #6c757d; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">Cancelled</span>
                                     </div>
-                                    <div style="margin-bottom: 6px;">
-                                        <strong style="color: #6c757d; font-size: 11px;">Subject:</strong>
-                                        <span style="color: #212529; font-size: 12px; display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_subject"/></span>
-                                    </div>
                                     <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
                                         <div style="width: 48%;">
-                                            <strong style="color: #6c757d; font-size: 11px;">Guest:</strong>
-                                            <span style="color: #212529; font-size: 12px; display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_guest_partner_id"/></span>
+                                            <strong style="color: #6c757d; font-size: 11px;">Subject: </strong>
+                                            <span style="color: #212529; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_subject"/></span>
                                         </div>
                                         <div style="width: 48%;">
-                                            <strong style="color: #6c757d; font-size: 11px;">Tenant:</strong>
-                                            <span style="color: #212529; font-size: 12px; display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_renter_id"/></span>
+                                            <strong style="color: #6c757d; font-size: 11px;">Guest: </strong>
+                                            <span style="color: #212529; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_guest_partner_id"/></span>
                                         </div>
                                     </div>
-                                    <div style="text-align: center;">
-                                        <strong style="color: #6c757d; font-size: 11px;">Date:</strong>
-                                        <span style="color: #212529; font-size: 12px;"><field name="ri_invitation_datetime"/></span>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div style="width: 48%;">
+                                            <strong style="color: #6c757d; font-size: 11px;">Officer: </strong>
+                                            <span style="color: #212529; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_officer_id"/></span>
+                                        </div>
+                                        <div style="width: 48%;">
+                                            <strong style="color: #6c757d; font-size: 11px;">Tenant: </strong>
+                                            <span style="color: #212529; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_renter_id"/></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -96,7 +96,7 @@
                     <field name="br_invitation_count"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_kanban_card" style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 280px;">
+                            <div t-attf-class="oe_kanban_global_click oe_kanban_card" style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 280px;">
                                 <div class="oe_kanban_content">
                                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                                         <strong style="color: #2c3e50; font-size: 14px; font-weight: 600; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 70%;"><field name="name"/></strong>
@@ -104,21 +104,17 @@
                                     </div>
                                     <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                                         <div style="width: 48%;">
-                                            <div style="display: flex; align-items: center; margin-bottom: 6px;">
-                                                <i class="fa fa-building" style="color: #7f8c8d; margin-right: 6px; width: 12px; font-size: 11px;"/>
-                                                <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="br_company_id"/></span>
-                                            </div>
+                                            <strong style="color: #7f8c8d; font-size: 11px;">Company: </strong>
+                                            <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="br_company_id"/></span>
                                         </div>
                                         <div style="width: 48%;">
-                                            <div style="display: flex; align-items: center; margin-bottom: 6px;">
-                                                <i class="fa fa-user" style="color: #7f8c8d; margin-right: 6px; width: 12px; font-size: 11px;"/>
-                                                <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="br_officer_id"/></span>
-                                            </div>
+                                            <strong style="color: #7f8c8d; font-size: 11px;">Officer: </strong>
+                                            <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="br_officer_id"/></span>
                                         </div>
                                     </div>
                                     <div style="text-align: center; margin-bottom: 8px;">
-                                        <i class="fa fa-calendar" style="color: #7f8c8d; margin-right: 6px; width: 12px; font-size: 11px;"/>
-                                        <span style="color: #34495e; font-size: 11px;"><field name="br_invitation_count"/> Invitations</span>
+                                        <strong style="color: #7f8c8d; font-size: 11px;">Invitations: </strong>
+                                        <span style="color: #34495e; font-size: 11px;"><field name="br_invitation_count"/></span>
                                     </div>
                                     <div style="text-align: center;">
                                         <button name="action_view_invitations" type="object" style="background: #2ecc71; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 10px; cursor: pointer;">View Invitations</button>
