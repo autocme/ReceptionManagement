@@ -44,6 +44,13 @@ class ScheduledPayment(models.Model):
         default=False,
         help='Whether notification email has been sent for this payment'
     )
+    sp_currency_id = fields.Many2one(
+        'res.currency',
+        string='Currency',
+        required=True,
+        default=lambda self: self.env.company.currency_id,
+        help='Currency for this payment'
+    )
 
     @api.constrains('sp_amount')
     def _check_amount_positive(self):

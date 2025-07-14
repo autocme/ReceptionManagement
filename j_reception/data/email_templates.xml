@@ -171,7 +171,7 @@
                         </tr>
                         <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Amount:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.sp_amount"/></td>
+                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.sp_currency_id.symbol"/><t t-esc="object.sp_amount"/></td>
                         </tr>
                         <tr>
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Due Date:</td>

@@ -15,11 +15,11 @@
                   action="action_reception_invitation_tree" 
                   sequence="10"/>
 
-        <!-- Renters Menu -->
+        <!-- Tenants Menu -->
         <menuitem id="menu_j_reception_renters" 
-                  name="Renters" 
+                  name="Tenants" 
                   parent="menu_j_reception_main" 
-                  action="action_building_renter" 
+                  action="action_building_renter_tree" 
                   sequence="20"/>
 
         <!-- Configuration Menu -->

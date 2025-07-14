@@ -31,6 +31,7 @@ class ReceptionInvitation(models.Model):
         string='Officer',
         required=True,
         default=lambda self: self.env.user,
+        domain=lambda self: [('partner_id', 'in', self.env['building.renter'].search([]).mapped('br_officer_id.id'))],
         placeholder='Select the officer',
         help='The user responsible for this invitation',
         tracking=True
@@ -50,11 +51,12 @@ class ReceptionInvitation(models.Model):
         help='Subject of the invitation'
     )
     ri_state = fields.Selection([
+        ('draft', 'Draft'),
         ('scheduled', 'Scheduled'),
         ('attended', 'Attended'),
         ('overdue', 'Overdue'),
         ('cancelled', 'Cancelled'),
-    ], string='State', default='scheduled', required=True, tracking=True, copy=False,
+    ], string='State', default='draft', required=True, tracking=True, copy=False,
        help='Current state of the invitation')
     ri_invitation_datetime = fields.Datetime(
         string='Date',
@@ -137,15 +139,12 @@ class ReceptionInvitation(models.Model):
     @api.model
     def create(self, vals):
         """
-        Override create to generate sequence and send initial email
+        Override create to generate sequence
         """
         if vals.get('ri_sequence', _('New')) == _('New'):
             vals['ri_sequence'] = self.env['ir.sequence'].next_by_code('reception.invitation') or _('New')
         
         invitation = super(ReceptionInvitation, self).create(vals)
-        
-        # Send initial invitation email
-        invitation._send_invitation_email()
         
         return invitation
 
@@ -168,6 +167,11 @@ class ReceptionInvitation(models.Model):
         if datetime_changed:
             for record in self:
                 record._send_datetime_change_email()
+        
+        # Send initial invitation email when state changes to scheduled
+        if state_changed and vals.get('ri_state') == 'scheduled':
+            for record in self:
+                record._send_invitation_email()
         
         # Send attendance notification
         if state_changed and vals.get('ri_state') == 'attended':
@@ -200,6 +204,12 @@ class ReceptionInvitation(models.Model):
         if template:
             template.send_mail(self.id, force_send=True)
 
+    def action_confirm(self):
+        """
+        Action to confirm invitation (draft -> scheduled)
+        """
+        self.write({'ri_state': 'scheduled'})
+
     def action_mark_attended(self):
         """
         Action to mark invitation as attended
@@ -220,7 +230,7 @@ class ReceptionInvitation(models.Model):
         Validate that invitation datetime is in the future (for new invitations)
         """
         for record in self:
-            if record.ri_invitation_datetime and record.ri_state == 'scheduled':
+            if record.ri_invitation_datetime and record.ri_state in ['draft', 'scheduled']:
                 if record.ri_invitation_datetime <= fields.Datetime.now():
                     raise ValidationError('Invitation date and time must be in the future.')
 

@@ -8,6 +8,18 @@ J Reception is an Odoo-based module designed to manage building invitations and 
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes
+
+### Draft State Implementation (July 14, 2025)
+- Added 'draft' state as default for invitations with 'confirm' button workflow
+- Moved email sending to state change trigger (draft → scheduled)
+- Enhanced kanban views for both tenants and invitations with improved styling
+- Integrated currency field to scheduled payments model
+- Updated payment reminder email template with currency symbols
+- Implemented officer field domain filtering
+- Changed terminology from "Renter" to "Tenant" in all user-facing views
+- Added enhanced kanban views with inline styling for better visual presentation
+
 ## System Architecture
 
 ### Framework and Platform
