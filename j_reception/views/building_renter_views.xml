@@ -107,7 +107,7 @@
                                             <strong style="color: #7f8c8d; font-size: 11px;">Company: </strong>
                                             <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="br_company_id"/></span>
                                         </div>
-                                        <div style="width: 48%;">
+                                        <div style="width: 48%; text-align: right;">
                                             <strong style="color: #7f8c8d; font-size: 11px;">Officer: </strong>
                                             <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="br_officer_id"/></span>
                                         </div>
