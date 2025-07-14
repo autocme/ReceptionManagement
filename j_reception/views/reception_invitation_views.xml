@@ -77,7 +77,7 @@
             <field name="name">reception.invitation.kanban</field>
             <field name="model">reception.invitation</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="ri_state">
+                <kanban>
                     <field name="ri_sequence"/>
                     <field name="ri_guest_partner_id"/>
                     <field name="ri_renter_id"/>
@@ -86,31 +86,33 @@
                     <field name="ri_subject"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_kanban_card" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 15px; margin: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <div class="oe_kanban_card" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 12px; margin: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 280px;">
                                 <div class="oe_kanban_content">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                        <strong style="color: #495057; font-size: 14px;"><field name="ri_sequence"/></strong>
-                                        <span t-if="record.ri_state.raw_value == 'draft'" style="background: #007bff; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px;">Draft</span>
-                                        <span t-if="record.ri_state.raw_value == 'scheduled'" style="background: #ffc107; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px;">Scheduled</span>
-                                        <span t-if="record.ri_state.raw_value == 'attended'" style="background: #28a745; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px;">Attended</span>
-                                        <span t-if="record.ri_state.raw_value == 'overdue'" style="background: #dc3545; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px;">Overdue</span>
-                                        <span t-if="record.ri_state.raw_value == 'cancelled'" style="background: #6c757d; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px;">Cancelled</span>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                        <strong style="color: #495057; font-size: 13px;"><field name="ri_sequence"/></strong>
+                                        <span t-if="record.ri_state.raw_value == 'draft'" style="background: #007bff; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">Draft</span>
+                                        <span t-if="record.ri_state.raw_value == 'scheduled'" style="background: #ffc107; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">Scheduled</span>
+                                        <span t-if="record.ri_state.raw_value == 'attended'" style="background: #28a745; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">Attended</span>
+                                        <span t-if="record.ri_state.raw_value == 'overdue'" style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">Overdue</span>
+                                        <span t-if="record.ri_state.raw_value == 'cancelled'" style="background: #6c757d; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px;">Cancelled</span>
                                     </div>
-                                    <div style="margin-bottom: 8px;">
-                                        <strong style="color: #6c757d; font-size: 12px;">Subject:</strong>
-                                        <span style="color: #212529; font-size: 13px;"><field name="ri_subject"/></span>
+                                    <div style="margin-bottom: 6px;">
+                                        <strong style="color: #6c757d; font-size: 11px;">Subject:</strong>
+                                        <span style="color: #212529; font-size: 12px; display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_subject"/></span>
                                     </div>
-                                    <div style="margin-bottom: 8px;">
-                                        <strong style="color: #6c757d; font-size: 12px;">Guest:</strong>
-                                        <span style="color: #212529; font-size: 13px;"><field name="ri_guest_partner_id"/></span>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                        <div style="width: 48%;">
+                                            <strong style="color: #6c757d; font-size: 11px;">Guest:</strong>
+                                            <span style="color: #212529; font-size: 12px; display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_guest_partner_id"/></span>
+                                        </div>
+                                        <div style="width: 48%;">
+                                            <strong style="color: #6c757d; font-size: 11px;">Tenant:</strong>
+                                            <span style="color: #212529; font-size: 12px; display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="ri_renter_id"/></span>
+                                        </div>
                                     </div>
-                                    <div style="margin-bottom: 8px;">
-                                        <strong style="color: #6c757d; font-size: 12px;">Tenant:</strong>
-                                        <span style="color: #212529; font-size: 13px;"><field name="ri_renter_id"/></span>
-                                    </div>
-                                    <div style="margin-bottom: 8px;">
-                                        <strong style="color: #6c757d; font-size: 12px;">Date:</strong>
-                                        <span style="color: #212529; font-size: 13px;"><field name="ri_invitation_datetime"/></span>
+                                    <div style="text-align: center;">
+                                        <strong style="color: #6c757d; font-size: 11px;">Date:</strong>
+                                        <span style="color: #212529; font-size: 12px;"><field name="ri_invitation_datetime"/></span>
                                     </div>
                                 </div>
                             </div>
