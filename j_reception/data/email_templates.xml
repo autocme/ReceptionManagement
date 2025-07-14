@@ -29,7 +29,7 @@
 <!--                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>-->
 <!--                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_renter_id.name"/></td>-->
 <!--                        </tr>-->
-                        <tr>
+                        <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Officer:</td>
                             <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_officer_id.name"/></td>
                         </tr>
@@ -76,7 +76,7 @@
 <!--                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>-->
 <!--                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_renter_id.name"/></td>-->
 <!--                        </tr>-->
-                        <tr>
+                        <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Officer:</td>
                             <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_officer_id.name"/></td>
                         </tr>
@@ -131,7 +131,7 @@
 <!--                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>-->
 <!--                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_renter_id.name"/></td>-->
 <!--                        </tr>-->
-                        <tr>
+                        <tr style="background-color: #f9f9f9;">
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Status:</td>
                             <td style="padding: 8px; border: 1px solid #ddd; color: green; font-weight: bold;">Attended</td>
                         </tr>
