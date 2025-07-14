@@ -3,7 +3,7 @@
 Reception Invitation model for managing building invitations
 """
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 from datetime import datetime
 import re
@@ -23,7 +23,7 @@ class ReceptionInvitation(models.Model):
         required=True,
         copy=False,
         readonly=True,
-        default='/',
+        default=lambda self: _('New'),
         help='Unique sequence number for the invitation'
     )
     ri_officer_id = fields.Many2one(
@@ -54,10 +54,10 @@ class ReceptionInvitation(models.Model):
         ('attended', 'Attended'),
         ('overdue', 'Overdue'),
         ('cancelled', 'Cancelled'),
-    ], string='State', default='scheduled', required=True, tracking=True,
+    ], string='State', default='scheduled', required=True, tracking=True, copy=False,
        help='Current state of the invitation')
     ri_invitation_datetime = fields.Datetime(
-        string='Invitation Date & Time',
+        string='Date',
         required=True,
         placeholder='Set invitation date and time',
         help='Scheduled date and time for the invitation',
@@ -102,6 +102,9 @@ class ReceptionInvitation(models.Model):
             ], limit=1)
             if renter:
                 self.ri_renter_id = renter.id
+            if not renter:
+                self.ri_renter_id = False
+
 
     @api.model
     def default_get(self, fields_list):
@@ -136,8 +139,8 @@ class ReceptionInvitation(models.Model):
         """
         Override create to generate sequence and send initial email
         """
-        if vals.get('ri_sequence', '/') == '/':
-            vals['ri_sequence'] = self.env['ir.sequence'].next_by_code('reception.invitation') or '/'
+        if vals.get('ri_sequence', _('New')) == _('New'):
+            vals['ri_sequence'] = self.env['ir.sequence'].next_by_code('reception.invitation') or _('New')
         
         invitation = super(ReceptionInvitation, self).create(vals)
         

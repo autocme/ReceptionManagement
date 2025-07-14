@@ -32,20 +32,20 @@
                     </header>
                     <sheet>
                         <div class="oe_title">
-                            <label for="ri_sequence" class="oe_edit_only"/>
+                            <!-- <label for="ri_sequence" class="oe_edit_only"/> -->
                             <h1>
                                 <field name="ri_sequence" readonly="1"/>
                             </h1>
                         </div>
                         <group>
                             <group>
-                                <field name="ri_renter_id"/>
+                                <field name="ri_subject"/>
                                 <field name="ri_officer_id"/>
                                 <field name="ri_invitation_datetime"/>
                             </group>
                             <group>
-                                <field name="ri_subject"/>
                                 <field name="ri_guest_partner_id"/>
+                                <field name="ri_renter_id"/>
                             </group>
                         </group>
                     </sheet>
@@ -76,7 +76,7 @@
             <field name="name">reception.invitation.kanban</field>
             <field name="model">reception.invitation</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="ri_state">
+                <kanban>
                     <field name="ri_sequence"/>
                     <field name="ri_guest_partner_id"/>
                     <field name="ri_renter_id"/>
@@ -134,7 +134,7 @@
 
         <!-- Reception Invitation Action -->
         <record id="action_reception_invitation_tree" model="ir.actions.act_window">
-            <field name="name">Reception Invitations</field>
+            <field name="name">Invitations</field>
             <field name="res_model">reception.invitation</field>
             <field name="view_mode">tree,form,calendar,kanban</field>
             <field name="search_view_id" ref="view_reception_invitation_search"/>

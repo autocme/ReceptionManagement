@@ -6,15 +6,15 @@
         <record id="email_template_new_invitation" model="mail.template">
             <field name="name">Reception - New Invitation</field>
             <field name="model_id" ref="model_reception_invitation"/>
-            <field name="subject">Invitation to Building Visit - <t t-esc="object.ri_sequence"/></field>
-            <field name="email_from"><t t-esc="object.ri_officer_id.email or user.email"/></field>
-            <field name="email_to"><t t-esc="object.ri_guest_partner_id.email"/></field>
+            <field name="subject">Invitation to Building Visit - {{object.ri_sequence}}</field>
+            <field name="email_from"> {{object.ri_officer_id.email or user.email}}</field>
+            <field name="email_to"> {{object.ri_guest_partner_id.email}}</field>
             <field name="body_html" type="html">
 
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear <t t-esc="object.ri_guest_partner_id.name"/>,</p>
 
-                    <p>You have been invited to visit our building. Please find the details below:</p>
+                    <p>You have been invited to visit <t t-esc="object.ri_renter_id.name"/>. Please find the details below:</p>
 
                     <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
                         <tr style="background-color: #f9f9f9;">
@@ -25,12 +25,12 @@
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Date &amp; Time:</td>
                             <td style="padding: 8px; border: 1px solid #ddd;"><span t-field="object.ri_invitation_datetime"/></td>
                         </tr>
-                        <tr style="background-color: #f9f9f9;">
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_renter_id.name"/></td>
-                        </tr>
+<!--                        <tr style="background-color: #f9f9f9;">-->
+<!--                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>-->
+<!--                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_renter_id.name"/></td>-->
+<!--                        </tr>-->
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Responsible Person:</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Officer:</td>
                             <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_officer_id.name"/></td>
                         </tr>
                     </table>
@@ -42,7 +42,7 @@
                     <p>Please arrive on time for your scheduled visit. If you need to reschedule or have any questions, please contact us.</p>
 
                     <p>Best regards,<br/>
-                    <t t-esc="object.ri_officer_id.name"/><br/>
+<!--                    <t t-esc="object.ri_officer_id.name"/><br/>-->
                     <t t-esc="object.env.company.name"/></p>
                 </div>
 
@@ -61,7 +61,7 @@
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear <t t-esc="object.ri_guest_partner_id.name"/>,</p>
 
-                    <p>The date and time for your building visit invitation has been updated. Please note the new details:</p>
+                    <p>The date and time for your <t t-esc="object.ri_renter_id.name"/> visit invitation has been updated. Please note the new details:</p>
 
                     <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
                         <tr style="background-color: #f9f9f9;">
@@ -72,12 +72,12 @@
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">New Date &amp; Time:</td>
                             <td style="padding: 8px; border: 1px solid #ddd;"><span t-field="object.ri_invitation_datetime"/></td>
                         </tr>
-                        <tr style="background-color: #f9f9f9;">
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_renter_id.name"/></td>
-                        </tr>
+<!--                        <tr style="background-color: #f9f9f9;">-->
+<!--                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>-->
+<!--                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_renter_id.name"/></td>-->
+<!--                        </tr>-->
                         <tr>
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Responsible Person:</td>
+                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Officer:</td>
                             <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_officer_id.name"/></td>
                         </tr>
                     </table>
@@ -89,7 +89,7 @@
                     <p>Please make note of the new time and arrive accordingly. If you have any questions, please contact us.</p>
 
                     <p>Best regards,<br/>
-                    <t t-esc="object.ri_officer_id.name"/><br/>
+<!--                    <t t-esc="object.ri_officer_id.name"/><br/>-->
                     <t t-esc="object.env.company.name"/></p>
                 </div>
 
@@ -108,7 +108,7 @@
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear <t t-esc="object.ri_officer_id.name"/>,</p>
 
-                    <p>This is to inform you that the guest has successfully attended the scheduled invitation:</p>
+                    <p>Guest has successfully attended the scheduled invitation in reception:</p>
 
                     <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
                         <tr style="background-color: #f9f9f9;">
@@ -127,10 +127,10 @@
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Scheduled Time:</td>
                             <td style="padding: 8px; border: 1px solid #ddd;"><span t-field="object.ri_invitation_datetime"/></td>
                         </tr>
-                        <tr style="background-color: #f9f9f9;">
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_renter_id.name"/></td>
-                        </tr>
+<!--                        <tr style="background-color: #f9f9f9;">-->
+<!--                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>-->
+<!--                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_renter_id.name"/></td>-->
+<!--                        </tr>-->
                         <tr>
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Status:</td>
                             <td style="padding: 8px; border: 1px solid #ddd; color: green; font-weight: bold;">Attended</td>
@@ -158,13 +158,13 @@
                 <div style="margin: 0px; padding: 0px;">
                     <p>Dear <t t-esc="object.sp_renter_id.br_officer_id.name"/>,</p>
 
-                    <p>This is a reminder that a payment is due for the following renter:</p>
+                    <p>This is a reminder that a payment is due for the following:</p>
 
                     <table style="border-collapse: collapse; width: 100%; margin: 20px 0;">
-                        <tr style="background-color: #f9f9f9;">
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.sp_renter_id.name"/></td>
-                        </tr>
+<!--                        <tr style="background-color: #f9f9f9;">-->
+<!--                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Renter:</td>-->
+<!--                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.sp_renter_id.name"/></td>-->
+<!--                        </tr>-->
                         <tr>
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Payment Description:</td>
                             <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.sp_description"/></td>
@@ -177,10 +177,10 @@
                             <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Due Date:</td>
                             <td style="padding: 8px; border: 1px solid #ddd; color: red; font-weight: bold;"><t t-esc="object.sp_due_date"/></td>
                         </tr>
-                        <tr style="background-color: #f9f9f9;">
-                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Company:</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.sp_renter_id.br_company_id.name"/></td>
-                        </tr>
+<!--                        <tr style="background-color: #f9f9f9;">-->
+<!--                            <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Company:</td>-->
+<!--                            <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.sp_renter_id.br_company_id.name"/></td>-->
+<!--                        </tr>-->
                     </table>
 
                     <p>Please follow up on this payment to ensure it is processed on time.</p>
