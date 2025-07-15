@@ -100,7 +100,7 @@ class ReceptionInvitation(models.Model):
         """
         if self.ri_officer_id:
             renter = self.env['building.renter'].search([
-                ('br_officer_id', '=', self.ri_officer_id.partner_id.id)
+                ('br_officer_id', '=', self.ri_officer_id.id)
             ], limit=1)
             if renter:
                 self.ri_renter_id = renter.id
