@@ -51,7 +51,7 @@
         <record id="reception_invitation_rule_renter" model="ir.rule">
             <field name="name">Reception Invitation: Tenant can view their invitations and create new ones</field>
             <field name="model_id" ref="model_reception_invitation"/>
-            <field name="domain_force">[('ri_renter_id.br_officer_id', '=', user.id)]</field>
+            <field name="domain_force">[('ri_officer_id', '=', user.id)]</field>
             <field name="groups" eval="[(4, ref('group_j_reception_renter'))]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
