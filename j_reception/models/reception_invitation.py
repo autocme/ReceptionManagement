@@ -41,6 +41,7 @@ class ReceptionInvitation(models.Model):
         string='Renter',
         required=True,
         readonly=True,
+        compute='_compute_renter_id',
         help='The renter associated with this invitation',
         tracking=True
     )
@@ -93,23 +94,23 @@ class ReceptionInvitation(models.Model):
             else:
                 record.name = 'Draft Invitation'
 
-    @api.onchange('ri_officer_id')
-    def _onchange_officer_id(self):
+    @api.depends('ri_officer_id')
+    def _compute_renter_id(self):
         """
         Auto-populate renter when officer changes
         """
-        if self.ri_officer_id:
-            renter = self.env['building.renter'].search([
-                ('br_officer_id', '=', self.ri_officer_id.id)
-            ], limit=1)
-            if renter:
-                self.ri_renter_id = renter.id
+        for rec in self:
+            if rec.ri_officer_id:
+                renter = self.env['building.renter'].search([
+                    ('br_officer_id', '=', rec.ri_officer_id.id)
+                ], limit=1)
+                if renter:
+                    rec.ri_renter_id = renter.id
+                else:
+                    rec.ri_renter_id = False
             else:
-                self.ri_renter_id = False
-        else:
-            # If no officer selected, clear renter field
-            self.ri_renter_id = False
-
+                # If no officer selected, clear renter field
+                rec.ri_renter_id = False
 
     @api.model
     def default_get(self, fields_list):
@@ -119,30 +120,11 @@ class ReceptionInvitation(models.Model):
         res = super(ReceptionInvitation, self).default_get(fields_list)
         if 'ri_renter_id' in fields_list:
             current_user = self.env.user
-            
-            # For administrators, handle default renter differently
-            if current_user.has_group('j_reception.group_j_reception_admin'):
-                # If context has default_ri_officer_id, use it to find renter
-                if self.env.context.get('default_ri_officer_id'):
-                    officer_id = self.env.context['default_ri_officer_id']
-                    renter = self.env['building.renter'].search([
-                        ('br_officer_id', '=', officer_id)
-                    ], limit=1)
-                    if renter:
-                        res['ri_renter_id'] = renter.id
-                # For administrators without context, set a temporary default that will be overridden by onchange
-                else:
-                    # Set to first available renter as temporary default
-                    first_renter = self.env['building.renter'].search([], limit=1)
-                    if first_renter:
-                        res['ri_renter_id'] = first_renter.id
-            else:
-                # For non-admin users, set default renter based on current user
-                renter = self.env['building.renter'].search([
-                    ('br_officer_id', '=', current_user.id)
-                ], limit=1)
-                if renter:
-                    res['ri_renter_id'] = renter.id
+            renter = self.env['building.renter'].search([
+                ('br_officer_id', '=', current_user.id)
+            ], limit=1)
+            if renter:
+                res['ri_renter_id'] = renter.id
         return res
 
     @api.constrains('ri_officer_id', 'ri_renter_id')
@@ -156,7 +138,7 @@ class ReceptionInvitation(models.Model):
                 # Skip constraint check for Reception Administrators
                 if self.env.user.has_group('j_reception.group_j_reception_admin'):
                     continue
-                
+
                 if record.ri_renter_id.br_officer_id.id != record.ri_officer_id.id:
                     raise ValidationError(
                         f"You can only create invitations for renters you are assigned to. "
@@ -170,9 +152,9 @@ class ReceptionInvitation(models.Model):
         """
         if vals.get('ri_sequence', _('New')) == _('New'):
             vals['ri_sequence'] = self.env['ir.sequence'].next_by_code('reception.invitation') or _('New')
-        
+
         invitation = super(ReceptionInvitation, self).create(vals)
-        
+
         return invitation
 
     def write(self, vals):
@@ -181,30 +163,30 @@ class ReceptionInvitation(models.Model):
         """
         datetime_changed = False
         state_changed = False
-        
+
         for record in self:
             if 'ri_invitation_datetime' in vals and vals['ri_invitation_datetime'] != record.ri_invitation_datetime:
                 datetime_changed = True
             if 'ri_state' in vals and vals['ri_state'] != record.ri_state:
                 state_changed = True
-        
+
         result = super(ReceptionInvitation, self).write(vals)
-        
+
         # Send datetime change notification
         if datetime_changed:
             for record in self:
                 record._send_datetime_change_email()
-        
+
         # Send initial invitation email when state changes to scheduled
         if state_changed and vals.get('ri_state') == 'scheduled':
             for record in self:
                 record._send_invitation_email()
-        
+
         # Send attendance notification
         if state_changed and vals.get('ri_state') == 'attended':
             for record in self:
                 record._send_attendance_notification()
-        
+
         return result
 
     def _send_invitation_email(self):
@@ -271,5 +253,5 @@ class ReceptionInvitation(models.Model):
             ('ri_state', '=', 'scheduled'),
             ('ri_invitation_datetime', '<', now)
         ])
-        
+
         overdue_invitations.write({'ri_state': 'overdue'})
