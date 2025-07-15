@@ -104,8 +104,11 @@ class ReceptionInvitation(models.Model):
             ], limit=1)
             if renter:
                 self.ri_renter_id = renter.id
-            if not renter:
+            else:
                 self.ri_renter_id = False
+        else:
+            # If no officer selected, clear renter field
+            self.ri_renter_id = False
 
 
     @api.model
@@ -117,7 +120,7 @@ class ReceptionInvitation(models.Model):
         if 'ri_renter_id' in fields_list:
             current_user = self.env.user
             
-            # For administrators, don't set default renter - let them choose officer first
+            # For administrators, handle default renter differently
             if current_user.has_group('j_reception.group_j_reception_admin'):
                 # If context has default_ri_officer_id, use it to find renter
                 if self.env.context.get('default_ri_officer_id'):
@@ -127,13 +130,12 @@ class ReceptionInvitation(models.Model):
                     ], limit=1)
                     if renter:
                         res['ri_renter_id'] = renter.id
-                # If admin has no default officer in context, try to find their own renter
+                # For administrators without context, set a temporary default that will be overridden by onchange
                 else:
-                    renter = self.env['building.renter'].search([
-                        ('br_officer_id', '=', current_user.id)
-                    ], limit=1)
-                    if renter:
-                        res['ri_renter_id'] = renter.id
+                    # Set to first available renter as temporary default
+                    first_renter = self.env['building.renter'].search([], limit=1)
+                    if first_renter:
+                        res['ri_renter_id'] = first_renter.id
             else:
                 # For non-admin users, set default renter based on current user
                 renter = self.env['building.renter'].search([
