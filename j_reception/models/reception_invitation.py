@@ -112,15 +112,18 @@ class ReceptionInvitation(models.Model):
     def default_get(self, fields_list):
         """
         Set default values for renter based on current user
+        (only for non-admin users)
         """
         res = super(ReceptionInvitation, self).default_get(fields_list)
         if 'ri_renter_id' in fields_list:
             current_user = self.env.user
-            renter = self.env['building.renter'].search([
-                ('br_officer_id', '=', current_user.id)
-            ], limit=1)
-            if renter:
-                res['ri_renter_id'] = renter.id
+            # Only set default tenant for non-admin users
+            if not current_user.has_group('j_reception.group_j_reception_admin'):
+                renter = self.env['building.renter'].search([
+                    ('br_officer_id', '=', current_user.id)
+                ], limit=1)
+                if renter:
+                    res['ri_renter_id'] = renter.id
         return res
 
     @api.constrains('ri_officer_id', 'ri_renter_id')
