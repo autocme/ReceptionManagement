@@ -26,6 +26,7 @@
         <menuitem id="menu_j_reception_configuration" 
                   name="Configuration" 
                   parent="menu_j_reception_main" 
+                  groups="j_reception.group_j_reception_admin"
                   sequence="30"/>
 
         <!-- Settings Menu -->
@@ -33,6 +34,7 @@
                   name="Settings" 
                   parent="menu_j_reception_configuration" 
                   action="action_j_reception_settings" 
+                  groups="j_reception.group_j_reception_admin"
                   sequence="10"/>
 
     </data>

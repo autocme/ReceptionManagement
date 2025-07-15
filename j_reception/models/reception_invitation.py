@@ -31,7 +31,7 @@ class ReceptionInvitation(models.Model):
         string='Officer',
         required=True,
         default=lambda self: self.env.user,
-        domain=lambda self: [('partner_id', 'in', self.env['building.renter'].search([]).mapped('br_officer_id.id'))],
+        domain=lambda self: [('id', 'in', self.env['building.renter'].search([]).mapped('br_officer_id.id'))],
         placeholder='Select the officer',
         help='The user responsible for this invitation',
         tracking=True
@@ -117,7 +117,7 @@ class ReceptionInvitation(models.Model):
         if 'ri_renter_id' in fields_list:
             current_user = self.env.user
             renter = self.env['building.renter'].search([
-                ('br_officer_id', '=', current_user.partner_id.id)
+                ('br_officer_id', '=', current_user.id)
             ], limit=1)
             if renter:
                 res['ri_renter_id'] = renter.id
@@ -130,7 +130,7 @@ class ReceptionInvitation(models.Model):
         """
         for record in self:
             if record.ri_officer_id and record.ri_renter_id:
-                if record.ri_renter_id.br_officer_id.id != record.ri_officer_id.partner_id.id:
+                if record.ri_renter_id.br_officer_id.id != record.ri_officer_id.id:
                     raise ValidationError(
                         f"You can only create invitations for renters you are assigned to. "
                         f"You are not the officer for '{record.ri_renter_id.name}'."

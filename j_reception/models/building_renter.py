@@ -27,12 +27,13 @@ class BuildingRenter(models.Model):
         string='Company',
         required=True,
         domain=[('is_company', '=', True)],
+        context={'default_is_company': True},
         placeholder='Select the company associated with this renter',
         help='The company associated with this renter',
         tracking=True
     )
     br_officer_id = fields.Many2one(
-        'res.partner',
+        'res.users',
         string='Officer',
         required=True,
         placeholder='Select the officer',
