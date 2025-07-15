@@ -8,6 +8,7 @@
             <field name="code">reception.invitation</field>
             <field name="prefix">INVT</field>
             <field name="padding">5</field>
+            <field name="implementation">no_gap</field>
         </record>
 
     </data>
