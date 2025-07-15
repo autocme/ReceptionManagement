@@ -127,9 +127,14 @@ class ReceptionInvitation(models.Model):
     def _check_officer_renter_relationship(self):
         """
         Ensure officer can only create invitations for their assigned renter
+        (except for Reception Administrators who can create for any renter)
         """
         for record in self:
             if record.ri_officer_id and record.ri_renter_id:
+                # Skip constraint check for Reception Administrators
+                if self.env.user.has_group('j_reception.group_j_reception_admin'):
+                    continue
+                
                 if record.ri_renter_id.br_officer_id.id != record.ri_officer_id.id:
                     raise ValidationError(
                         f"You can only create invitations for renters you are assigned to. "
