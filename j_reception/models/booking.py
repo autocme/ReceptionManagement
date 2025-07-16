@@ -59,7 +59,7 @@ class Booking(models.Model):
         for record in self:
             if record.facility_id and record.booking_datetime and record.renter_id:
                 # Convert UTC datetime to user's timezone for display
-                user_tz = pytz.timezone(record.env.user.tz or 'UTC')
+                user_tz = pytz.timezone(record.env.user.tz or 'Asia/Riyadh')
                 booking_date_local = pytz.utc.localize(record.booking_datetime).astimezone(user_tz)
                 booking_date = booking_date_local.strftime('%Y-%m-%d %H:%M')
                 record.name = f"{record.facility_id.name} - {booking_date} ({record.renter_id.name})"
@@ -89,7 +89,7 @@ class Booking(models.Model):
                     if (record.booking_datetime < existing_end_time and 
                         end_time > booking.booking_datetime):
                         # Convert times to user's timezone for error message
-                        user_tz = pytz.timezone(record.env.user.tz or 'UTC')
+                        user_tz = pytz.timezone(record.env.user.tz or 'Asia/Riyadh')
                         booking_start_local = pytz.utc.localize(booking.booking_datetime).astimezone(user_tz)
                         booking_end_local = pytz.utc.localize(existing_end_time).astimezone(user_tz)
                         
@@ -149,7 +149,7 @@ class Booking(models.Model):
                 # Add a 1 minute buffer to avoid immediate expiration
                 if record.booking_datetime <= now_utc:
                     # Convert times to user's timezone for error message
-                    user_tz = pytz.timezone(record.env.user.tz or 'UTC')
+                    user_tz = pytz.timezone(record.env.user.tz or 'Asia/Riyadh')
                     booking_local = pytz.utc.localize(record.booking_datetime).astimezone(user_tz)
                     now_local = pytz.utc.localize(now_utc).astimezone(user_tz)
                     

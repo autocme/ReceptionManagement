@@ -7,6 +7,7 @@ J Reception is an Odoo-based module designed to manage building invitations and 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Default timezone: Asia/Riyadh (when user timezone not available)
 
 ## Recent Changes
 
