@@ -12,11 +12,13 @@ class Facilities(models.Model):
     """
     _name = 'facilities'
     _description = 'Facilities'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'name'
 
     name = fields.Char(
         string='Name',
         required=True,
         placeholder='e.g., Conference Room, Gym, Pool',
-        help='Name of the facility'
+        help='Name of the facility',
+        tracking=True
     )

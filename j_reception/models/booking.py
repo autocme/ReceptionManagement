@@ -15,6 +15,7 @@ class Booking(models.Model):
     """
     _name = 'booking'
     _description = 'Booking'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'booking_datetime desc'
 
     name = fields.Char(
@@ -28,27 +29,31 @@ class Booking(models.Model):
         string='Facility',
         required=True,
         placeholder='Select the facility',
-        help='The facility being booked'
+        help='The facility being booked',
+        tracking=True
     )
     duration_id = fields.Many2one(
         'duration',
         string='Duration',
         required=True,
         placeholder='Select the duration',
-        help='Duration of the booking'
+        help='Duration of the booking',
+        tracking=True
     )
     booking_datetime = fields.Datetime(
         string='Booking Date',
         required=True,
         placeholder='Select date and time',
-        help='Date and time of the booking'
+        help='Date and time of the booking',
+        tracking=True
     )
     renter_id = fields.Many2one(
         'building.renter',
         string='Tenant',
         required=True,
         placeholder='Select the tenant',
-        help='The tenant making the booking'
+        help='The tenant making the booking',
+        tracking=True
     )
 
     @api.depends('facility_id', 'booking_datetime', 'renter_id')

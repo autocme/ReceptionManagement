@@ -12,6 +12,7 @@ class Duration(models.Model):
     """
     _name = 'duration'
     _description = 'Duration'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'minutes'
 
     name = fields.Char(
@@ -24,7 +25,8 @@ class Duration(models.Model):
         string='Minutes',
         required=True,
         placeholder='e.g., 30, 60, 90',
-        help='Duration in minutes'
+        help='Duration in minutes',
+        tracking=True
     )
 
     @api.depends('minutes')
