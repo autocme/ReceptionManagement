@@ -1,0 +1,1244 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* j_reception
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-15 11:39+0000\n"
+"PO-Revision-Date: 2025-07-15 14:40+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.6\n"
+
+#. module: j_reception
+#: model:mail.template,body_html:j_reception.email_template_datetime_change
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p>Dear <t t-esc=\"object.ri_guest_partner_id.name\"/>,</"
+"p>\n"
+"\n"
+"                    <p>The date and time for your <t t-esc=\"object."
+"ri_renter_id.name\"/> visit invitation has been updated. Please note the new "
+"details:</p>\n"
+"\n"
+"                    <table style=\"border-collapse: collapse; width: 100%; "
+"margin: 20px 0;\">\n"
+"                        <tr style=\"background-color: #f9f9f9;\">\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Invitation Number:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><t t-esc=\"object.ri_sequence\"/></td>\n"
+"                        </tr>\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">New Date &amp; Time:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><span t-field=\"object.ri_invitation_datetime\"/></td>\n"
+"                        </tr>\n"
+"<!--                        <tr style=\"background-color: #f9f9f9;\">-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Renter:</td>-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd;\"><t t-esc=\"object.ri_renter_id.name\"/></td>-->\n"
+"<!--                        </tr>-->\n"
+"                        <tr style=\"background-color: #f9f9f9;\">\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Officer:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><t t-esc=\"object.ri_officer_id.name\"/></td>\n"
+"                        </tr>\n"
+"                    </table>\n"
+"\n"
+"                    <t t-if=\"object.env['ir.config_parameter'].sudo()."
+"get_param('j_reception.location_url')\">\n"
+"                        <p><strong>Location:</strong> <a t-attf-"
+"href=\"#{object.env['ir.config_parameter'].sudo().get_param('j_reception."
+"location_url')}\" target=\"_blank\">Click here for directions</a></p>\n"
+"                    </t>\n"
+"\n"
+"                    <p>Please make note of the new time and arrive "
+"accordingly. If you have any questions, please contact us.</p>\n"
+"\n"
+"                    <p>Best regards,<br/>\n"
+"<!--                    <t t-esc=\"object.ri_officer_id.name\"/><br/>-->\n"
+"                    <t t-esc=\"object.env.company.name\"/></p>\n"
+"                </div>\n"
+"\n"
+"            "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p>عزيزي <t t-esc=\"object.ri_guest_partner_id.name\"/>،</p>\n"
+"\n"
+"    <p>تم تحديث تاريخ ووقت دعوتك لزيارة <t t-esc=\"object.ri_renter_id."
+"name\"/>. يرجى ملاحظة التفاصيل الجديدة:</p>\n"
+"\n"
+"    <table style=\"border-collapse: collapse; width: 100%; margin: 20px 0;"
+"\">\n"
+"        <tr style=\"background-color: #f9f9f9;\">\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">رقم الدعوة:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-"
+"esc=\"object.ri_sequence\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">التاريخ والوقت الجديد:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><span t-"
+"field=\"object.ri_invitation_datetime\"/></td>\n"
+"        </tr>\n"
+"        <tr style=\"background-color: #f9f9f9;\">\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">المسؤول:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-"
+"esc=\"object.ri_officer_id.name\"/></td>\n"
+"        </tr>\n"
+"    </table>\n"
+"\n"
+"    <t t-if=\"object.env['ir.config_parameter'].sudo()."
+"get_param('j_reception.location_url')\">\n"
+"        <p><strong>الموقع:</strong> <a t-attf-href=\"#{object.env['ir."
+"config_parameter'].sudo().get_param('j_reception.location_url')}\" "
+"target=\"_blank\">اضغط هنا للوصول إلى الموقع</a></p>\n"
+"    </t>\n"
+"\n"
+"    <p>يرجى الالتزام بالتاريخ والوقت الجديدين والحضور في الموعد المحدد. إذا "
+"كان لديك أي استفسار، يرجى التواصل معنا.</p>\n"
+"\n"
+"    <p>مع أطيب التحيات،<br/>\n"
+"    <t t-esc=\"object.env.company.name\"/></p>\n"
+"</div>\n"
+"            "
+
+#. module: j_reception
+#: model:mail.template,body_html:j_reception.email_template_new_invitation
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p>Dear <t t-esc=\"object.ri_guest_partner_id.name\"/>,</"
+"p>\n"
+"\n"
+"                    <p>You have been invited to visit <t t-esc=\"object."
+"ri_renter_id.name\"/>. Please find the details below:</p>\n"
+"\n"
+"                    <table style=\"border-collapse: collapse; width: 100%; "
+"margin: 20px 0;\">\n"
+"                        <tr style=\"background-color: #f9f9f9;\">\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Invitation Number:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><t t-esc=\"object.ri_sequence\"/></td>\n"
+"                        </tr>\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Date &amp; Time:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><span t-field=\"object.ri_invitation_datetime\"/></td>\n"
+"                        </tr>\n"
+"<!--                        <tr style=\"background-color: #f9f9f9;\">-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Renter:</td>-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd;\"><t t-esc=\"object.ri_renter_id.name\"/></td>-->\n"
+"<!--                        </tr>-->\n"
+"                        <tr style=\"background-color: #f9f9f9;\">\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Officer:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><t t-esc=\"object.ri_officer_id.name\"/></td>\n"
+"                        </tr>\n"
+"                    </table>\n"
+"\n"
+"                    <t t-if=\"object.env['ir.config_parameter'].sudo()."
+"get_param('j_reception.location_url')\">\n"
+"                        <p><strong>Location:</strong> <a t-attf-"
+"href=\"#{object.env['ir.config_parameter'].sudo().get_param('j_reception."
+"location_url')}\" target=\"_blank\">Click here for directions</a></p>\n"
+"                    </t>\n"
+"\n"
+"                    <p>Please arrive on time for your scheduled visit. If "
+"you need to reschedule or have any questions, please contact us.</p>\n"
+"\n"
+"                    <p>Best regards,<br/>\n"
+"<!--                    <t t-esc=\"object.ri_officer_id.name\"/><br/>-->\n"
+"                    <t t-esc=\"object.env.company.name\"/></p>\n"
+"                </div>\n"
+"\n"
+"            "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p>عزيزي <t t-esc=\"object.ri_guest_partner_id.name\"/>،</p>\n"
+"\n"
+"    <p>لقد تمت دعوتك لزيارة <t t-esc=\"object.ri_renter_id.name\"/>. يرجى "
+"الاطلاع على التفاصيل أدناه:</p>\n"
+"\n"
+"    <table style=\"border-collapse: collapse; width: 100%; margin: 20px 0;"
+"\">\n"
+"        <tr style=\"background-color: #f9f9f9;\">\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">رقم الدعوة:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-"
+"esc=\"object.ri_sequence\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">التاريخ والوقت:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><span t-"
+"field=\"object.ri_invitation_datetime\"/></td>\n"
+"        </tr>\n"
+"        <tr style=\"background-color: #f9f9f9;\">\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">المسؤول:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-"
+"esc=\"object.ri_officer_id.name\"/></td>\n"
+"        </tr>\n"
+"    </table>\n"
+"\n"
+"    <t t-if=\"object.env['ir.config_parameter'].sudo()."
+"get_param('j_reception.location_url')\">\n"
+"        <p><strong>الموقع:</strong> <a t-attf-href=\"#{object.env['ir."
+"config_parameter'].sudo().get_param('j_reception.location_url')}\" "
+"target=\"_blank\">اضغط هنا للوصول إلى الموقع</a></p>\n"
+"    </t>\n"
+"\n"
+"    <p>يرجى الحضور في الوقت المحدد لزيارتك المجدولة. إذا كنت بحاجة إلى إعادة "
+"الجدولة أو لديك أي استفسار، يرجى التواصل معنا.</p>\n"
+"\n"
+"    <p>مع أطيب التحيات،<br/>\n"
+"    <t t-esc=\"object.env.company.name\"/></p>\n"
+"</div>\n"
+"            "
+
+#. module: j_reception
+#: model:mail.template,body_html:j_reception.email_template_attendance_notification
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p>Dear <t t-esc=\"object.ri_officer_id.name\"/>,</p>\n"
+"\n"
+"                    <p>Guest has successfully attended the scheduled "
+"invitation in reception:</p>\n"
+"\n"
+"                    <table style=\"border-collapse: collapse; width: 100%; "
+"margin: 20px 0;\">\n"
+"                        <tr style=\"background-color: #f9f9f9;\">\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Invitation Number:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><t t-esc=\"object.ri_sequence\"/></td>\n"
+"                        </tr>\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Guest Name:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><t t-esc=\"object.ri_guest_partner_id.name\"/></td>\n"
+"                        </tr>\n"
+"                        <tr style=\"background-color: #f9f9f9;\">\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Guest Email:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><t t-esc=\"object.ri_guest_partner_id.email\"/></td>\n"
+"                        </tr>\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Scheduled Time:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><span t-field=\"object.ri_invitation_datetime\"/></td>\n"
+"                        </tr>\n"
+"<!--                        <tr style=\"background-color: #f9f9f9;\">-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Renter:</td>-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd;\"><t t-esc=\"object.ri_renter_id.name\"/></td>-->\n"
+"<!--                        </tr>-->\n"
+"                        <tr style=\"background-color: #f9f9f9;\">\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Status:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; color: green; font-weight: bold;\">Attended</td>\n"
+"                        </tr>\n"
+"                    </table>\n"
+"\n"
+"                    <p>The visit has been completed successfully.</p>\n"
+"\n"
+"                    <p>Best regards,<br/>\n"
+"                    Reception System</p>\n"
+"                </div>\n"
+"\n"
+"            "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p>عزيزي <t t-esc=\"object.ri_officer_id.name\"/>،</p>\n"
+"\n"
+"    <p>لقد حضر الضيف للدعوة المجدولة له في قسم الاستقبال بنجاح:</p>\n"
+"\n"
+"    <table style=\"border-collapse: collapse; width: 100%; margin: 20px 0;"
+"\">\n"
+"        <tr style=\"background-color: #f9f9f9;\">\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">رقم الدعوة:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-"
+"esc=\"object.ri_sequence\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">اسم الضيف:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-"
+"esc=\"object.ri_guest_partner_id.name\"/></td>\n"
+"        </tr>\n"
+"        <tr style=\"background-color: #f9f9f9;\">\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">البريد الإلكتروني للضيف:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-"
+"esc=\"object.ri_guest_partner_id.email\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">الوقت المجدول:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><span t-"
+"field=\"object.ri_invitation_datetime\"/></td>\n"
+"        </tr>\n"
+"        <tr style=\"background-color: #f9f9f9;\">\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">الحالة:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; color: green; "
+"font-weight: bold;\">تم الحضور</td>\n"
+"        </tr>\n"
+"    </table>\n"
+"\n"
+"    <p>تمت الزيارة بنجاح.</p>\n"
+"\n"
+"    <p>مع أطيب التحيات،<br/>\n"
+"    نظام الاستقبال</p>\n"
+"</div>\n"
+"            "
+
+#. module: j_reception
+#: model:mail.template,body_html:j_reception.email_template_payment_due
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                    <p>Dear <t t-esc=\"object.sp_renter_id.br_officer_id."
+"name\"/>,</p>\n"
+"\n"
+"                    <p>This is a reminder that a payment is due for the "
+"following:</p>\n"
+"\n"
+"                    <table style=\"border-collapse: collapse; width: 100%; "
+"margin: 20px 0;\">\n"
+"<!--                        <tr style=\"background-color: #f9f9f9;\">-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Renter:</td>-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd;\"><t t-esc=\"object.sp_renter_id.name\"/></td>-->\n"
+"<!--                        </tr>-->\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Payment Description:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><t t-esc=\"object.sp_description\"/></td>\n"
+"                        </tr>\n"
+"                        <tr style=\"background-color: #f9f9f9;\">\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Amount:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;"
+"\"><t t-esc=\"object.sp_amount\"/><t t-esc=\"object.sp_currency_id.symbol\"/"
+"></td>\n"
+"                        </tr>\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Due Date:</td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; color: red; font-weight: bold;\"><t t-esc=\"object.sp_due_date\"/></"
+"td>\n"
+"                        </tr>\n"
+"<!--                        <tr style=\"background-color: #f9f9f9;\">-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd; font-weight: bold;\">Company:</td>-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid "
+"#ddd;\"><t t-esc=\"object.sp_renter_id.br_company_id.name\"/></td>-->\n"
+"<!--                        </tr>-->\n"
+"                    </table>\n"
+"\n"
+"                    <p>Please follow up on this payment to ensure it is "
+"processed on time.</p>\n"
+"\n"
+"                    <p>Best regards,<br/>\n"
+"                    Reception System</p>\n"
+"                </div>\n"
+"\n"
+"            "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p>عزيزي <t t-esc=\"object.sp_renter_id.br_officer_id.name\"/>،</p>\n"
+"\n"
+"    <p>هذه رسالة تذكير بوجود دفعة مستحقة كما يلي:</p>\n"
+"\n"
+"    <table style=\"border-collapse: collapse; width: 100%; margin: 20px 0;"
+"\">\n"
+"        <tr>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">وصف الدفعة:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-"
+"esc=\"object.sp_description\"/></td>\n"
+"        </tr>\n"
+"        <tr style=\"background-color: #f9f9f9;\">\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">المبلغ:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-"
+"esc=\"object.sp_amount\"/><t t-esc=\"object.sp_currency_id.symbol\"/></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: "
+"bold;\">تاريخ الاستحقاق:</td>\n"
+"            <td style=\"padding: 8px; border: 1px solid #ddd; color: red; "
+"font-weight: bold;\"><t t-esc=\"object.sp_due_date\"/></td>\n"
+"        </tr>\n"
+"    </table>\n"
+"\n"
+"    <p>يرجى متابعة هذه الدفعة لضمان معالجتها في الوقت المناسب.</p>\n"
+"\n"
+"    <p>مع أطيب التحيات،<br/>\n"
+"    نظام الاستقبال</p>\n"
+"</div>\n"
+"            "
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_kanban
+msgid ""
+"<span style=\"background: #3498db; color: white; padding: 2px 6px; border-"
+"radius: 12px; font-size: 9px; font-weight: bold;\">TENANT</span>"
+msgstr ""
+"<span style=\"background: #3498db; color: white; padding: 2px 6px; border-"
+"radius: 12px; font-size: 9px; font-weight: bold;\">المستأجر</span>"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
+msgid "<strong style=\"color: #6c757d; font-size: 11px;\">Guest: </strong>"
+msgstr "<strong style=\"color: #6c757d; font-size: 11px;\">الضيف: </strong>"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
+msgid "<strong style=\"color: #6c757d; font-size: 11px;\">Officer: </strong>"
+msgstr "<strong style=\"color: #6c757d; font-size: 11px;\">المسؤول: </strong>"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
+msgid "<strong style=\"color: #6c757d; font-size: 11px;\">Subject: </strong>"
+msgstr "<strong style=\"color: #6c757d; font-size: 11px;\">الموضوع: </strong>"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
+msgid "<strong style=\"color: #6c757d; font-size: 11px;\">Tenant: </strong>"
+msgstr "<strong style=\"color: #6c757d; font-size: 11px;\">المستأجر: </strong>"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_kanban
+msgid "<strong style=\"color: #7f8c8d; font-size: 11px;\">Company: </strong>"
+msgstr "<strong style=\"color: #7f8c8d; font-size: 11px;\">الشركة: </strong>"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_kanban
+msgid ""
+"<strong style=\"color: #7f8c8d; font-size: 11px;\">Invitations: </strong>"
+msgstr "<strong style=\"color: #7f8c8d; font-size: 11px;\">الدعوات: </strong>"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_kanban
+msgid "<strong style=\"color: #7f8c8d; font-size: 11px;\">Officer: </strong>"
+msgstr "<strong style=\"color: #7f8c8d; font-size: 11px;\">المسؤول: </strong>"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_needaction
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_ids
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_exception_decoration
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_state
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_type_icon
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: j_reception
+#: model:res.groups,name:j_reception.group_j_reception_admin
+msgid "Administrator: All Documnets"
+msgstr "المدير: كافة المستندات"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_amount
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_attachment_count
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__ri_state__attended
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "Attended"
+msgstr "حضر"
+
+#. module: j_reception
+#: model:ir.model,name:j_reception.model_building_renter
+msgid "Building Renter"
+msgstr "المستأجر"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
+msgid "Building Tenant"
+msgstr "المستأجر"
+
+#. module: j_reception
+#: model:ir.actions.act_window,name:j_reception.action_building_renter
+msgid "Building Tenants"
+msgstr "المستأجرين"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: j_reception
+#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__ri_state__cancelled
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "Cancelled"
+msgstr "ملغى"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__br_company_id
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_search
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_tree
+msgid "Company"
+msgstr "الشركة"
+
+#. module: j_reception
+#: model:ir.model,name:j_reception.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.ui.menu,name:j_reception.menu_j_reception_configuration
+msgid "Configuration"
+msgstr "التهيثة"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_form
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_building_renter
+#: model_terms:ir.actions.act_window,help:j_reception.action_building_renter_tree
+msgid "Create your first building tenant"
+msgstr "قم بإنشاء أول مستأجر في المبنى الخاص بك"
+
+#. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_reception_invitation_tree
+msgid "Create your first reception invitation"
+msgstr "قم بإنشاء أول دعوة استقبال"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__create_uid
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot__create_uid
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__create_uid
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__create_date
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot__create_date
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__create_date
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_currency_id
+msgid "Currency for this payment"
+msgstr "العملة لهذه الدفعة"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_state
+msgid "Current state of the invitation"
+msgstr "الحالة الحالية للدعوة"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_invitation_datetime
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_description
+msgid "Description"
+msgstr "الوصف"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_description
+msgid "Description of the payment (e.g., Monthly Rent, Maintenance Fee)"
+msgstr "وصف الدفعة (مثال: الإيجار الشهري، رسوم الصيانة)"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__display_name
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot__display_name
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__display_name
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__name
+msgid "Display name for the invitation"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__name
+msgid "Display name for the renter"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__ri_state__draft
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_due_date
+msgid "Due Date"
+msgstr "تاريخ الاستحقاق"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_follower_ids
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_partner_ids
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__activity_type_icon
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: j_reception
+#: model:res.groups,comment:j_reception.group_j_reception_admin
+msgid ""
+"Full access to Reception functionalities - can manage all renters, "
+"invitations, and settings"
+msgstr ""
+"وصول كامل إلى وظائف نظام الاستقبال، مع إمكانية إدارة جميع المستأجرين، "
+"الدعوات، والإعدادات"
+
+#. module: j_reception
+#: model:ir.model,name:j_reception.model_garage_slot
+msgid "Garage Slot"
+msgstr "فتحة الكراج"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__br_garage_slot_ids
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
+msgid "Garage Slots"
+msgstr "فتحات الكراج"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_garage_slot__gs_number
+msgid "Garage slot number or identifier"
+msgstr "رقم أو معرف مكان الموقف"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_res_config_settings__j_reception_location_url
+msgid "Geographical Location URL"
+msgstr "رابط الموقع الجغرافي"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_search
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "Group By"
+msgstr "التجميع حسب"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_guest_partner_id
+msgid "Guest"
+msgstr "الضيف"
+
+#. module: j_reception
+#: model:mail.template,subject:j_reception.email_template_attendance_notification
+msgid "Guest Attended - {{object.ri_sequence}}"
+msgstr "تم حضور الضيف - {{object.ri_sequence}}"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__has_message
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__id
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot__id
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__id
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__id
+msgid "ID"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_exception_icon
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__activity_exception_icon
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__message_needaction
+#: model:ir.model.fields,help:j_reception.field_building_renter__message_unread
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__message_needaction
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__message_has_error
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__br_invitation_count
+msgid "Invitation Count"
+msgstr "عدد الدعوات"
+
+#. module: j_reception
+#: model:mail.template,subject:j_reception.email_template_datetime_change
+msgid "Invitation Time Changed - {{object.ri_sequence}}"
+msgstr "تم تعديل وقت الدعوة - {{object.ri_sequence}}"
+
+#. module: j_reception
+#: model:mail.template,subject:j_reception.email_template_new_invitation
+msgid "Invitation Visit - {{object.ri_sequence}}"
+msgstr "دعوة الزيارة - {{object.ri_sequence}}"
+
+#. module: j_reception
+#: model:ir.actions.act_window,name:j_reception.action_reception_invitation_tree
+#: model:ir.ui.menu,name:j_reception.menu_j_reception_invitations
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_tree
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_calendar
+msgid "Invitations"
+msgstr "الدعوات"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_is_follower
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter____last_update
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot____last_update
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation____last_update
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل تم في"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__write_uid
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot__write_uid
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__write_uid
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث تم بواسطة"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__write_date
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot__write_date
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__write_date
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث تم في"
+
+#. module: j_reception
+#: model:res.groups,comment:j_reception.group_j_reception_renter
+msgid ""
+"Limited access to Reception functionalities - can view renters and create "
+"invitations"
+msgstr ""
+"صلاحيات محدودة في نظام الاستقبال – إمكانية عرض المستأجرين وإنشاء الدعوات فقط"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__br_garage_slot_ids
+msgid "List of garage slots assigned to this renter"
+msgstr "قائمة أماكن المواقف المخصصة لهذا المستأجر"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__br_scheduled_payment_ids
+msgid "List of scheduled payments for this renter"
+msgstr "قائمة الدفعات المجدولة لهذا المستأجر"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_main_attachment_id
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.module.category,description:j_reception.module_category_reception
+msgid "Manage building invitations and rental information"
+msgstr "إدارة الدعوات الخاصة بالمبنى ومعلومات الإيجار"
+
+#. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_reception_invitation_tree
+msgid ""
+"Manage building invitations with automated email notifications and state "
+"tracking."
+msgstr ""
+"إدارة دعوات المبنى مع إرسال إشعارات بريد إلكتروني آلية وتتبع حالة الدعوات."
+
+#. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_building_renter_tree
+msgid ""
+"Manage building tenants with company assignments and officer relationships."
+msgstr ""
+"إدارة مستأجري المبنى بما يشمل تعيين الشركات وبناء العلاقات مع الموظفين "
+"المختصين."
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_form
+msgid "Mark as Attended"
+msgstr "تأكيد الحضور"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_has_error
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_ids
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__my_activity_date_deadline
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__name
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: j_reception
+#: code:addons/Reception/j_reception/models/reception_invitation.py:0
+#: code:addons/j_reception/models/reception_invitation.py:0
+#, python-format
+msgid "New"
+msgstr "جديد"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_calendar_event_id
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_date_deadline
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_summary
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_type_id
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_is_notified
+msgid "Notification Sent"
+msgstr "تم إرسال إشعار الايميل"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot__gs_number
+msgid "Number"
+msgstr "الرقم"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_needaction_counter
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_has_error_counter
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__br_invitation_count
+msgid "Number of invitations created for this renter"
+msgstr "عدد الدعوات لهذا المستأجر"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__message_needaction_counter
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__message_has_error_counter
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__message_unread_counter
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__br_officer_id
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_officer_id
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_search
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_tree
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "Officer"
+msgstr "المسؤول"
+
+#. module: j_reception
+#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__ri_state__overdue
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "Overdue"
+msgstr "متأخرة"
+
+#. module: j_reception
+#: model:mail.template,subject:j_reception.email_template_payment_due
+msgid "Payment Due Reminder - {{object.sp_description}}"
+msgstr "تذكير بموعد الدفعة - {{object.sp_description}}"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_amount
+msgid "Payment amount"
+msgstr "مبلغ الدفعة"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_due_date
+msgid "Payment due date"
+msgstr "تاريخ استحقاق الدفعة"
+
+#. module: j_reception
+#: model:ir.module.category,name:j_reception.module_category_reception
+#: model:ir.ui.menu,name:j_reception.menu_j_reception_main
+#: model_terms:ir.ui.view,arch_db:j_reception.view_res_config_settings_form
+msgid "Reception"
+msgstr "الاستقبال"
+
+#. module: j_reception
+#: model:mail.template,name:j_reception.email_template_attendance_notification
+msgid "Reception - Guest Attended"
+msgstr "نظام الاستقبال – تم حضور الضيف"
+
+#. module: j_reception
+#: model:mail.template,name:j_reception.email_template_datetime_change
+msgid "Reception - Invitation Datetime Changed"
+msgstr "نظام الاستقبال – تم تعديل تاريخ ووقت الدعوة"
+
+#. module: j_reception
+#: model:mail.template,name:j_reception.email_template_new_invitation
+msgid "Reception - New Invitation"
+msgstr "نظام الاستقبال – دعوة جديدة"
+
+#. module: j_reception
+#: model:mail.template,name:j_reception.email_template_payment_due
+msgid "Reception - Payment Due Notification"
+msgstr "نظام الاستقبال – إشعار بالدفع المستحق"
+
+#. module: j_reception
+#: model:ir.model,name:j_reception.model_reception_invitation
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_form
+msgid "Reception Invitation"
+msgstr "دعوة استقبال"
+
+#. module: j_reception
+#: model:ir.actions.act_window,name:j_reception.action_j_reception_settings
+#: model_terms:ir.ui.view,arch_db:j_reception.view_res_config_settings_form
+msgid "Reception Settings"
+msgstr "إعدادات الاستقبال"
+
+#. module: j_reception
+#: model:ir.actions.server,name:j_reception.automated_action_check_due_payments_ir_actions_server
+#: model:ir.cron,cron_name:j_reception.automated_action_check_due_payments
+#: model:ir.cron,name:j_reception.automated_action_check_due_payments
+msgid "Reception: Check Due Payments"
+msgstr "نظام الاستقبال: مراجعة الدفعات المستحقة"
+
+#. module: j_reception
+#: model:ir.actions.server,name:j_reception.automated_action_check_overdue_invitations_ir_actions_server
+#: model:ir.cron,cron_name:j_reception.automated_action_check_overdue_invitations
+#: model:ir.cron,name:j_reception.automated_action_check_overdue_invitations
+msgid "Reception: Check Overdue Invitations"
+msgstr "نظام الاستقبال: مراجعة الدعوات المتأخرة"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot__gs_renter_id
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_renter_id
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_renter_id
+msgid "Renter"
+msgstr "المستأجر"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_user_id
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_user_id
+msgid "Responsible User"
+msgstr "المسؤول"
+
+#. module: j_reception
+#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__ri_state__scheduled
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "Scheduled"
+msgstr "مجدول"
+
+#. module: j_reception
+#: model:ir.model,name:j_reception.model_scheduled_payment
+msgid "Scheduled Payment"
+msgstr "دفعة مجدولة"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__br_scheduled_payment_ids
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
+msgid "Scheduled Payments"
+msgstr "دفعات مجدولة"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_invitation_datetime
+msgid "Scheduled date and time for the invitation"
+msgstr "تاريخ ووقت الدعوة المحدد"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: j_reception
+#: model:ir.ui.menu,name:j_reception.menu_j_reception_settings
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_state
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "State"
+msgstr "الحالة"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__activity_state
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_subject
+msgid "Subject"
+msgstr "الموضوع"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_subject
+msgid "Subject of the invitation"
+msgstr "موضوع الدعوة"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_calendar
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_form
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_tree
+msgid "Tenant"
+msgstr "المستأجر"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_search
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_tree
+msgid "Tenant Name"
+msgstr "اسم المستأجر"
+
+#. module: j_reception
+#: model:res.groups,name:j_reception.group_j_reception_renter
+msgid "Tenant: Own Documents Only"
+msgstr "المستأجر: المستندات الخاصة به"
+
+#. module: j_reception
+#: model:ir.actions.act_window,name:j_reception.action_building_renter_tree
+#: model:ir.ui.menu,name:j_reception.menu_j_reception_renters
+msgid "Tenants"
+msgstr "المستأجرين"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__br_company_id
+msgid "The company associated with this renter"
+msgstr "الشركة التابعة لهذا المستأجر"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_guest_partner_id
+msgid "The guest partner for this invitation"
+msgstr "الضيف المرتبط بهذه الدعوة"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__br_officer_id
+msgid "The person responsible for communications with this renter"
+msgstr "المسؤول عن التواصل مع هذا المستأجر"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_renter_id
+msgid "The renter associated with this invitation"
+msgstr "المستأجر المرتبط بهذه الدعوة"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_renter_id
+msgid "The renter associated with this scheduled payment"
+msgstr "المستأجر المرتبط بهذه الدفعة المجدولة"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_garage_slot__gs_renter_id
+msgid "The renter who owns this garage slot"
+msgstr "المستأجر المرتبط بفتحات الكراج هذه"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_officer_id
+msgid "The user responsible for this invitation"
+msgstr "المستخدم المسؤول عن هذه الدعوة"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "This Week"
+msgstr "هذا الأسبوع"
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
+msgid "Today"
+msgstr "اليوم"
+
+#. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_building_renter
+msgid ""
+"Track building tenants with their company details, communications officer, "
+"garage slots, and scheduled payments."
+msgstr ""
+"متابعة مستأجري المبنى بما يشمل تفاصيل الشركة، مسؤول التواصل، أماكن المواقف، "
+"والمدفوعات المجدولة."
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__activity_exception_decoration
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_res_config_settings_form
+msgid ""
+"URL to geographical location for invitation emails (e.g., Google Maps link)"
+msgstr ""
+"رابط الموقع الجغرافي لاستخدامه في رسائل الدعوة الإلكترونية (مثل: رابط خرائط "
+"جوجل)"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_res_config_settings__j_reception_location_url
+msgid ""
+"URL to the geographical location that will be included in invitation emails "
+"(e.g., Google Maps link)"
+msgstr ""
+"رابط الموقع الجغرافي الذي سيتم تضمينه في رسائل الدعوة الإلكترونية (مثال: "
+"رابط خرائط جوجل)"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_sequence
+msgid "Unique sequence number for the invitation"
+msgstr "رقم تسلسلي فريد خاص بالدعوة"
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_unread
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__message_unread_counter
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_kanban
+msgid "View Invitations"
+msgstr "عرض الدعوات"
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_is_notified
+msgid "Whether notification email has been sent for this payment"
+msgstr "ما إذا تم إرسال بريد إشعار لهذه الدفعة"
+
+#~ msgid "Reception: Administrator"
+#~ msgstr "نظام الاستقبال: المشرف"
+
+#~ msgid "Reception: Renter"
+#~ msgstr "نظام الاستقبال: المستأجر"
