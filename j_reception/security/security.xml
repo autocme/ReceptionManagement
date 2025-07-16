@@ -116,5 +116,74 @@
             <field name="perm_unlink" eval="True"/>
         </record>
 
+        <!-- Record Rules for Facilities -->
+        <record id="facilities_rule_renter" model="ir.rule">
+            <field name="name">Facilities: Tenant can only read all records</field>
+            <field name="model_id" ref="model_facilities"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_renter'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="facilities_rule_admin" model="ir.rule">
+            <field name="name">Facilities: Administrator can access all records</field>
+            <field name="model_id" ref="model_facilities"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_admin'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- Record Rules for Duration -->
+        <record id="duration_rule_renter" model="ir.rule">
+            <field name="name">Duration: Tenant can only read all records</field>
+            <field name="model_id" ref="model_duration"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_renter'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="duration_rule_admin" model="ir.rule">
+            <field name="name">Duration: Administrator can access all records</field>
+            <field name="model_id" ref="model_duration"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_admin'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- Record Rules for Booking -->
+        <record id="booking_rule_renter" model="ir.rule">
+            <field name="name">Booking: Tenant can read all records and create new ones</field>
+            <field name="model_id" ref="model_booking"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_renter'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="booking_rule_admin" model="ir.rule">
+            <field name="name">Booking: Administrator can access all records</field>
+            <field name="model_id" ref="model_booking"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_admin'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
     </data>
 </odoo>

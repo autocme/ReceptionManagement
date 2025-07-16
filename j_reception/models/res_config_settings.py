@@ -17,6 +17,17 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='j_reception.location_url',
         help='URL to the geographical location that will be included in invitation emails (e.g., Google Maps link)'
     )
+    j_reception_building_image = fields.Binary(
+        string='Building Image',
+        config_parameter='j_reception.building_image',
+        help='Image of the building that will be included in invitation emails'
+    )
+    j_reception_daily_booking_limit = fields.Integer(
+        string='Daily Booking Limit (Minutes)',
+        config_parameter='j_reception.daily_booking_limit',
+        default=0,
+        help='Maximum minutes a tenant can book per day (0 = no limit)'
+    )
 
     @api.model
     def get_values(self):

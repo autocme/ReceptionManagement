@@ -10,6 +10,16 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### Booking System Implementation (July 15, 2025)
+- Added new booking system with facilities, duration, and booking models
+- Implemented facility booking with calendar view as default
+- Added time conflict detection and daily booking limits
+- Enhanced configuration settings with building image and booking limits
+- Updated email templates to include building image
+- Added comprehensive security rules for booking system
+- Fixed officer field relationship from res.partner to res.users
+- Improved constraint handling for administrators vs tenants
+
 ### Draft State Implementation (July 14, 2025)
 - Added 'draft' state as default for invitations with 'confirm' button workflow
 - Moved email sending to state change trigger (draft → scheduled)
@@ -40,6 +50,9 @@ Preferred communication style: Simple, everyday language.
 - **Reception Invitation** (`reception.invitation`): Handles invitation scheduling and tracking
 - **Garage Slot** (`garage.slot`): Manages garage slot assignments
 - **Scheduled Payment** (`scheduled.payment`): Tracks payment schedules
+- **Facilities** (`facilities`): Manages building facilities available for booking
+- **Duration** (`duration`): Manages booking duration options (30 min, 60 min, etc.)
+- **Booking** (`booking`): Handles facility bookings with conflict detection
 - **Configuration Settings** (`res.config.settings`): System configuration management
 
 ### 2. Business Logic Features

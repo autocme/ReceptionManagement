@@ -25,6 +25,26 @@
                                             <field name="j_reception_location_url" class="o_input_8xl"/>
                                         </div>
                                     </div>
+                                    
+                                    <label for="j_reception_building_image"/>
+                                    <div class="text-muted">
+                                        Building image for invitation emails
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt8">
+                                            <field name="j_reception_building_image" widget="image" class="o_setting_image"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <label for="j_reception_daily_booking_limit"/>
+                                    <div class="text-muted">
+                                        Maximum minutes a tenant can book per day (0 = no limit)
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt8">
+                                            <field name="j_reception_daily_booking_limit" class="o_input_4xl"/>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>

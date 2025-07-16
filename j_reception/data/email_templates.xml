@@ -35,6 +35,12 @@
                         </tr>
                     </table>
 
+                    <t t-if="object.env['ir.config_parameter'].sudo().get_param('j_reception.building_image')">
+                        <div style="text-align: center; margin: 20px 0;">
+                            <img t-attf-src="data:image/png;base64,#{object.env['ir.config_parameter'].sudo().get_param('j_reception.building_image')}" style="max-width: 400px; height: auto; border-radius: 8px;"/>
+                        </div>
+                    </t>
+
                     <t t-if="object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')">
                         <p><strong>Location:</strong> <a t-attf-href="#{object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')}" target="_blank">Click here for directions</a></p>
                     </t>
@@ -81,6 +87,12 @@
                             <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.ri_officer_id.name"/></td>
                         </tr>
                     </table>
+
+                    <t t-if="object.env['ir.config_parameter'].sudo().get_param('j_reception.building_image')">
+                        <div style="text-align: center; margin: 20px 0;">
+                            <img t-attf-src="data:image/png;base64,#{object.env['ir.config_parameter'].sudo().get_param('j_reception.building_image')}" style="max-width: 400px; height: auto; border-radius: 8px;"/>
+                        </div>
+                    </t>
 
                     <t t-if="object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')">
                         <p><strong>Location:</strong> <a t-attf-href="#{object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')}" target="_blank">Click here for directions</a></p>

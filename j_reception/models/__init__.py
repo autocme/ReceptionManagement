@@ -7,3 +7,6 @@ from . import reception_invitation
 from . import garage_slot
 from . import scheduled_payment
 from . import res_config_settings
+from . import facilities
+from . import duration
+from . import booking

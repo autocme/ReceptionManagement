@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Facilities Tree View -->
+        <record id="view_facilities_tree" model="ir.ui.view">
+            <field name="name">facilities.tree</field>
+            <field name="model">facilities</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Facilities Form View -->
+        <record id="view_facilities_form" model="ir.ui.view">
+            <field name="name">facilities.form</field>
+            <field name="model">facilities</field>
+            <field name="arch" type="xml">
+                <form string="Facility">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Facilities Action -->
+        <record id="action_facilities_tree" model="ir.actions.act_window">
+            <field name="name">Facilities</field>
+            <field name="res_model">facilities</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first facility
+                </p>
+                <p>
+                    Manage building facilities that can be booked by tenants.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

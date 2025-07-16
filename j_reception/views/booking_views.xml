@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Booking Tree View -->
+        <record id="view_booking_tree" model="ir.ui.view">
+            <field name="name">booking.tree</field>
+            <field name="model">booking</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="booking_datetime &gt;= current_date" decoration-muted="booking_datetime &lt; current_date">
+                    <field name="name"/>
+                    <field name="facility_id"/>
+                    <field name="booking_datetime"/>
+                    <field name="duration_id"/>
+                    <field name="renter_id" string="Tenant"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Booking Form View -->
+        <record id="view_booking_form" model="ir.ui.view">
+            <field name="name">booking.form</field>
+            <field name="model">booking</field>
+            <field name="arch" type="xml">
+                <form string="Booking">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="facility_id"/>
+                                <field name="duration_id"/>
+                            </group>
+                            <group>
+                                <field name="booking_datetime"/>
+                                <field name="renter_id" string="Tenant"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Booking Calendar View -->
+        <record id="view_booking_calendar" model="ir.ui.view">
+            <field name="name">booking.calendar</field>
+            <field name="model">booking</field>
+            <field name="arch" type="xml">
+                <calendar string="Bookings" date_start="booking_datetime" color="facility_id" mode="week">
+                    <field name="facility_id"/>
+                    <field name="duration_id"/>
+                    <field name="renter_id" string="Tenant"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Booking Search View -->
+        <record id="view_booking_search" model="ir.ui.view">
+            <field name="name">booking.search</field>
+            <field name="model">booking</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="facility_id"/>
+                    <field name="renter_id" string="Tenant"/>
+                    <field name="booking_datetime"/>
+                    <separator/>
+                    <filter string="Today" name="filter_today" domain="[('booking_datetime', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))), ('booking_datetime', '&lt;', datetime.datetime.combine(context_today() + datetime.timedelta(days=1), datetime.time(0,0,0)))]"/>
+                    <filter string="This Week" name="filter_this_week" domain="[('booking_datetime', '&gt;=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d')), ('booking_datetime', '&lt;', (context_today() + datetime.timedelta(days=7-context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Future" name="filter_future" domain="[('booking_datetime', '&gt;=', datetime.datetime.now())]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Facility" name="group_by_facility" domain="[]" context="{'group_by': 'facility_id'}"/>
+                        <filter string="Tenant" name="group_by_tenant" domain="[]" context="{'group_by': 'renter_id'}"/>
+                        <filter string="Date" name="group_by_date" domain="[]" context="{'group_by': 'booking_datetime'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Booking Action -->
+        <record id="action_booking_tree" model="ir.actions.act_window">
+            <field name="name">Bookings</field>
+            <field name="res_model">booking</field>
+            <field name="view_mode">calendar,tree,form</field>
+            <field name="search_view_id" ref="view_booking_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first booking
+                </p>
+                <p>
+                    Manage facility bookings with automated conflict detection and daily limits.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

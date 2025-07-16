@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Duration Tree View -->
+        <record id="view_duration_tree" model="ir.ui.view">
+            <field name="name">duration.tree</field>
+            <field name="model">duration</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="minutes"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Duration Form View -->
+        <record id="view_duration_form" model="ir.ui.view">
+            <field name="name">duration.form</field>
+            <field name="model">duration</field>
+            <field name="arch" type="xml">
+                <form string="Duration">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="minutes"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Duration Action -->
+        <record id="action_duration_tree" model="ir.actions.act_window">
+            <field name="name">Duration</field>
+            <field name="res_model">duration</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first duration
+                </p>
+                <p>
+                    Manage booking durations for facilities.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

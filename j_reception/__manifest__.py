@@ -30,6 +30,9 @@
         # Views
         'views/building_renter_views.xml',
         'views/reception_invitation_views.xml',
+        'views/facilities_views.xml',
+        'views/duration_views.xml',
+        'views/booking_views.xml',
         'views/res_config_settings_views.xml',
         'views/menu_views.xml',
 ],

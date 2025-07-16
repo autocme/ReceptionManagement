@@ -22,6 +22,13 @@
                   action="action_building_renter_tree" 
                   sequence="20"/>
 
+        <!-- Bookings Menu -->
+        <menuitem id="menu_j_reception_bookings" 
+                  name="Bookings" 
+                  parent="menu_j_reception_main" 
+                  action="action_booking_tree" 
+                  sequence="25"/>
+
         <!-- Configuration Menu -->
         <menuitem id="menu_j_reception_configuration" 
                   name="Configuration" 
@@ -36,6 +43,22 @@
                   action="action_j_reception_settings" 
                   groups="j_reception.group_j_reception_admin"
                   sequence="10"/>
+
+        <!-- Facilities Menu -->
+        <menuitem id="menu_j_reception_facilities" 
+                  name="Facilities" 
+                  parent="menu_j_reception_configuration" 
+                  action="action_facilities_tree" 
+                  groups="j_reception.group_j_reception_admin"
+                  sequence="20"/>
+
+        <!-- Duration Menu -->
+        <menuitem id="menu_j_reception_duration" 
+                  name="Duration" 
+                  parent="menu_j_reception_configuration" 
+                  action="action_duration_tree" 
+                  groups="j_reception.group_j_reception_admin"
+                  sequence="30"/>
 
     </data>
 </odoo>
