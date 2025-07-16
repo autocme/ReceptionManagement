@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-15 11:39+0000\n"
-"PO-Revision-Date: 2025-07-15 11:39+0000\n"
+"POT-Creation-Date: 2025-07-16 12:37+0000\n"
+"PO-Revision-Date: 2025-07-16 12:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,28 +19,34 @@ msgstr ""
 #: model:mail.template,body_html:j_reception.email_template_datetime_change
 msgid ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
-"                    <p>Dear <t t-esc=\"object.ri_guest_partner_id.name\"/>,</p>\n"
+"                    <p>Dear <t t-esc=\"object.guest_partner_id.name\"/>,</p>\n"
 "\n"
-"                    <p>The date and time for your <t t-esc=\"object.ri_renter_id.name\"/> visit invitation has been updated. Please note the new details:</p>\n"
+"                    <p>The date and time for your <t t-esc=\"object.renter_id.name\"/> visit invitation has been updated. Please note the new details:</p>\n"
 "\n"
 "                    <table style=\"border-collapse: collapse; width: 100%; margin: 20px 0;\">\n"
 "                        <tr style=\"background-color: #f9f9f9;\">\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Invitation Number:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.ri_sequence\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.sequence\"/></td>\n"
 "                        </tr>\n"
 "                        <tr>\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">New Date &amp; Time:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><span t-field=\"object.ri_invitation_datetime\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><span t-field=\"object.invitation_datetime\"/></td>\n"
 "                        </tr>\n"
 "<!--                        <tr style=\"background-color: #f9f9f9;\">-->\n"
 "<!--                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Renter:</td>-->\n"
-"<!--                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.ri_renter_id.name\"/></td>-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.renter_id.name\"/></td>-->\n"
 "<!--                        </tr>-->\n"
 "                        <tr style=\"background-color: #f9f9f9;\">\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Officer:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.ri_officer_id.name\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.officer_id.name\"/></td>\n"
 "                        </tr>\n"
 "                    </table>\n"
+"\n"
+"                    <t t-if=\"object.env['ir.config_parameter'].sudo().get_param('j_reception.building_image')\">\n"
+"                        <div style=\"margin: 20px 0;\">\n"
+"                            <img t-attf-src=\"data:image/png;base64,#{object.env['ir.config_parameter'].sudo().get_param('j_reception.building_image')}\" style=\"max-width: 400px; height: auto; border-radius: 8px;\"/>\n"
+"                        </div>\n"
+"                    </t>\n"
 "\n"
 "                    <t t-if=\"object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')\">\n"
 "                        <p><strong>Location:</strong> <a t-attf-href=\"#{object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')}\" target=\"_blank\">Click here for directions</a></p>\n"
@@ -49,7 +55,7 @@ msgid ""
 "                    <p>Please make note of the new time and arrive accordingly. If you have any questions, please contact us.</p>\n"
 "\n"
 "                    <p>Best regards,<br/>\n"
-"<!--                    <t t-esc=\"object.ri_officer_id.name\"/><br/>-->\n"
+"<!--                    <t t-esc=\"object.officer_id.name\"/><br/>-->\n"
 "                    <t t-esc=\"object.env.company.name\"/></p>\n"
 "                </div>\n"
 "\n"
@@ -60,28 +66,34 @@ msgstr ""
 #: model:mail.template,body_html:j_reception.email_template_new_invitation
 msgid ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
-"                    <p>Dear <t t-esc=\"object.ri_guest_partner_id.name\"/>,</p>\n"
+"                    <p>Dear <t t-esc=\"object.guest_partner_id.name\"/>,</p>\n"
 "\n"
-"                    <p>You have been invited to visit <t t-esc=\"object.ri_renter_id.name\"/>. Please find the details below:</p>\n"
+"                    <p>You have been invited to visit <t t-esc=\"object.renter_id.name\"/>. Please find the details below:</p>\n"
 "\n"
 "                    <table style=\"border-collapse: collapse; width: 100%; margin: 20px 0;\">\n"
 "                        <tr style=\"background-color: #f9f9f9;\">\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Invitation Number:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.ri_sequence\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.sequence\"/></td>\n"
 "                        </tr>\n"
 "                        <tr>\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Date &amp; Time:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><span t-field=\"object.ri_invitation_datetime\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><span t-field=\"object.invitation_datetime\"/></td>\n"
 "                        </tr>\n"
 "<!--                        <tr style=\"background-color: #f9f9f9;\">-->\n"
 "<!--                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Renter:</td>-->\n"
-"<!--                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.ri_renter_id.name\"/></td>-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.renter_id.name\"/></td>-->\n"
 "<!--                        </tr>-->\n"
 "                        <tr style=\"background-color: #f9f9f9;\">\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Officer:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.ri_officer_id.name\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.officer_id.name\"/></td>\n"
 "                        </tr>\n"
 "                    </table>\n"
+"\n"
+"                    <t t-if=\"object.env['ir.config_parameter'].sudo().get_param('j_reception.building_image')\">\n"
+"                        <div style=\"margin: 20px 0;\">\n"
+"                            <img t-attf-src=\"data:image/png;base64,#{object.env['ir.config_parameter'].sudo().get_param('j_reception.building_image')}\" style=\"max-width: 400px; height: auto; border-radius: 8px;\"/>\n"
+"                        </div>\n"
+"                    </t>\n"
 "\n"
 "                    <t t-if=\"object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')\">\n"
 "                        <p><strong>Location:</strong> <a t-attf-href=\"#{object.env['ir.config_parameter'].sudo().get_param('j_reception.location_url')}\" target=\"_blank\">Click here for directions</a></p>\n"
@@ -90,7 +102,7 @@ msgid ""
 "                    <p>Please arrive on time for your scheduled visit. If you need to reschedule or have any questions, please contact us.</p>\n"
 "\n"
 "                    <p>Best regards,<br/>\n"
-"<!--                    <t t-esc=\"object.ri_officer_id.name\"/><br/>-->\n"
+"<!--                    <t t-esc=\"object.officer_id.name\"/><br/>-->\n"
 "                    <t t-esc=\"object.env.company.name\"/></p>\n"
 "                </div>\n"
 "\n"
@@ -101,30 +113,30 @@ msgstr ""
 #: model:mail.template,body_html:j_reception.email_template_attendance_notification
 msgid ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
-"                    <p>Dear <t t-esc=\"object.ri_officer_id.name\"/>,</p>\n"
+"                    <p>Dear <t t-esc=\"object.officer_id.name\"/>,</p>\n"
 "\n"
 "                    <p>Guest has successfully attended the scheduled invitation in reception:</p>\n"
 "\n"
 "                    <table style=\"border-collapse: collapse; width: 100%; margin: 20px 0;\">\n"
 "                        <tr style=\"background-color: #f9f9f9;\">\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Invitation Number:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.ri_sequence\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.sequence\"/></td>\n"
 "                        </tr>\n"
 "                        <tr>\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Guest Name:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.ri_guest_partner_id.name\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.guest_partner_id.name\"/></td>\n"
 "                        </tr>\n"
 "                        <tr style=\"background-color: #f9f9f9;\">\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Guest Email:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.ri_guest_partner_id.email\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.guest_partner_id.email\"/></td>\n"
 "                        </tr>\n"
 "                        <tr>\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Scheduled Time:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><span t-field=\"object.ri_invitation_datetime\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><span t-field=\"object.invitation_datetime\"/></td>\n"
 "                        </tr>\n"
 "<!--                        <tr style=\"background-color: #f9f9f9;\">-->\n"
 "<!--                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Renter:</td>-->\n"
-"<!--                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.ri_renter_id.name\"/></td>-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.renter_id.name\"/></td>-->\n"
 "<!--                        </tr>-->\n"
 "                        <tr style=\"background-color: #f9f9f9;\">\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Status:</td>\n"
@@ -145,30 +157,30 @@ msgstr ""
 #: model:mail.template,body_html:j_reception.email_template_payment_due
 msgid ""
 "<div style=\"margin: 0px; padding: 0px;\">\n"
-"                    <p>Dear <t t-esc=\"object.sp_renter_id.br_officer_id.name\"/>,</p>\n"
+"                    <p>Dear <t t-esc=\"object.renter_id.officer_id.name\"/>,</p>\n"
 "\n"
 "                    <p>This is a reminder that a payment is due for the following:</p>\n"
 "\n"
 "                    <table style=\"border-collapse: collapse; width: 100%; margin: 20px 0;\">\n"
 "<!--                        <tr style=\"background-color: #f9f9f9;\">-->\n"
 "<!--                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Renter:</td>-->\n"
-"<!--                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.sp_renter_id.name\"/></td>-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.renter_id.name\"/></td>-->\n"
 "<!--                        </tr>-->\n"
 "                        <tr>\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Payment Description:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.sp_description\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.description\"/></td>\n"
 "                        </tr>\n"
 "                        <tr style=\"background-color: #f9f9f9;\">\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Amount:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.sp_amount\"/><t t-esc=\"object.sp_currency_id.symbol\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.amount\"/><t t-esc=\"object.currency_id.symbol\"/></td>\n"
 "                        </tr>\n"
 "                        <tr>\n"
 "                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Due Date:</td>\n"
-"                            <td style=\"padding: 8px; border: 1px solid #ddd; color: red; font-weight: bold;\"><t t-esc=\"object.sp_due_date\"/></td>\n"
+"                            <td style=\"padding: 8px; border: 1px solid #ddd; color: red; font-weight: bold;\"><t t-esc=\"object.due_date\"/></td>\n"
 "                        </tr>\n"
 "<!--                        <tr style=\"background-color: #f9f9f9;\">-->\n"
 "<!--                            <td style=\"padding: 8px; border: 1px solid #ddd; font-weight: bold;\">Company:</td>-->\n"
-"<!--                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.sp_renter_id.br_company_id.name\"/></td>-->\n"
+"<!--                            <td style=\"padding: 8px; border: 1px solid #ddd;\"><t t-esc=\"object.renter_id.company_id.name\"/></td>-->\n"
 "<!--                        </tr>-->\n"
 "                    </table>\n"
 "\n"
@@ -259,7 +271,7 @@ msgid "Administrator: All Documnets"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_amount
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__amount
 msgid "Amount"
 msgstr ""
 
@@ -270,10 +282,33 @@ msgid "Attachment Count"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__ri_state__attended
+#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__state__attended
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "Attended"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model,name:j_reception.model_booking
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_form
+msgid "Booking"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__booking_datetime
+msgid "Booking Date"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.actions.act_window,name:j_reception.action_booking_tree
+#: model:ir.ui.menu,name:j_reception.menu_j_reception_bookings
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_calendar
+msgid "Bookings"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_res_config_settings__j_reception_building_image
+msgid "Building Image"
 msgstr ""
 
 #. module: j_reception
@@ -292,19 +327,24 @@ msgid "Building Tenants"
 msgstr ""
 
 #. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_res_config_settings_form
+msgid "Building image for invitation emails"
+msgstr ""
+
+#. module: j_reception
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_form
 msgid "Cancel"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__ri_state__cancelled
+#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__state__cancelled
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "Cancelled"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_building_renter__br_company_id
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__company_id
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_search
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_tree
@@ -327,9 +367,24 @@ msgid "Confirm"
 msgstr ""
 
 #. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_booking_tree
+msgid "Create your first booking"
+msgstr ""
+
+#. module: j_reception
 #: model_terms:ir.actions.act_window,help:j_reception.action_building_renter
 #: model_terms:ir.actions.act_window,help:j_reception.action_building_renter_tree
 msgid "Create your first building tenant"
+msgstr ""
+
+#. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_duration_tree
+msgid "Create your first duration"
+msgstr ""
+
+#. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_facilities_tree
+msgid "Create your first facility"
 msgstr ""
 
 #. module: j_reception
@@ -338,7 +393,10 @@ msgid "Create your first reception invitation"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__create_uid
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__create_uid
+#: model:ir.model.fields,field_description:j_reception.field_duration__create_uid
+#: model:ir.model.fields,field_description:j_reception.field_facilities__create_uid
 #: model:ir.model.fields,field_description:j_reception.field_garage_slot__create_uid
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__create_uid
 #: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__create_uid
@@ -346,7 +404,10 @@ msgid "Created by"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__create_date
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__create_date
+#: model:ir.model.fields,field_description:j_reception.field_duration__create_date
+#: model:ir.model.fields,field_description:j_reception.field_facilities__create_date
 #: model:ir.model.fields,field_description:j_reception.field_garage_slot__create_date
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__create_date
 #: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__create_date
@@ -354,42 +415,66 @@ msgid "Created on"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_currency_id
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__currency_id
 msgid "Currency"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_currency_id
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__currency_id
 msgid "Currency for this payment"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_state
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__state
 msgid "Current state of the invitation"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_invitation_datetime
+#: model:ir.model.fields,field_description:j_reception.field_res_config_settings__j_reception_daily_booking_limit
+msgid "Daily Booking Limit (Minutes)"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__invitation_datetime
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_search
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "Date"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_description
+#: model:ir.model.fields,help:j_reception.field_booking__booking_datetime
+msgid "Date and time of the booking"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__description
 msgid "Description"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_description
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__description
 msgid "Description of the payment (e.g., Monthly Rent, Maintenance Fee)"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__display_name
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__display_name
+#: model:ir.model.fields,field_description:j_reception.field_duration__display_name
+#: model:ir.model.fields,field_description:j_reception.field_facilities__display_name
 #: model:ir.model.fields,field_description:j_reception.field_garage_slot__display_name
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__display_name
 #: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__name
+msgid "Display name for the booking"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_duration__name
+msgid "Display name for the duration"
 msgstr ""
 
 #. module: j_reception
@@ -403,15 +488,48 @@ msgid "Display name for the renter"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__ri_state__draft
+#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__state__draft
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "Draft"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_due_date
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__due_date
 msgid "Due Date"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.actions.act_window,name:j_reception.action_duration_tree
+#: model:ir.model,name:j_reception.model_duration
+#: model:ir.model.fields,field_description:j_reception.field_booking__duration_id
+#: model:ir.ui.menu,name:j_reception.menu_j_reception_duration
+#: model_terms:ir.ui.view,arch_db:j_reception.view_duration_form
+msgid "Duration"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_duration__minutes
+msgid "Duration in minutes"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__duration_id
+msgid "Duration of the booking"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.actions.act_window,name:j_reception.action_facilities_tree
+#: model:ir.model,name:j_reception.model_facilities
+#: model:ir.ui.menu,name:j_reception.menu_j_reception_facilities
+msgid "Facilities"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__facility_id
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_search
+#: model_terms:ir.ui.view,arch_db:j_reception.view_facilities_form
+msgid "Facility"
 msgstr ""
 
 #. module: j_reception
@@ -440,18 +558,23 @@ msgid ""
 msgstr ""
 
 #. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_search
+msgid "Future"
+msgstr ""
+
+#. module: j_reception
 #: model:ir.model,name:j_reception.model_garage_slot
 msgid "Garage Slot"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_building_renter__br_garage_slot_ids
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__garage_slot_ids
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
 msgid "Garage Slots"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_garage_slot__gs_number
+#: model:ir.model.fields,help:j_reception.field_garage_slot__number
 msgid "Garage slot number or identifier"
 msgstr ""
 
@@ -461,19 +584,20 @@ msgid "Geographical Location URL"
 msgstr ""
 
 #. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_search
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_search
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "Group By"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_guest_partner_id
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__guest_partner_id
 msgid "Guest"
 msgstr ""
 
 #. module: j_reception
 #: model:mail.template,subject:j_reception.email_template_attendance_notification
-msgid "Guest Attended - {{object.ri_sequence}}"
+msgid "Guest Attended - {{object.sequence}}"
 msgstr ""
 
 #. module: j_reception
@@ -483,7 +607,10 @@ msgid "Has Message"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__id
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__id
+#: model:ir.model.fields,field_description:j_reception.field_duration__id
+#: model:ir.model.fields,field_description:j_reception.field_facilities__id
 #: model:ir.model.fields,field_description:j_reception.field_garage_slot__id
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__id
 #: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__id
@@ -517,18 +644,23 @@ msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_building_renter__br_invitation_count
+#: model:ir.model.fields,help:j_reception.field_res_config_settings__j_reception_building_image
+msgid "Image of the building that will be included in invitation emails"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__invitation_count
 msgid "Invitation Count"
 msgstr ""
 
 #. module: j_reception
 #: model:mail.template,subject:j_reception.email_template_datetime_change
-msgid "Invitation Time Changed - {{object.ri_sequence}}"
+msgid "Invitation Time Changed - {{object.sequence}}"
 msgstr ""
 
 #. module: j_reception
 #: model:mail.template,subject:j_reception.email_template_new_invitation
-msgid "Invitation Visit - {{object.ri_sequence}}"
+msgid "Invitation Visit - {{object.sequence}}"
 msgstr ""
 
 #. module: j_reception
@@ -547,7 +679,10 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking____last_update
 #: model:ir.model.fields,field_description:j_reception.field_building_renter____last_update
+#: model:ir.model.fields,field_description:j_reception.field_duration____last_update
+#: model:ir.model.fields,field_description:j_reception.field_facilities____last_update
 #: model:ir.model.fields,field_description:j_reception.field_garage_slot____last_update
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation____last_update
 #: model:ir.model.fields,field_description:j_reception.field_scheduled_payment____last_update
@@ -555,7 +690,10 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__write_uid
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__write_uid
+#: model:ir.model.fields,field_description:j_reception.field_duration__write_uid
+#: model:ir.model.fields,field_description:j_reception.field_facilities__write_uid
 #: model:ir.model.fields,field_description:j_reception.field_garage_slot__write_uid
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__write_uid
 #: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__write_uid
@@ -563,7 +701,10 @@ msgid "Last Updated by"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__write_date
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__write_date
+#: model:ir.model.fields,field_description:j_reception.field_duration__write_date
+#: model:ir.model.fields,field_description:j_reception.field_facilities__write_date
 #: model:ir.model.fields,field_description:j_reception.field_garage_slot__write_date
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__write_date
 #: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__write_date
@@ -578,12 +719,12 @@ msgid ""
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_building_renter__br_garage_slot_ids
+#: model:ir.model.fields,help:j_reception.field_building_renter__garage_slot_ids
 msgid "List of garage slots assigned to this renter"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_building_renter__br_scheduled_payment_ids
+#: model:ir.model.fields,help:j_reception.field_building_renter__scheduled_payment_ids
 msgid "List of scheduled payments for this renter"
 msgstr ""
 
@@ -591,6 +732,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_main_attachment_id
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_main_attachment_id
 msgid "Main Attachment"
+msgstr ""
+
+#. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_duration_tree
+msgid "Manage booking durations for facilities."
+msgstr ""
+
+#. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_facilities_tree
+msgid "Manage building facilities that can be booked by tenants."
 msgstr ""
 
 #. module: j_reception
@@ -612,8 +763,20 @@ msgid ""
 msgstr ""
 
 #. module: j_reception
+#: model_terms:ir.actions.act_window,help:j_reception.action_booking_tree
+msgid ""
+"Manage facility bookings with automated conflict detection and daily limits."
+msgstr ""
+
+#. module: j_reception
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_form
 msgid "Mark as Attended"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_res_config_settings__j_reception_daily_booking_limit
+#: model_terms:ir.ui.view,arch_db:j_reception.view_res_config_settings_form
+msgid "Maximum minutes a tenant can book per day (0 = no limit)"
 msgstr ""
 
 #. module: j_reception
@@ -629,15 +792,28 @@ msgid "Messages"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_duration__minutes
+msgid "Minutes"
+msgstr ""
+
+#. module: j_reception
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__my_activity_date_deadline
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__name
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__name
+#: model:ir.model.fields,field_description:j_reception.field_duration__name
+#: model:ir.model.fields,field_description:j_reception.field_facilities__name
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__name
 msgid "Name"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_facilities__name
+msgid "Name of the facility"
 msgstr ""
 
 #. module: j_reception
@@ -678,12 +854,12 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_is_notified
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__is_notified
 msgid "Notification Sent"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_garage_slot__gs_number
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot__number
 msgid "Number"
 msgstr ""
 
@@ -700,7 +876,7 @@ msgid "Number of errors"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_building_renter__br_invitation_count
+#: model:ir.model.fields,help:j_reception.field_building_renter__invitation_count
 msgid "Number of invitations created for this renter"
 msgstr ""
 
@@ -723,8 +899,8 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_building_renter__br_officer_id
-#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_officer_id
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__officer_id
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__officer_id
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_search
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_tree
@@ -733,7 +909,7 @@ msgid "Officer"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__ri_state__overdue
+#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__state__overdue
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "Overdue"
@@ -741,16 +917,16 @@ msgstr ""
 
 #. module: j_reception
 #: model:mail.template,subject:j_reception.email_template_payment_due
-msgid "Payment Due Reminder - {{object.sp_description}}"
+msgid "Payment Due Reminder - {{object.description}}"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_amount
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__amount
 msgid "Payment amount"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_due_date
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__due_date
 msgid "Payment due date"
 msgstr ""
 
@@ -808,9 +984,9 @@ msgid "Reception: Check Overdue Invitations"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_garage_slot__gs_renter_id
-#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_renter_id
-#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__sp_renter_id
+#: model:ir.model.fields,field_description:j_reception.field_garage_slot__renter_id
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__renter_id
+#: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__renter_id
 msgid "Renter"
 msgstr ""
 
@@ -821,7 +997,7 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__ri_state__scheduled
+#: model:ir.model.fields.selection,name:j_reception.selection__reception_invitation__state__scheduled
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "Scheduled"
@@ -833,18 +1009,18 @@ msgid "Scheduled Payment"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_building_renter__br_scheduled_payment_ids
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__scheduled_payment_ids
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
 msgid "Scheduled Payments"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_invitation_datetime
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__invitation_datetime
 msgid "Scheduled date and time for the invitation"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_sequence
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__sequence
 msgid "Sequence"
 msgstr ""
 
@@ -854,7 +1030,7 @@ msgid "Settings"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_state
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__state
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "State"
 msgstr ""
@@ -870,16 +1046,21 @@ msgid ""
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__ri_subject
+#: model:ir.model.fields,field_description:j_reception.field_reception_invitation__subject
 msgid "Subject"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_subject
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__subject
 msgid "Subject of the invitation"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__renter_id
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_calendar
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_form
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_search
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_tree
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_calendar
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_form
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
@@ -905,46 +1086,58 @@ msgid "Tenants"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_building_renter__br_company_id
+#: model:ir.model.fields,help:j_reception.field_building_renter__company_id
 msgid "The company associated with this renter"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_guest_partner_id
+#: model:ir.model.fields,help:j_reception.field_booking__facility_id
+msgid "The facility being booked"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__guest_partner_id
 msgid "The guest partner for this invitation"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_building_renter__br_officer_id
+#: model:ir.model.fields,help:j_reception.field_building_renter__officer_id
 msgid "The person responsible for communications with this renter"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_renter_id
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__renter_id
 msgid "The renter associated with this invitation"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_renter_id
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__renter_id
 msgid "The renter associated with this scheduled payment"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_garage_slot__gs_renter_id
+#: model:ir.model.fields,help:j_reception.field_garage_slot__renter_id
 msgid "The renter who owns this garage slot"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_officer_id
+#: model:ir.model.fields,help:j_reception.field_booking__renter_id
+msgid "The tenant making the booking"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__officer_id
 msgid "The user responsible for this invitation"
 msgstr ""
 
 #. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_search
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "This Week"
 msgstr ""
 
 #. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_search
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "Today"
 msgstr ""
@@ -976,7 +1169,7 @@ msgid ""
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_reception_invitation__ri_sequence
+#: model:ir.model.fields,help:j_reception.field_reception_invitation__sequence
 msgid "Unique sequence number for the invitation"
 msgstr ""
 
@@ -998,6 +1191,6 @@ msgid "View Invitations"
 msgstr ""
 
 #. module: j_reception
-#: model:ir.model.fields,help:j_reception.field_scheduled_payment__sp_is_notified
+#: model:ir.model.fields,help:j_reception.field_scheduled_payment__is_notified
 msgid "Whether notification email has been sent for this payment"
 msgstr ""
