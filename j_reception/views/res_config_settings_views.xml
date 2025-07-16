@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="content-group">
                                         <div class="mt8">
-                                            <field name="j_reception_building_image" widget="image" class="o_setting_image"/>
+                                            <field name="j_reception_building_image" widget="binary" class="o_setting_image"/>
                                         </div>
                                     </div>
                                     

@@ -17,7 +17,7 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='j_reception.location_url',
         help='URL to the geographical location that will be included in invitation emails (e.g., Google Maps link)'
     )
-    j_reception_building_image = fields.Binary(
+    j_reception_building_image = fields.Char(
         string='Building Image',
         config_parameter='j_reception.building_image',
         help='Image of the building that will be included in invitation emails'

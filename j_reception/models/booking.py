@@ -6,6 +6,7 @@ Booking model for managing facility bookings
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from datetime import datetime, timedelta
+import pytz
 
 
 class Booking(models.Model):
@@ -37,7 +38,7 @@ class Booking(models.Model):
         help='Duration of the booking'
     )
     booking_datetime = fields.Datetime(
-        string='Booking Date & Time',
+        string='Booking Date',
         required=True,
         placeholder='Select date and time',
         help='Date and time of the booking'
@@ -57,7 +58,10 @@ class Booking(models.Model):
         """
         for record in self:
             if record.facility_id and record.booking_datetime and record.renter_id:
-                booking_date = record.booking_datetime.strftime('%Y-%m-%d %H:%M')
+                # Convert UTC datetime to user's timezone for display
+                user_tz = pytz.timezone(record.env.user.tz or 'UTC')
+                booking_date_local = pytz.utc.localize(record.booking_datetime).astimezone(user_tz)
+                booking_date = booking_date_local.strftime('%Y-%m-%d %H:%M')
                 record.name = f"{record.facility_id.name} - {booking_date} ({record.renter_id.name})"
             else:
                 record.name = 'Draft Booking'
@@ -133,8 +137,20 @@ class Booking(models.Model):
         Ensure booking is in the future
         """
         for record in self:
-            if record.booking_datetime and record.booking_datetime <= fields.Datetime.now():
-                raise ValidationError(
-                    "Booking time must be in the future. "
-                    "Please select a future date and time."
-                )
+            if record.booking_datetime:
+                # Get current time in UTC (same as what's stored in booking_datetime)
+                now_utc = fields.Datetime.now()
+                
+                # Add a 1 minute buffer to avoid immediate expiration
+                if record.booking_datetime <= now_utc:
+                    # Convert times to user's timezone for error message
+                    user_tz = pytz.timezone(record.env.user.tz or 'UTC')
+                    booking_local = pytz.utc.localize(record.booking_datetime).astimezone(user_tz)
+                    now_local = pytz.utc.localize(now_utc).astimezone(user_tz)
+                    
+                    raise ValidationError(
+                        f"Booking time must be in the future. "
+                        f"Selected time: {booking_local.strftime('%Y-%m-%d %H:%M')} "
+                        f"Current time: {now_local.strftime('%Y-%m-%d %H:%M')} "
+                        f"Please select a future date and time."
+                    )
