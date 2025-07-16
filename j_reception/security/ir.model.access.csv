@@ -12,4 +12,4 @@ access_facilities_renter,facilities.renter,model_facilities,group_j_reception_re
 access_duration_admin,duration.admin,model_duration,group_j_reception_admin,1,1,1,1
 access_duration_renter,duration.renter,model_duration,group_j_reception_renter,1,0,0,0
 access_booking_admin,booking.admin,model_booking,group_j_reception_admin,1,1,1,1
-access_booking_renter,booking.renter,model_booking,group_j_reception_renter,1,0,1,0
+access_booking_renter,booking.renter,model_booking,group_j_reception_renter,1,1,1,0
