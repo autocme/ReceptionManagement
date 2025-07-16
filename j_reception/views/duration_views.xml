@@ -22,8 +22,8 @@
                 <form string="Duration">
                     <sheet>
                         <group>
-                            <field name="name"/>
                             <field name="minutes"/>
+                            <field name="name" readonly="1"/>
                         </group>
                     </sheet>
                 </form>

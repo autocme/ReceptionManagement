@@ -88,10 +88,15 @@ class Booking(models.Model):
                     # Check if times overlap
                     if (record.booking_datetime < existing_end_time and 
                         end_time > booking.booking_datetime):
+                        # Convert times to user's timezone for error message
+                        user_tz = pytz.timezone(record.env.user.tz or 'UTC')
+                        booking_start_local = pytz.utc.localize(booking.booking_datetime).astimezone(user_tz)
+                        booking_end_local = pytz.utc.localize(existing_end_time).astimezone(user_tz)
+                        
                         raise ValidationError(
                             f"The facility '{record.facility_id.name}' is already booked "
-                            f"from {booking.booking_datetime.strftime('%Y-%m-%d %H:%M')} "
-                            f"to {existing_end_time.strftime('%Y-%m-%d %H:%M')}. "
+                            f"from {booking_start_local.strftime('%Y-%m-%d %H:%M')} "
+                            f"to {booking_end_local.strftime('%Y-%m-%d %H:%M')}. "
                             f"Please choose a different time."
                         )
 
