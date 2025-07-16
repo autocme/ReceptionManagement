@@ -9,9 +9,9 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name" string="Tenant Name"/>
-                    <field name="br_company_id" string="Company"/>
-                    <field name="br_officer_id" string="Officer"/>
-                    <field name="br_invitation_count" string="Invitations"/>
+                    <field name="company_id" string="Company"/>
+                    <field name="officer_id" string="Officer"/>
+                    <field name="invitation_count" string="Invitations"/>
                 </tree>
             </field>
         </record>
@@ -28,31 +28,31 @@
                     <sheet>
                         <div class="oe_button_box" name="button_box">
                             <button name="action_view_invitations" type="object" class="oe_stat_button" icon="fa-calendar">
-                                <field name="br_invitation_count" widget="statinfo" string="Invitations"/>
+                                <field name="invitation_count" widget="statinfo" string="Invitations"/>
                             </button>
                         </div>
                         <group>
                             <group>
-                                <field name="br_company_id" string="Company"/>
-                                <field name="br_officer_id" string="Officer"/>
+                                <field name="company_id" string="Company"/>
+                                <field name="officer_id" string="Officer"/>
                             </group>
                         </group>
                         <notebook>
                             <page string="Garage Slots">
-                                <field name="br_garage_slot_ids">
+                                <field name="garage_slot_ids">
                                     <tree editable="bottom">
-                                        <field name="gs_number"/>
+                                        <field name="number"/>
                                     </tree>
                                 </field>
                             </page>
                             <page string="Scheduled Payments">
-                                <field name="br_scheduled_payment_ids">
+                                <field name="scheduled_payment_ids">
                                     <tree editable="bottom">
-                                        <field name="sp_description"/>
-                                        <field name="sp_amount"/>
-                                        <field name="sp_currency_id"/>
-                                        <field name="sp_due_date"/>
-                                        <field name="sp_is_notified" invisible="1"/>
+                                        <field name="description"/>
+                                        <field name="amount"/>
+                                        <field name="currency_id"/>
+                                        <field name="due_date"/>
+                                        <field name="is_notified" invisible="1"/>
                                     </tree>
                                 </field>
                             </page>
@@ -74,11 +74,11 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="name" string="Tenant Name"/>
-                    <field name="br_company_id" string="Company"/>
-                    <field name="br_officer_id" string="Officer"/>
+                    <field name="company_id" string="Company"/>
+                    <field name="officer_id" string="Officer"/>
                     <group expand="0" string="Group By">
-                        <filter string="Company" name="group_by_company" domain="[]" context="{'group_by': 'br_company_id'}"/>
-                        <filter string="Officer" name="group_by_officer" domain="[]" context="{'group_by': 'br_officer_id'}"/>
+                        <filter string="Company" name="group_by_company" domain="[]" context="{'group_by': 'company_id'}"/>
+                        <filter string="Officer" name="group_by_officer" domain="[]" context="{'group_by': 'officer_id'}"/>
                     </group>
                 </search>
             </field>
@@ -91,9 +91,9 @@
             <field name="arch" type="xml">
                 <kanban>
                     <field name="name"/>
-                    <field name="br_company_id"/>
-                    <field name="br_officer_id"/>
-                    <field name="br_invitation_count"/>
+                    <field name="company_id"/>
+                    <field name="officer_id"/>
+                    <field name="invitation_count"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click oe_kanban_card" style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px; margin: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 280px;">
@@ -105,17 +105,17 @@
                                     <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                                         <div style="width: 48%;">
                                             <strong style="color: #7f8c8d; font-size: 11px;">Company: </strong>
-                                            <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="br_company_id"/></span>
+                                            <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="company_id"/></span>
                                         </div>
                                         <div class="text-right" style="width: 48%;">
                                             <strong style="color: #7f8c8d; font-size: 11px;">Officer: </strong>
-                                            <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="br_officer_id"/></span>
+                                            <span style="color: #34495e; font-size: 11px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="officer_id"/></span>
                                         </div>
                                     </div>
                                     <div style="display: flex; justify-content: space-between; align-items: center;">
                                         <div style="width: 48%;">
                                             <strong style="color: #7f8c8d; font-size: 11px;">Invitations: </strong>
-                                            <span style="color: #34495e; font-size: 11px;"><field name="br_invitation_count"/></span>
+                                            <span style="color: #34495e; font-size: 11px;"><field name="invitation_count"/></span>
                                         </div>
                                         <div class="text-right" style="width: 48%;">
                                             <button name="action_view_invitations" type="object" style="background: #2ecc71; color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 10px; cursor: pointer;">View Invitations</button>
