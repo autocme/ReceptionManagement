@@ -22,8 +22,11 @@
                 <form string="Duration">
                     <sheet>
                         <group>
-                            <field name="minutes"/>
-                            <field name="name" readonly="1"/>
+                            <label for="minutes" string="Minutes"/>
+                            <div class="o_row oe_inline">
+                                 <field name="minutes"/> min
+                                <field name="name" readonly="1" invisible="1"/>
+                            </div>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
