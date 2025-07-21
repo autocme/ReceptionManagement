@@ -36,6 +36,7 @@
                             </group>
                             <group>
                                 <field name="booking_datetime"/>
+                                <field name="officer_id" invisible="1"/>
                                 <field name="renter_id" string="Tenant"/>
                             </group>
                         </group>
