@@ -3,7 +3,7 @@
 Duration model for managing booking durations
 """
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class Duration(models.Model):
@@ -37,15 +37,15 @@ class Duration(models.Model):
         for record in self:
             if record.minutes:
                 if record.minutes < 60:
-                    record.name = f"{record.minutes} min"
+                    record.name = f"{record.minutes} {_('min')}"
                 elif record.minutes == 60:
-                    record.name = "1 hour"
+                    record.name = f"1 {_('hour')}"
                 elif record.minutes % 60 == 0:
                     hours = record.minutes // 60
-                    record.name = f"{hours} hours"
+                    record.name = f"{hours} {_('hours')}"
                 else:
                     hours = record.minutes // 60
                     mins = record.minutes % 60
-                    record.name = f"{hours}h {mins}min"
+                    record.name = f"{hours}h {mins}{_('min')}"
             else:
-                record.name = "New Duration"
+                record.name = _("New Duration")

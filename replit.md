@@ -11,6 +11,13 @@ Default timezone: Asia/Riyadh (when user timezone not available)
 
 ## Recent Changes
 
+### Kanban Views and Auto-assignment (July 21, 2025)
+- Added kanban view as default for booking model with consistent styling matching other modules
+- Implemented auto-assignment of tenant in booking based on current user's officer relationship
+- Made duration terms ("min", "hour", "hours") translatable using Odoo translation system
+- Added complete chatter functionality to all booking models (booking, facilities, duration)
+- Fixed security rules to properly allow tenants to modify their own bookings
+
 ### Booking System Implementation (July 15, 2025)
 - Added new booking system with facilities, duration, and booking models
 - Implemented facility booking with calendar view as default

@@ -51,6 +51,8 @@ class Booking(models.Model):
         'building.renter',
         string='Tenant',
         required=True,
+        readonly=True,
+        compute='_compute_renter_id',
         placeholder='Select the tenant',
         help='The tenant making the booking',
         tracking=True
@@ -70,6 +72,15 @@ class Booking(models.Model):
                 record.name = f"{record.facility_id.name} - {booking_date} ({record.renter_id.name})"
             else:
                 record.name = 'Draft Booking'
+
+    @api.depends('env.user')
+    def _compute_renter_id(self):
+        """
+        Compute the renter_id based on the current user's officer relationship
+        """
+        for record in self:
+            renter = self.env['building.renter'].search([('officer_id', '=', self.env.user.id)], limit=1)
+            record.renter_id = renter.id if renter else False
 
     @api.constrains('facility_id', 'booking_datetime', 'duration_id')
     def _check_booking_conflict(self):
