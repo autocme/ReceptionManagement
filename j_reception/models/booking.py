@@ -47,6 +47,13 @@ class Booking(models.Model):
         help='Date and time of the booking',
         tracking=True
     )
+    officer_id = fields.Many2one(
+        'res.users',
+        string='Officer',
+        required=True,
+        default=lambda self: self.env.user,
+        help='The officer responsible for this booking'
+    )
     renter_id = fields.Many2one(
         'building.renter',
         string='Tenant',
@@ -73,14 +80,17 @@ class Booking(models.Model):
             else:
                 record.name = 'Draft Booking'
 
-    @api.depends('env.user')
+    @api.depends('officer_id')
     def _compute_renter_id(self):
         """
-        Compute the renter_id based on the current user's officer relationship
+        Compute the renter_id based on the officer relationship
         """
         for record in self:
-            renter = self.env['building.renter'].search([('officer_id', '=', self.env.user.id)], limit=1)
-            record.renter_id = renter.id if renter else False
+            if record.officer_id:
+                renter = self.env['building.renter'].search([('officer_id', '=', record.officer_id.id)], limit=1)
+                record.renter_id = renter.id if renter else False
+            else:
+                record.renter_id = False
 
     @api.constrains('facility_id', 'booking_datetime', 'duration_id')
     def _check_booking_conflict(self):
