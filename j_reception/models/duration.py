@@ -18,7 +18,7 @@ class Duration(models.Model):
     name = fields.Char(
         string='Name',
         compute='_compute_name',
-        store=True,
+        store=False,
         help='Display name for the duration'
     )
     minutes = fields.Integer(
@@ -29,23 +29,22 @@ class Duration(models.Model):
         tracking=True
     )
 
-    @api.depends('minutes')
     def _compute_name(self):
         """
-        Compute the display name based on minutes
+        Compute the display name based on minutes with proper translation
         """
         for record in self:
             if record.minutes:
                 if record.minutes < 60:
-                    record.name = f"{record.minutes} {record.env._('min')}"
+                    record.name = f"{record.minutes} {record.with_context(lang=record.env.user.lang).env._('min')}"
                 elif record.minutes == 60:
-                    record.name = f"1 {record.env._('hour')}"
+                    record.name = f"1 {record.with_context(lang=record.env.user.lang).env._('hour')}"
                 elif record.minutes % 60 == 0:
                     hours = record.minutes // 60
-                    record.name = f"{hours} {record.env._('hours')}"
+                    record.name = f"{hours} {record.with_context(lang=record.env.user.lang).env._('hours')}"
                 else:
                     hours = record.minutes // 60
                     mins = record.minutes % 60
-                    record.name = f"{hours}h {mins}{record.env._('min')}"
+                    record.name = f"{hours}h {mins}{record.with_context(lang=record.env.user.lang).env._('min')}"
             else:
-                record.name = record.env._("New Duration")
+                record.name = record.with_context(lang=record.env.user.lang).env._("New Duration")
