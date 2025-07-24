@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-16 12:37+0000\n"
-"PO-Revision-Date: 2025-07-16 12:37+0000\n"
+"POT-Creation-Date: 2025-07-21 07:24+0000\n"
+"PO-Revision-Date: 2025-07-21 07:24+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -194,10 +194,27 @@ msgid ""
 msgstr ""
 
 #. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_kanban
+msgid ""
+"<span style=\"background: #17a2b8; color: white; padding: 2px 6px; border-"
+"radius: 10px; font-size: 10px;\">BOOKING</span>"
+msgstr ""
+
+#. module: j_reception
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_kanban
 msgid ""
 "<span style=\"background: #3498db; color: white; padding: 2px 6px; border-"
 "radius: 12px; font-size: 9px; font-weight: bold;\">TENANT</span>"
+msgstr ""
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_kanban
+msgid "<strong style=\"color: #6c757d; font-size: 11px;\">Date: </strong>"
+msgstr ""
+
+#. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_kanban
+msgid "<strong style=\"color: #6c757d; font-size: 11px;\">Duration: </strong>"
 msgstr ""
 
 #. module: j_reception
@@ -216,6 +233,7 @@ msgid "<strong style=\"color: #6c757d; font-size: 11px;\">Subject: </strong>"
 msgstr ""
 
 #. module: j_reception
+#: model_terms:ir.ui.view,arch_db:j_reception.view_booking_kanban
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_kanban
 msgid "<strong style=\"color: #6c757d; font-size: 11px;\">Tenant: </strong>"
 msgstr ""
@@ -236,31 +254,46 @@ msgid "<strong style=\"color: #7f8c8d; font-size: 11px;\">Officer: </strong>"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_needaction
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_needaction
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_needaction
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_needaction
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_needaction
 msgid "Action Needed"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__activity_ids
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_ids
+#: model:ir.model.fields,field_description:j_reception.field_duration__activity_ids
+#: model:ir.model.fields,field_description:j_reception.field_facilities__activity_ids
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_ids
 msgid "Activities"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__activity_exception_decoration
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_exception_decoration
+#: model:ir.model.fields,field_description:j_reception.field_duration__activity_exception_decoration
+#: model:ir.model.fields,field_description:j_reception.field_facilities__activity_exception_decoration
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_exception_decoration
 msgid "Activity Exception Decoration"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__activity_state
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_state
+#: model:ir.model.fields,field_description:j_reception.field_duration__activity_state
+#: model:ir.model.fields,field_description:j_reception.field_facilities__activity_state
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_state
 msgid "Activity State"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__activity_type_icon
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_type_icon
+#: model:ir.model.fields,field_description:j_reception.field_duration__activity_type_icon
+#: model:ir.model.fields,field_description:j_reception.field_facilities__activity_type_icon
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_type_icon
 msgid "Activity Type Icon"
 msgstr ""
@@ -276,7 +309,10 @@ msgid "Amount"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_attachment_count
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_attachment_count
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_attachment_count
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_attachment_count
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_attachment_count
 msgid "Attachment Count"
 msgstr ""
@@ -533,19 +569,28 @@ msgid "Facility"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_follower_ids
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_follower_ids
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_follower_ids
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_follower_ids
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_follower_ids
 msgid "Followers"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_partner_ids
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_partner_ids
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_partner_ids
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_partner_ids
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__activity_type_icon
 #: model:ir.model.fields,help:j_reception.field_building_renter__activity_type_icon
+#: model:ir.model.fields,help:j_reception.field_duration__activity_type_icon
+#: model:ir.model.fields,help:j_reception.field_facilities__activity_type_icon
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
@@ -601,7 +646,10 @@ msgid "Guest Attended - {{object.sequence}}"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__has_message
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__has_message
+#: model:ir.model.fields,field_description:j_reception.field_duration__has_message
+#: model:ir.model.fields,field_description:j_reception.field_facilities__has_message
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__has_message
 msgid "Has Message"
 msgstr ""
@@ -618,27 +666,42 @@ msgid "ID"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__activity_exception_icon
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_exception_icon
+#: model:ir.model.fields,field_description:j_reception.field_duration__activity_exception_icon
+#: model:ir.model.fields,field_description:j_reception.field_facilities__activity_exception_icon
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_exception_icon
 msgid "Icon"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__activity_exception_icon
 #: model:ir.model.fields,help:j_reception.field_building_renter__activity_exception_icon
+#: model:ir.model.fields,help:j_reception.field_duration__activity_exception_icon
+#: model:ir.model.fields,help:j_reception.field_facilities__activity_exception_icon
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__activity_exception_icon
 msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__message_needaction
+#: model:ir.model.fields,help:j_reception.field_booking__message_unread
 #: model:ir.model.fields,help:j_reception.field_building_renter__message_needaction
 #: model:ir.model.fields,help:j_reception.field_building_renter__message_unread
+#: model:ir.model.fields,help:j_reception.field_duration__message_needaction
+#: model:ir.model.fields,help:j_reception.field_duration__message_unread
+#: model:ir.model.fields,help:j_reception.field_facilities__message_needaction
+#: model:ir.model.fields,help:j_reception.field_facilities__message_unread
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__message_needaction
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__message_has_error
 #: model:ir.model.fields,help:j_reception.field_building_renter__message_has_error
+#: model:ir.model.fields,help:j_reception.field_duration__message_has_error
+#: model:ir.model.fields,help:j_reception.field_facilities__message_has_error
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
@@ -673,7 +736,10 @@ msgid "Invitations"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_is_follower
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_is_follower
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_is_follower
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_is_follower
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_is_follower
 msgid "Is Follower"
 msgstr ""
@@ -729,7 +795,10 @@ msgid "List of scheduled payments for this renter"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_main_attachment_id
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_main_attachment_id
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_main_attachment_id
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_main_attachment_id
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_main_attachment_id
 msgid "Main Attachment"
 msgstr ""
@@ -780,24 +849,34 @@ msgid "Maximum minutes a tenant can book per day (0 = no limit)"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_has_error
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_has_error
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_has_error
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_has_error
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_has_error
 msgid "Message Delivery error"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_ids
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_ids
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_ids
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_ids
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_ids
 msgid "Messages"
 msgstr ""
 
 #. module: j_reception
 #: model:ir.model.fields,field_description:j_reception.field_duration__minutes
+#: model_terms:ir.ui.view,arch_db:j_reception.view_duration_form
 msgid "Minutes"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__my_activity_date_deadline
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__my_activity_date_deadline
+#: model:ir.model.fields,field_description:j_reception.field_duration__my_activity_date_deadline
+#: model:ir.model.fields,field_description:j_reception.field_facilities__my_activity_date_deadline
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__my_activity_date_deadline
 msgid "My Activity Deadline"
 msgstr ""
@@ -830,25 +909,44 @@ msgid "New"
 msgstr ""
 
 #. module: j_reception
+#: code:addons/Reception/j_reception/models/duration.py:0
+#: code:addons/j_reception/models/duration.py:0
+#, python-format
+msgid "New Duration"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__activity_calendar_event_id
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_calendar_event_id
+#: model:ir.model.fields,field_description:j_reception.field_duration__activity_calendar_event_id
+#: model:ir.model.fields,field_description:j_reception.field_facilities__activity_calendar_event_id
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_calendar_event_id
 msgid "Next Activity Calendar Event"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__activity_date_deadline
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_date_deadline
+#: model:ir.model.fields,field_description:j_reception.field_duration__activity_date_deadline
+#: model:ir.model.fields,field_description:j_reception.field_facilities__activity_date_deadline
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_date_deadline
 msgid "Next Activity Deadline"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__activity_summary
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_summary
+#: model:ir.model.fields,field_description:j_reception.field_duration__activity_summary
+#: model:ir.model.fields,field_description:j_reception.field_facilities__activity_summary
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_summary
 msgid "Next Activity Summary"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__activity_type_id
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_type_id
+#: model:ir.model.fields,field_description:j_reception.field_duration__activity_type_id
+#: model:ir.model.fields,field_description:j_reception.field_facilities__activity_type_id
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_type_id
 msgid "Next Activity Type"
 msgstr ""
@@ -864,13 +962,19 @@ msgid "Number"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_needaction_counter
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_needaction_counter
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_needaction_counter
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_needaction_counter
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_needaction_counter
 msgid "Number of Actions"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_has_error_counter
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_has_error_counter
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_has_error_counter
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_has_error_counter
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_has_error_counter
 msgid "Number of errors"
 msgstr ""
@@ -881,24 +985,34 @@ msgid "Number of invitations created for this renter"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__message_needaction_counter
 #: model:ir.model.fields,help:j_reception.field_building_renter__message_needaction_counter
+#: model:ir.model.fields,help:j_reception.field_duration__message_needaction_counter
+#: model:ir.model.fields,help:j_reception.field_facilities__message_needaction_counter
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__message_has_error_counter
 #: model:ir.model.fields,help:j_reception.field_building_renter__message_has_error_counter
+#: model:ir.model.fields,help:j_reception.field_duration__message_has_error_counter
+#: model:ir.model.fields,help:j_reception.field_facilities__message_has_error_counter
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__message_unread_counter
 #: model:ir.model.fields,help:j_reception.field_building_renter__message_unread_counter
+#: model:ir.model.fields,help:j_reception.field_duration__message_unread_counter
+#: model:ir.model.fields,help:j_reception.field_facilities__message_unread_counter
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__message_unread_counter
 msgid "Number of unread messages"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__officer_id
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__officer_id
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__officer_id
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_form
@@ -991,7 +1105,10 @@ msgid "Renter"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__activity_user_id
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__activity_user_id
+#: model:ir.model.fields,field_description:j_reception.field_duration__activity_user_id
+#: model:ir.model.fields,field_description:j_reception.field_facilities__activity_user_id
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__activity_user_id
 msgid "Responsible User"
 msgstr ""
@@ -1036,7 +1153,10 @@ msgid "State"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__activity_state
 #: model:ir.model.fields,help:j_reception.field_building_renter__activity_state
+#: model:ir.model.fields,help:j_reception.field_duration__activity_state
+#: model:ir.model.fields,help:j_reception.field_facilities__activity_state
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__activity_state
 msgid ""
 "Status based on activities\n"
@@ -1101,6 +1221,11 @@ msgid "The guest partner for this invitation"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__officer_id
+msgid "The officer responsible for this booking"
+msgstr ""
+
+#. module: j_reception
 #: model:ir.model.fields,help:j_reception.field_building_renter__officer_id
 msgid "The person responsible for communications with this renter"
 msgstr ""
@@ -1150,7 +1275,10 @@ msgid ""
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__activity_exception_decoration
 #: model:ir.model.fields,help:j_reception.field_building_renter__activity_exception_decoration
+#: model:ir.model.fields,help:j_reception.field_duration__activity_exception_decoration
+#: model:ir.model.fields,help:j_reception.field_facilities__activity_exception_decoration
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr ""
@@ -1174,13 +1302,19 @@ msgid "Unique sequence number for the invitation"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_unread
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_unread
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_unread
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_unread
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_unread
 msgid "Unread Messages"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__message_unread_counter
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_unread_counter
+#: model:ir.model.fields,field_description:j_reception.field_duration__message_unread_counter
+#: model:ir.model.fields,field_description:j_reception.field_facilities__message_unread_counter
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr ""
@@ -1193,4 +1327,30 @@ msgstr ""
 #. module: j_reception
 #: model:ir.model.fields,help:j_reception.field_scheduled_payment__is_notified
 msgid "Whether notification email has been sent for this payment"
+msgstr ""
+
+#. module: j_reception
+#: code:addons/Reception/j_reception/models/duration.py:0
+#: code:addons/Reception/j_reception/models/duration.py:0
+#: code:addons/j_reception/models/duration.py:0
+#: code:addons/j_reception/models/duration.py:0
+#, python-format
+msgid "hour"
+msgstr ""
+
+#. module: j_reception
+#: code:addons/Reception/j_reception/models/duration.py:0
+#: code:addons/j_reception/models/duration.py:0
+#, python-format
+msgid "hours"
+msgstr ""
+
+#. module: j_reception
+#: code:addons/Reception/j_reception/models/duration.py:0
+#: code:addons/Reception/j_reception/models/duration.py:0
+#: code:addons/j_reception/models/duration.py:0
+#: code:addons/j_reception/models/duration.py:0
+#: model_terms:ir.ui.view,arch_db:j_reception.view_duration_form
+#, python-format
+msgid "min"
 msgstr ""

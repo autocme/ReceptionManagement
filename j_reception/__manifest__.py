@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'J Reception - Building Invitations & Rental Management',
-    'version': '15.0.2.0.0',
+    'version': '15.0.3.0.0',
     'category': 'Real Estate',
     'summary': 'Manage building invitations and rental information with automated notifications',
     'description': """
