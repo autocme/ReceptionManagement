@@ -3,7 +3,7 @@
 Booking model for managing facility bookings
 """
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
 from datetime import datetime, timedelta
 import pytz
@@ -82,7 +82,7 @@ class Booking(models.Model):
                 booking_date = booking_date_local.strftime('%Y-%m-%d %H:%M')
                 record.name = f"{record.facility_id.name} - {booking_date}"
             else:
-                record.name = 'Draft Booking'
+                record.name = _('Draft Booking')
 
     def _get_default_renter(self):
         """
@@ -138,10 +138,11 @@ class Booking(models.Model):
                         booking_end_local = pytz.utc.localize(existing_end_time).astimezone(user_tz)
 
                         raise ValidationError(
-                            f"The facility '{record.facility_id.name}' is already booked "
-                            f"from {booking_start_local.strftime('%Y-%m-%d %H:%M')} "
-                            f"to {booking_end_local.strftime('%Y-%m-%d %H:%M')}. "
-                            f"Please choose a different time."
+                            _("The facility '%s' is already booked from %s to %s. Please choose a different time.") % (
+                                record.facility_id.name,
+                                booking_start_local.strftime('%Y-%m-%d %H:%M'),
+                                booking_end_local.strftime('%Y-%m-%d %H:%M')
+                            )
                         )
 
     @api.constrains('renter_id', 'booking_datetime', 'duration_id')
@@ -174,10 +175,11 @@ class Booking(models.Model):
 
                     if total_minutes > daily_limit:
                         raise ValidationError(
-                            f"Daily booking limit exceeded. "
-                            f"You can only book {daily_limit} minutes per day. "
-                            f"Currently booked: {total_minutes - record.duration_id.minutes} minutes. "
-                            f"Trying to book: {record.duration_id.minutes} minutes."
+                            _("Daily booking limit exceeded. You can only book %s minutes per day. Currently booked: %s minutes. Trying to book: %s minutes.") % (
+                                daily_limit,
+                                total_minutes - record.duration_id.minutes,
+                                record.duration_id.minutes
+                            )
                         )
 
     @api.constrains('booking_datetime')
@@ -198,10 +200,10 @@ class Booking(models.Model):
                     now_local = pytz.utc.localize(now_utc).astimezone(user_tz)
 
                     raise ValidationError(
-                        f"Booking time must be in the future. "
-                        f"Selected time: {booking_local.strftime('%Y-%m-%d %H:%M')} "
-                        f"Current time: {now_local.strftime('%Y-%m-%d %H:%M')} "
-                        f"Please select a future date and time."
+                        _("Booking time must be in the future. Selected time: %s Current time: %s Please select a future date and time.") % (
+                            booking_local.strftime('%Y-%m-%d %H:%M'),
+                            now_local.strftime('%Y-%m-%d %H:%M')
+                        )
                     )
 
     def write(self, vals):
@@ -218,8 +220,7 @@ class Booking(models.Model):
                 # Check if current user is officer of the renter for this booking
                 if not (record.renter_id.sudo() and record.renter_id.sudo().officer_id == self.env.user):
                     raise UserError(
-                        f"You are not authorized to edit this booking. "
-                        f"You can only edit bookings for tenants where you are the officer."
+                        _("You are not authorized to edit this booking. You can only edit bookings for tenants where you are the officer.")
                     )
 
         return super(Booking, self).write(vals)

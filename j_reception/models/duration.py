@@ -29,7 +29,6 @@ class Duration(models.Model):
         tracking=True
     )
 
-    # @api.depends('minutes')
     def _compute_name(self):
         """
         Compute the display name based on minutes
@@ -37,15 +36,15 @@ class Duration(models.Model):
         for record in self:
             if record.minutes:
                 if record.minutes < 60:
-                    record.name = f"{record.minutes} {_('min')}"
+                    record.name = f"{record.minutes} {record.with_context(lang=record.env.user.lang).env._('min')}"
                 elif record.minutes == 60:
-                    record.name = f"1 {_('hour')}"
+                    record.name = f"1 {record.with_context(lang=record.env.user.lang).env._('hour')}"
                 elif record.minutes % 60 == 0:
                     hours = record.minutes // 60
-                    record.name = f"{hours} {_('hours')}"
+                    record.name = f"{hours} {record.with_context(lang=record.env.user.lang).env._('hours')}"
                 else:
                     hours = record.minutes // 60
                     mins = record.minutes % 60
-                    record.name = f"{hours} {_('hour')} {mins} {_('min')}"
+                    record.name = f"{hours}h {mins}{record.with_context(lang=record.env.user.lang).env._('min')}"
             else:
-                record.name = _("New Duration")
+                record.name = record.with_context(lang=record.env.user.lang).env._("New Duration")
