@@ -49,7 +49,7 @@
                                     </tree>
                                 </field>
                             </page>
-                            <page string="Scheduled Payments">
+                            <page string="Scheduled Payments" groups="j_reception.group_j_reception_financial">
                                 <field name="scheduled_payment_ids">
                                     <tree editable="bottom">
                                         <field name="description"/>

@@ -11,6 +11,13 @@ Default timezone: Asia/Riyadh (when user timezone not available)
 
 ## Recent Changes
 
+### Advanced Permissions and Security (July 24, 2025)
+- Changed renter field in booking from computed to default value for better performance
+- Implemented role-based visibility for renter field (visible to admins always, tenants only for owned bookings)
+- Added write method override in booking to restrict tenant edits to owned records only
+- Created new financial security group for scheduled payments access
+- Fixed duration name translations to work dynamically with user's language context
+
 ### Kanban Views and Auto-assignment (July 21, 2025)
 - Added kanban view as default for booking model with consistent styling matching other modules
 - Implemented auto-assignment of tenant in booking based on current user's officer relationship

@@ -4,7 +4,7 @@ Booking model for managing facility bookings
 """
 
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 from datetime import datetime, timedelta
 import pytz
 
@@ -58,11 +58,15 @@ class Booking(models.Model):
         'building.renter',
         string='Tenant',
         required=True,
-        readonly=True,
-        compute='_compute_renter_id',
+        default=lambda self: self._get_default_renter(),
         placeholder='Select the tenant',
         help='The tenant making the booking',
         tracking=True
+    )
+    show_renter_field = fields.Boolean(
+        string='Show Renter Field',
+        compute='_compute_show_renter_field',
+        help='Control visibility of renter field based on user permissions'
     )
 
     @api.depends('facility_id', 'booking_datetime', 'renter_id')
@@ -80,17 +84,31 @@ class Booking(models.Model):
             else:
                 record.name = 'Draft Booking'
 
-    @api.depends('officer_id')
-    def _compute_renter_id(self):
+    def _get_default_renter(self):
         """
-        Compute the renter_id based on the officer relationship
+        Get default renter based on current user's officer relationship
+        """
+        renter = self.env['building.renter'].search([('officer_id', '=', self.env.user.id)], limit=1)
+        return renter.id if renter else False
+
+    @api.depends('renter_id')
+    def _compute_show_renter_field(self):
+        """
+        Control visibility of renter field based on user permissions
         """
         for record in self:
-            if record.officer_id:
-                renter = self.env['building.renter'].search([('officer_id', '=', record.officer_id.id)], limit=1)
-                record.renter_id = renter.id if renter else False
+            # Check if user has admin group
+            if self.env.user.has_group('j_reception.group_j_reception_admin'):
+                record.show_renter_field = True
+            # Check if user has tenant group
+            elif self.env.user.has_group('j_reception.group_j_reception_renter'):
+                # Show only if current user is officer of the renter in this booking
+                if record.renter_id and record.renter_id.officer_id == self.env.user:
+                    record.show_renter_field = True
+                else:
+                    record.show_renter_field = False
             else:
-                record.renter_id = False
+                record.show_renter_field = False
 
     @api.constrains('facility_id', 'booking_datetime', 'duration_id')
     def _check_booking_conflict(self):
@@ -185,3 +203,23 @@ class Booking(models.Model):
                         f"Current time: {now_local.strftime('%Y-%m-%d %H:%M')} "
                         f"Please select a future date and time."
                     )
+
+    def write(self, vals):
+        """
+        Override write method to control edit permissions for tenant users
+        """
+        # Check if user has admin group - allow all edits
+        if self.env.user.has_group('j_reception.group_j_reception_admin'):
+            return super(Booking, self).write(vals)
+        
+        # Check if user has tenant group - restrict edits
+        if self.env.user.has_group('j_reception.group_j_reception_renter'):
+            for record in self:
+                # Check if current user is officer of the renter for this booking
+                if not (record.renter_id and record.renter_id.officer_id == self.env.user):
+                    raise UserError(
+                        f"You are not authorized to edit this booking. "
+                        f"You can only edit bookings for tenants where you are the officer."
+                    )
+        
+        return super(Booking, self).write(vals)

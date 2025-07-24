@@ -37,7 +37,8 @@
                             <group>
                                 <field name="booking_datetime"/>
                                 <field name="officer_id" invisible="1"/>
-                                <field name="renter_id" string="Tenant"/>
+                                <field name="show_renter_field" invisible="1"/>
+                                <field name="renter_id" string="Tenant" attrs="{'invisible': [('show_renter_field', '=', False)]}"/>
                             </group>
                         </group>
                     </sheet>

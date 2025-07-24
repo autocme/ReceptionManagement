@@ -197,5 +197,11 @@
             <field name="perm_unlink" eval="True"/>
         </record>
 
+        <!-- Security Group for Financial Access -->
+        <record id="group_j_reception_financial" model="res.groups">
+            <field name="name">J Reception Financial</field>
+            <field name="comment">Users with access to financial information like scheduled payments</field>
+        </record>
+
     </data>
 </odoo>
