@@ -12,7 +12,7 @@
                     <field name="facility_id"/>
                     <field name="booking_datetime"/>
                     <field name="duration_id"/>
-                    <field name="renter_id" string="Tenant"/>
+                    <field name="renter_id" string="Tenant" groups="j_reception.group_j_reception_admin"/>
                 </tree>
             </field>
         </record>
@@ -37,8 +37,7 @@
                             <group>
                                 <field name="booking_datetime"/>
                                 <field name="officer_id" invisible="1"/>
-                                <field name="show_renter_field" invisible="1"/>
-                                <field name="renter_id" string="Tenant" attrs="{'invisible': [('show_renter_field', '=', False)]}"/>
+                                <field name="renter_id" string="Tenant" groups="j_reception.group_j_reception_admin"/>
                             </group>
                         </group>
                     </sheet>
@@ -59,7 +58,7 @@
                 <calendar string="Bookings" date_start="booking_datetime" color="facility_id" mode="week" quick_add="False">
                     <field name="facility_id"/>
                     <field name="duration_id"/>
-                    <field name="renter_id" string="Tenant"/>
+                    <field name="renter_id" string="Tenant" groups="j_reception.group_j_reception_admin"/>
                 </calendar>
             </field>
         </record>
@@ -71,7 +70,7 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="facility_id"/>
-                    <field name="renter_id" string="Tenant"/>
+                    <field name="renter_id" string="Tenant" groups="j_reception.group_j_reception_admin"/>
                     <field name="booking_datetime"/>
                     <separator/>
                     <filter string="Today" name="filter_today" domain="[('booking_datetime', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))), ('booking_datetime', '&lt;', datetime.datetime.combine(context_today() + datetime.timedelta(days=1), datetime.time(0,0,0)))]"/>
@@ -79,7 +78,7 @@
                     <filter string="Future" name="filter_future" domain="[('booking_datetime', '&gt;=', datetime.datetime.now())]"/>
                     <group expand="0" string="Group By">
                         <filter string="Facility" name="group_by_facility" domain="[]" context="{'group_by': 'facility_id'}"/>
-                        <filter string="Tenant" name="group_by_tenant" domain="[]" context="{'group_by': 'renter_id'}"/>
+                        <filter string="Tenant" name="group_by_tenant" domain="[]" context="{'group_by': 'renter_id'}" groups="j_reception.group_j_reception_admin"/>
                         <filter string="Date" name="group_by_date" domain="[]" context="{'group_by': 'booking_datetime'}"/>
                     </group>
                 </search>
@@ -96,7 +95,8 @@
                     <field name="facility_id"/>
                     <field name="booking_datetime"/>
                     <field name="duration_id"/>
-                    <field name="renter_id"/>
+                    <field name="renter_id" groups="j_reception.group_j_reception_admin"/>
+                    <field name="show_renter_field"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click oe_kanban_card" style="background: #ffffff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 12px; margin: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 280px;">
@@ -115,7 +115,7 @@
                                             <span style="color: #212529; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="duration_id"/></span>
                                         </div>
                                     </div>
-                                    <div style="display: flex; justify-content: space-between;">
+                                    <div t-if="record.show_renter_field.raw_value" style="display: flex; justify-content: space-between;">
                                         <div style="width: 100%;">
                                             <strong style="color: #6c757d; font-size: 11px;">Tenant: </strong>
                                             <span style="color: #212529; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><field name="renter_id"/></span>

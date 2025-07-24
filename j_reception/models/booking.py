@@ -63,11 +63,7 @@ class Booking(models.Model):
         help='The tenant making the booking',
         tracking=True
     )
-    show_renter_field = fields.Boolean(
-        string='Show Renter Field',
-        compute='_compute_show_renter_field',
-        help='Control visibility of renter field based on user permissions'
-    )
+
 
     @api.depends('facility_id', 'booking_datetime', 'renter_id')
     def _compute_name(self):
