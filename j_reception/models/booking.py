@@ -103,7 +103,7 @@ class Booking(models.Model):
             # Check if user has tenant group
             elif self.env.user.has_group('j_reception.group_j_reception_renter'):
                 # Show only if current user is officer of the renter in this booking
-                if record.renter_id and record.renter_id.officer_id == self.env.user:
+                if record.renter_id.sudo() and record.renter_id.sudo().officer_id == self.env.user:
                     record.show_renter_field = True
                 else:
                     record.show_renter_field = False
@@ -119,16 +119,16 @@ class Booking(models.Model):
             if record.facility_id and record.booking_datetime and record.duration_id:
                 # Calculate end time
                 end_time = record.booking_datetime + timedelta(minutes=record.duration_id.minutes)
-                
+
                 # Check for overlapping bookings
                 existing_bookings = self.search([
                     ('facility_id', '=', record.facility_id.id),
                     ('id', '!=', record.id)
                 ])
-                
+
                 for booking in existing_bookings:
                     existing_end_time = booking.booking_datetime + timedelta(minutes=booking.duration_id.minutes)
-                    
+
                     # Check if times overlap
                     if (record.booking_datetime < existing_end_time and 
                         end_time > booking.booking_datetime):
@@ -136,7 +136,7 @@ class Booking(models.Model):
                         user_tz = pytz.timezone(record.env.user.tz or 'Asia/Riyadh')
                         booking_start_local = pytz.utc.localize(booking.booking_datetime).astimezone(user_tz)
                         booking_end_local = pytz.utc.localize(existing_end_time).astimezone(user_tz)
-                        
+
                         raise ValidationError(
                             f"The facility '{record.facility_id.name}' is already booked "
                             f"from {booking_start_local.strftime('%Y-%m-%d %H:%M')} "
@@ -150,28 +150,28 @@ class Booking(models.Model):
         Check if tenant exceeds daily booking limit
         """
         for record in self:
-            if record.renter_id and record.booking_datetime and record.duration_id:
+            if record.renter_id.sudo() and record.booking_datetime and record.duration_id:
                 # Get daily booking limit from settings
                 daily_limit = int(self.env['ir.config_parameter'].sudo().get_param('j_reception.daily_booking_limit', 0))
-                
+
                 if daily_limit > 0:
                     # Get start and end of the booking day
                     booking_date = record.booking_datetime.date()
                     day_start = datetime.combine(booking_date, datetime.min.time())
                     day_end = datetime.combine(booking_date, datetime.max.time())
-                    
+
                     # Find all bookings for this renter on the same day
                     same_day_bookings = self.search([
-                        ('renter_id', '=', record.renter_id.id),
+                        ('renter_id', '=', record.renter_id.sudo().id),
                         ('booking_datetime', '>=', day_start),
                         ('booking_datetime', '<=', day_end),
                         ('id', '!=', record.id)
                     ])
-                    
+
                     # Calculate total minutes booked
                     total_minutes = sum(booking.duration_id.minutes for booking in same_day_bookings)
                     total_minutes += record.duration_id.minutes
-                    
+
                     if total_minutes > daily_limit:
                         raise ValidationError(
                             f"Daily booking limit exceeded. "
@@ -189,14 +189,14 @@ class Booking(models.Model):
             if record.booking_datetime:
                 # Get current time in UTC (same as what's stored in booking_datetime)
                 now_utc = fields.Datetime.now()
-                
+
                 # Add a 1 minute buffer to avoid immediate expiration
                 if record.booking_datetime <= now_utc:
                     # Convert times to user's timezone for error message
                     user_tz = pytz.timezone(record.env.user.tz or 'Asia/Riyadh')
                     booking_local = pytz.utc.localize(record.booking_datetime).astimezone(user_tz)
                     now_local = pytz.utc.localize(now_utc).astimezone(user_tz)
-                    
+
                     raise ValidationError(
                         f"Booking time must be in the future. "
                         f"Selected time: {booking_local.strftime('%Y-%m-%d %H:%M')} "
@@ -211,15 +211,15 @@ class Booking(models.Model):
         # Check if user has admin group - allow all edits
         if self.env.user.has_group('j_reception.group_j_reception_admin'):
             return super(Booking, self).write(vals)
-        
+
         # Check if user has tenant group - restrict edits
         if self.env.user.has_group('j_reception.group_j_reception_renter'):
             for record in self:
                 # Check if current user is officer of the renter for this booking
-                if not (record.renter_id and record.renter_id.officer_id == self.env.user):
+                if not (record.renter_id.sudo() and record.renter_id.sudo().officer_id == self.env.user):
                     raise UserError(
                         f"You are not authorized to edit this booking. "
                         f"You can only edit bookings for tenants where you are the officer."
                     )
-        
+
         return super(Booking, self).write(vals)
