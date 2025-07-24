@@ -63,7 +63,11 @@ class Booking(models.Model):
         help='The tenant making the booking',
         tracking=True
     )
-
+    show_renter = fields.Boolean(
+        string='Show Renter Field',
+        compute='_compute_show_renter',
+        help='Control visibility of renter field based on user permissions'
+    )
 
     @api.depends('facility_id', 'booking_datetime', 'renter_id')
     def _compute_name(self):
@@ -88,23 +92,23 @@ class Booking(models.Model):
         return renter.id if renter else False
 
     @api.depends('renter_id')
-    def _compute_show_renter_field(self):
+    def _compute_show_renter(self):
         """
         Control visibility of renter field based on user permissions
         """
         for record in self:
             # Check if user has admin group
             if self.env.user.has_group('j_reception.group_j_reception_admin'):
-                record.show_renter_field = True
+                record.show_renter = True
             # Check if user has tenant group
             elif self.env.user.has_group('j_reception.group_j_reception_renter'):
                 # Show only if current user is officer of the renter in this booking
                 if record.renter_id.sudo() and record.renter_id.sudo().officer_id == self.env.user:
-                    record.show_renter_field = True
+                    record.show_renter = True
                 else:
-                    record.show_renter_field = False
+                    record.show_renter = False
             else:
-                record.show_renter_field = False
+                record.show_renter = False
 
     @api.constrains('facility_id', 'booking_datetime', 'duration_id')
     def _check_booking_conflict(self):
