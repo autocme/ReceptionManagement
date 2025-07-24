@@ -71,12 +71,12 @@ class Booking(models.Model):
         Compute the display name for the booking
         """
         for record in self:
-            if record.facility_id and record.booking_datetime and record.renter_id:
+            if record.facility_id and record.booking_datetime:
                 # Convert UTC datetime to user's timezone for display
                 user_tz = pytz.timezone(record.env.user.tz or 'Asia/Riyadh')
                 booking_date_local = pytz.utc.localize(record.booking_datetime).astimezone(user_tz)
                 booking_date = booking_date_local.strftime('%Y-%m-%d %H:%M')
-                record.name = f"{record.facility_id.name} - {booking_date} ({record.renter_id.name})"
+                record.name = f"{record.facility_id.name} - {booking_date}"
             else:
                 record.name = 'Draft Booking'
 
