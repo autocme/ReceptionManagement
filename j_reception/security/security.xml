@@ -163,7 +163,7 @@
         </record>
 
         <!-- Record Rules for Booking -->
-        <record id="booking_rule_renter" model="ir.rule">
+        <!-- <record id="booking_rule_renter" model="ir.rule">
             <field name="name">Booking: Tenant can read all records and modify their own bookings</field>
             <field name="model_id" ref="model_booking"/>
             <field name="domain_force">[('renter_id.officer_id', '=', user.id)]</field>
@@ -172,18 +172,19 @@
             <field name="perm_write" eval="True"/>
             <field name="perm_create" eval="True"/>
             <field name="perm_unlink" eval="False"/>
+        </record> -->
+
+        <record id="booking_rule_renter_read_all" model="ir.rule">
+            <field name="name">Booking: Tenant can read all booking records</field>
+            <field name="model_id" ref="model_booking"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_j_reception_renter'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
         </record>
 
-<!--        <record id="booking_rule_renter_read_all" model="ir.rule">-->
-<!--            <field name="name">Booking: Tenant can read all booking records</field>-->
-<!--            <field name="model_id" ref="model_booking"/>-->
-<!--            <field name="domain_force">[(1, '=', 1)]</field>-->
-<!--            <field name="groups" eval="[(4, ref('group_j_reception_renter'))]"/>-->
-<!--            <field name="perm_read" eval="True"/>-->
-<!--            <field name="perm_write" eval="False"/>-->
-<!--            <field name="perm_create" eval="False"/>-->
-<!--            <field name="perm_unlink" eval="False"/>-->
-<!--        </record>-->
 
         <record id="booking_rule_admin" model="ir.rule">
             <field name="name">Booking: Administrator can access all records</field>
