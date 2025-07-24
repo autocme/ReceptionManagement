@@ -57,6 +57,15 @@ class BuildingRenter(models.Model):
         compute='_compute_invitation_count',
         help='Number of invitations created for this renter'
     )
+    floor = fields.Char(
+        string='Floor',
+        help='The floor number or name where the rented unit is located (e.g., 2, Ground, Mezzanine).'
+    )
+
+    unit_no = fields.Char(
+        string='Unit No.',
+        help='The number or identifier of the unit occupied by the renter within the building.'
+    )
 
     @api.depends('company_id')
     def _compute_name(self):

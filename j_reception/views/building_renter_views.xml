@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        
+
         <!-- Building Renter Tree View -->
         <record id="view_building_renter_tree" model="ir.ui.view">
             <field name="name">building.renter.tree</field>
@@ -35,6 +35,10 @@
                             <group>
                                 <field name="company_id" string="Company"/>
                                 <field name="officer_id" string="Officer"/>
+                            </group>
+                            <group>
+                                <field name="floor"/>
+                                <field name="unit_no"/>
                             </group>
                         </group>
                         <notebook>

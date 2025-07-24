@@ -55,7 +55,7 @@
             <field name="name">booking.calendar</field>
             <field name="model">booking</field>
             <field name="arch" type="xml">
-                <calendar string="Bookings" date_start="booking_datetime" color="facility_id" mode="week">
+                <calendar string="Bookings" date_start="booking_datetime" color="facility_id" mode="week" quick_add="False">
                     <field name="facility_id"/>
                     <field name="duration_id"/>
                     <field name="renter_id" string="Tenant"/>
@@ -132,7 +132,7 @@
         <record id="action_booking_tree" model="ir.actions.act_window">
             <field name="name">Bookings</field>
             <field name="res_model">booking</field>
-            <field name="view_mode">kanban,calendar,tree,form</field>
+            <field name="view_mode">calendar,kanban,tree,form</field>
             <field name="search_view_id" ref="view_booking_search"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
