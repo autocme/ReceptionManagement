@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-21 07:24+0000\n"
-"PO-Revision-Date: 2025-07-21 07:24+0000\n"
+"POT-Creation-Date: 2025-07-26 07:41+0000\n"
+"PO-Revision-Date: 2025-07-26 07:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -336,6 +336,15 @@ msgid "Booking Date"
 msgstr ""
 
 #. module: j_reception
+#: code:addons/Reception/j_reception/models/booking.py:0
+#: code:addons/j_reception/models/booking.py:0
+#, python-format
+msgid ""
+"Booking time must be in the future. Selected time: %s Current time: %s "
+"Please select a future date and time."
+msgstr ""
+
+#. module: j_reception
 #: model:ir.actions.act_window,name:j_reception.action_booking_tree
 #: model:ir.ui.menu,name:j_reception.menu_j_reception_bookings
 #: model_terms:ir.ui.view,arch_db:j_reception.view_booking_calendar
@@ -400,6 +409,11 @@ msgstr ""
 #. module: j_reception
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_form
 msgid "Confirm"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_booking__show_renter
+msgid "Control visibility of renter field based on user permissions"
 msgstr ""
 
 #. module: j_reception
@@ -471,6 +485,15 @@ msgid "Daily Booking Limit (Minutes)"
 msgstr ""
 
 #. module: j_reception
+#: code:addons/Reception/j_reception/models/booking.py:0
+#: code:addons/j_reception/models/booking.py:0
+#, python-format
+msgid ""
+"Daily booking limit exceeded. You can only book %s minutes per day. "
+"Currently booked: %s minutes. Trying to book: %s minutes."
+msgstr ""
+
+#. module: j_reception
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__invitation_datetime
 #: model_terms:ir.ui.view,arch_db:j_reception.view_booking_search
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
@@ -531,6 +554,13 @@ msgid "Draft"
 msgstr ""
 
 #. module: j_reception
+#: code:addons/Reception/j_reception/models/booking.py:0
+#: code:addons/j_reception/models/booking.py:0
+#, python-format
+msgid "Draft Booking"
+msgstr ""
+
+#. module: j_reception
 #: model:ir.model.fields,field_description:j_reception.field_scheduled_payment__due_date
 msgid "Due Date"
 msgstr ""
@@ -566,6 +596,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:j_reception.view_booking_search
 #: model_terms:ir.ui.view,arch_db:j_reception.view_facilities_form
 msgid "Facility"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__floor
+msgid "Floor"
 msgstr ""
 
 #. module: j_reception
@@ -1072,6 +1107,11 @@ msgid "Reception - Payment Due Notification"
 msgstr ""
 
 #. module: j_reception
+#: model:res.groups,name:j_reception.group_j_reception_financial
+msgid "Reception Financial"
+msgstr ""
+
+#. module: j_reception
 #: model:ir.model,name:j_reception.model_reception_invitation
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_form
 msgid "Reception Invitation"
@@ -1147,6 +1187,11 @@ msgid "Settings"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_booking__show_renter
+msgid "Show Renter Field"
+msgstr ""
+
+#. module: j_reception
 #: model:ir.model.fields,field_description:j_reception.field_reception_invitation__state
 #: model_terms:ir.ui.view,arch_db:j_reception.view_reception_invitation_search
 msgid "State"
@@ -1211,13 +1256,36 @@ msgid "The company associated with this renter"
 msgstr ""
 
 #. module: j_reception
+#: code:addons/Reception/j_reception/models/booking.py:0
+#: code:addons/j_reception/models/booking.py:0
+#, python-format
+msgid ""
+"The facility '%s' is already booked from %s to %s. Please choose a different"
+" time."
+msgstr ""
+
+#. module: j_reception
 #: model:ir.model.fields,help:j_reception.field_booking__facility_id
 msgid "The facility being booked"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__floor
+msgid ""
+"The floor number or name where the rented unit is located (e.g., 2, Ground, "
+"Mezzanine)."
+msgstr ""
+
+#. module: j_reception
 #: model:ir.model.fields,help:j_reception.field_reception_invitation__guest_partner_id
 msgid "The guest partner for this invitation"
+msgstr ""
+
+#. module: j_reception
+#: model:ir.model.fields,help:j_reception.field_building_renter__unit_no
+msgid ""
+"The number or identifier of the unit occupied by the renter within the "
+"building."
 msgstr ""
 
 #. module: j_reception
@@ -1302,6 +1370,11 @@ msgid "Unique sequence number for the invitation"
 msgstr ""
 
 #. module: j_reception
+#: model:ir.model.fields,field_description:j_reception.field_building_renter__unit_no
+msgid "Unit No."
+msgstr ""
+
+#. module: j_reception
 #: model:ir.model.fields,field_description:j_reception.field_booking__message_unread
 #: model:ir.model.fields,field_description:j_reception.field_building_renter__message_unread
 #: model:ir.model.fields,field_description:j_reception.field_duration__message_unread
@@ -1320,6 +1393,11 @@ msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: j_reception
+#: model:res.groups,comment:j_reception.group_j_reception_financial
+msgid "Users with access to financial information like scheduled payments"
+msgstr ""
+
+#. module: j_reception
 #: model_terms:ir.ui.view,arch_db:j_reception.view_building_renter_kanban
 msgid "View Invitations"
 msgstr ""
@@ -1327,6 +1405,15 @@ msgstr ""
 #. module: j_reception
 #: model:ir.model.fields,help:j_reception.field_scheduled_payment__is_notified
 msgid "Whether notification email has been sent for this payment"
+msgstr ""
+
+#. module: j_reception
+#: code:addons/Reception/j_reception/models/booking.py:0
+#: code:addons/j_reception/models/booking.py:0
+#, python-format
+msgid ""
+"You are not authorized to edit this booking. You can only edit bookings for "
+"tenants where you are the officer."
 msgstr ""
 
 #. module: j_reception
