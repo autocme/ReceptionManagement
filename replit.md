@@ -18,6 +18,7 @@ Default timezone: Asia/Riyadh (when user timezone not available)
 - Created new financial security group for scheduled payments access
 - Fixed duration name translations to work dynamically with user's language context
 - Made all user-facing Python strings translatable using _() function for error messages and computed fields
+- Implemented conditional readonly behavior for officer field in invitations (readonly for tenants, editable for admins)
 
 ### Kanban Views and Auto-assignment (July 21, 2025)
 - Added kanban view as default for booking model with consistent styling matching other modules

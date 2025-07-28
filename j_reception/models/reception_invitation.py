@@ -80,6 +80,11 @@ class ReceptionInvitation(models.Model):
         store=True,
         help='Display name for the invitation'
     )
+    officer_readonly = fields.Boolean(
+        string='Officer Readonly',
+        compute='_compute_officer_readonly',
+        help='Control whether officer field is readonly based on user permissions'
+    )
 
     @api.depends('sequence', 'guest_partner_id', 'renter_id')
     def _compute_name(self):
@@ -111,6 +116,23 @@ class ReceptionInvitation(models.Model):
             else:
                 # If no officer selected, clear renter field
                 rec.renter_id = False
+
+    @api.depends('officer_id')
+    def _compute_officer_readonly(self):
+        """
+        Control whether officer field is readonly based on user permissions
+        """
+        for record in self:
+            # Check if user has admin group
+            if self.env.user.has_group('j_reception.group_j_reception_admin'):
+                # Admins can always edit officer field
+                record.officer_readonly = False
+            elif self.env.user.has_group('j_reception.group_j_reception_renter'):
+                # Tenants cannot edit officer field (readonly)
+                record.officer_readonly = True
+            else:
+                # Other users cannot edit officer field
+                record.officer_readonly = True
 
     @api.model
     def default_get(self, fields_list):

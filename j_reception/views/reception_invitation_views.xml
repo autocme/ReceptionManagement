@@ -41,7 +41,8 @@
                         <group>
                             <group>
                                 <field name="subject"/>
-                                <field name="officer_id"/>
+                                <field name="officer_readonly" invisible="1"/>
+                                <field name="officer_id" attrs="{'readonly': [('officer_readonly', '=', True)]}"/>
                                 <field name="invitation_datetime"/>
                             </group>
                             <group>
